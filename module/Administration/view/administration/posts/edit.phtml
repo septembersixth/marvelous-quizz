@@ -1,0 +1,28 @@
+<?php
+$form->setAttribute('action', $this->url('administration/posts', ['action' => 'edit', 'id' => $id]));
+$form->get('submit')->setValue('Edit');
+$form->prepare();
+?>
+
+    <div class="page-header">
+        <h3>Edit Post</h3>
+    </div>
+<?= $this->form()->openTag($form); ?>
+<?= $this->formHidden($form->get('id')); ?>
+
+    <div class="form-group row">
+        <div class="col-lg-4">
+            <label for="exampleInputEmail1">Title</label>
+            <?= $this->formRow($form->get('title')); ?>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-lg-8">
+            <label for="exampleInputPassword1">Text</label>
+            <?= $this->formRow($form->get('text')); ?>
+        </div>
+    </div>
+
+<?= $this->formSubmit($form->get('submit')); ?>
+<?= $this->form()->closeTag(); ?>
