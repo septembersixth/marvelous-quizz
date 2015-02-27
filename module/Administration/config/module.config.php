@@ -7,6 +7,7 @@ return
         'invokables' =>
         [
             'Administration\Controller\Posts' => 'Administration\Controller\PostsController',
+            'Administration\Controller\Index' => 'Administration\Controller\IndexController',
         ],
     ],
 
@@ -19,21 +20,40 @@ return
                 'type'      => 'segment',
                 'options'   =>
                 [
-                    'route' => '/administration'
+                    'route'      => '/administration',
+                    'defaults'   =>
+                    [
+                        '__NAMESPACE__' => 'Administration\Controller',
+                        'controller'    => 'Index',
+                    ],
                 ],
 
                 'child_routes' =>
                 [
-                    'posts' => [
+                    'login' =>
+                    [
+                        'type'      => 'literal',
+                        'options'   =>
+                        [
+                            'route'     => '/login',
+                            'defaults'  =>
+                            [
+                                'action'    => 'login'
+                            ],
+                        ],
+                    ],
+
+                    'posts' =>
+                    [
                         'type'      => 'segment',
                         'options'   =>
                             [
                                 'route'     => '/posts[/:action[/:id]]',
                                 'defaults'  =>
-                                    [
-                                        'controller'    => 'Administration\Controller\Posts',
-                                        'action'        => 'index',
-                                    ],
+                                [
+                                    'controller'    => 'Posts',
+                                    'action'        => 'index',
+                                ],
                             ],
                     ],
 
@@ -46,7 +66,7 @@ return
                             'defaults'      =>
                             [
                                 'page'          => 1,
-                                'controller'    => 'Administration\Controller\Posts',
+                                'controller'    => 'Posts',
                                 'action'        => 'index',
                             ],
 
@@ -108,7 +128,8 @@ return
 
         'factories' =>
         [
-            'Administration\Form\PostForm' => 'Administration\Form\PostFormFactory'
+            'Administration\Form\PostForm'      => 'Administration\Form\PostFormFactory',
+            'Administration\Form\Login'         => 'Administration\Form\LoginFactory',
         ],
 
         'shared' =>
