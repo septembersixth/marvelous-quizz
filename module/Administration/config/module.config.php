@@ -43,6 +43,19 @@ return
                         ],
                     ],
 
+                    'logout' =>
+                    [
+                        'type'      => 'literal',
+                        'options'   =>
+                        [
+                            'route'     => '/logout',
+                            'defaults'   =>
+                            [
+                                'action'    => 'logout',
+                            ],
+                        ],
+                    ],
+
                     'posts' =>
                     [
                         'type'      => 'segment',
@@ -97,7 +110,13 @@ return
 
         'factories' =>
         [
-            'navigation' => 'Zend\Navigation\Service\DefaultNavigationFactory',
+            'navigation'                                    => 'Zend\Navigation\Service\DefaultNavigationFactory',
+//            'Zend\Authentication\AuthenticationService'     => 'Administration\Service\Auth\AuthenticationFactory',
+            'Zend\Authentication\AuthenticationService'     => function($serviceManager) {
+                // If you are using DoctrineORMModule:
+                return $serviceManager->get('doctrine.authenticationservice.orm_default');
+            }
+
         ],
 
         'shared' =>
@@ -128,8 +147,10 @@ return
 
         'factories' =>
         [
-            'Administration\Form\PostForm'      => 'Administration\Form\PostFormFactory',
-            'Administration\Form\Login'         => 'Administration\Form\LoginFactory',
+            'Administration\Form\PostForm'                  => 'Administration\Form\PostFormFactory',
+            'Administration\Form\Login'                     => 'Administration\Form\LoginFactory',
+
+
         ],
 
         'shared' =>
@@ -138,18 +159,20 @@ return
         ],
     ],
 
-    'navigation' => array(
-        'default' => array(
-            array(
+    'navigation' =>
+    [
+        'default' =>
+        [
+            [
                 'label' => 'Home',
                 'route' => 'home',
-            ),
-            array(
+            ],
+            [
                 'label' => 'Post',
                 'route' => 'administration/posts',
-            ),
-        ),
-    ),
+            ],
+        ],
+    ],
 
     'view_helper_config' => array(
         'flashmessenger' => array(
@@ -158,5 +181,40 @@ return
             'message_separator_string' => '</li><li>'
         )
     ),
+
+    'doctrine' =>
+    [
+        'authentication' =>
+        [
+            'orm_default' =>
+            [
+                'object_manager'      => 'Doctrine\ORM\EntityManager',
+                'identity_class'      => 'Administration\Entity\User',
+                'identity_property'   => 'login',
+                'credential_property' => 'password',
+                'credential_callable' => function(\Administration\Entity\User $user, $passwordGiven) {
+                    return $user->getPassword() === md5($passwordGiven);
+                },
+            ],
+        ],
+
+        'driver' =>
+        [
+            'application_entities' =>
+                [
+                    'class' =>'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                    'cache' => 'array',
+                    'paths' => [__DIR__ . '/../src/Administration/Entity'],
+                ],
+
+            'orm_default' =>
+                [
+                    'drivers' =>
+                        [
+                            'Administration\Entity' => 'application_entities',
+                        ],
+                ],
+        ],
+    ],
 
 ];

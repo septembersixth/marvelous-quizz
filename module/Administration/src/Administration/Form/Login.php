@@ -10,7 +10,7 @@ class Login extends Form
     {
         $this
             ->add([
-                'name'  => 'username',
+                'name'  => 'login',
                 'type'  => 'text',
             ])
 
