@@ -2,7 +2,7 @@
 <?= $this->flashMessenger()->render('default', array('alert', 'alert-dismissible', 'alert-warning')); ?>
 
 <div class="page-header">
-<a href="posts/add" class="btn btn-primary btn-sm" role="button">
+<a href="<?= $this->url('administration/posts', ['action' => 'add']); ?>" class="btn btn-primary btn-sm" role="button">
     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
     Add
 </a>
@@ -20,20 +20,20 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach($providers as $provider): ?>
+            <?php foreach($posts as $post): ?>
             <tr>
-                <td><?= $provider->getId(); ?></td>
-                <td><?= $provider->getTitle(); ?></td>
-                <td><?= $provider->getText(); ?></td>
-                <td><?= $provider->getCreated() !== null ? $provider->getCreated()->format('Y-m-d H:i:s') : '-'; ?></td>
-                <td><?= $provider->getUpdated() !== null ? $provider->getUpdated()->format('Y-m-d H:i:s') : '-'; ?></td>
+                <td><?= $post->getId(); ?></td>
+                <td><?= $post->getTitle(); ?></td>
+                <td><?= $post->getText(); ?></td>
+                <td><?= $post->getCreated() !== null ? $post->getCreated()->format('Y-m-d H:i:s') : '-'; ?></td>
+                <td><?= $post->getUpdated() !== null ? $post->getUpdated()->format('Y-m-d H:i:s') : '-'; ?></td>
                 <td>
-                    <a href="<?= $this->url('administration/posts', ['action' => 'edit', 'id' => $provider->getId()]); ?>" class="btn btn-sm" role="button">
+                    <a href="<?= $this->url('administration/posts', ['action' => 'edit', 'id' => $post->getId()]); ?>" class="btn btn-sm" role="button">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                         Edit
                     </a>
 
-                    <a href="<?= $this->url('administration/posts', ['action' => 'delete', 'id' => $provider->getId()]); ?>" class="btn btn-sm" role="button">
+                    <a href="<?= $this->url('administration/posts', ['action' => 'delete', 'id' => $post->getId()]); ?>" class="btn btn-sm" role="button">
                         <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
                         Delete
                     </a>
@@ -42,4 +42,20 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <?php
+    // add at the end of the file after the table
+    echo $this->paginationControl(
+    // the paginator object
+        $posts,
+        // the scrolling style
+        'sliding',
+        // the partial to use to render the control
+        'partial/paginator.phtml',
+        // the route to link to when a user clicks a control link
+        array(
+            'route' => 'administration/pagination'
+        )
+    );
+    ?>
 </div>

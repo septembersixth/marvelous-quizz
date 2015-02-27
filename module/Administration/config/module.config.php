@@ -27,15 +27,34 @@ return
                     'posts' => [
                         'type'      => 'segment',
                         'options'   =>
-                        [
-                            'route'     => '/posts[/:action[/:id]]',
-                            'defaults'  =>
                             [
+                                'route'     => '/posts[/:action[/:id]]',
+                                'defaults'  =>
+                                    [
+                                        'controller'    => 'Administration\Controller\Posts',
+                                        'action'        => 'index',
+                                    ],
+                            ],
+                    ],
+
+                    'pagination' =>
+                    [
+                        'type'      => 'segment',
+                        'options'   =>
+                        [
+                            'route'         => '/posts/[page/:page]',
+                            'defaults'      =>
+                            [
+                                'page'          => 1,
                                 'controller'    => 'Administration\Controller\Posts',
                                 'action'        => 'index',
                             ],
+
                         ],
+
                     ],
+
+
                 ],
             ],
         ],

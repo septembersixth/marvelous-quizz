@@ -3,8 +3,10 @@
 namespace Administration\Controller;
 
 use Application\Entity\Post;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
+use Doctrine\Common\Collections\ArrayCollection;
+use DoctrineModule\Paginator\Adapter\Collection;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Paginator\Paginator;
 
 class PostsController extends AbstractActionController
 {
@@ -12,9 +14,17 @@ class PostsController extends AbstractActionController
 
     public function indexAction()
     {
-        $providers = $this->getEntityManager()->getRepository('Application\Entity\Post');
+        $page = $this->params()->fromRoute('page') ? $this->params()->fromRoute('page') : 1;
+
+        $rep = $this->getEntityManager()->getRepository('Application\Entity\Post');
+        $posts = $rep->findByDeleted(false);
+        $paginator = new Paginator(new Collection(new ArrayCollection($posts)));
+        $paginator
+            ->setCurrentPageNumber($page)
+            ->setItemCountPerPage(5);
+
         return [
-            'providers'         => $providers->findByDeleted(false),
+            'posts'             => $paginator,
             'flashMessages'     => $this->flashMessenger()->getMessages(),
         ];
     }
