@@ -2,10 +2,14 @@
 
 namespace Administration\Form;
 
+use DoctrineModule\Persistence\ObjectManagerAwareInterface;
+use DoctrineModule\Persistence\ProvidesObjectManager;
 use Zend\Form\Form;
 
-class PostForm extends Form
+class PostForm extends Form implements ObjectManagerAwareInterface
 {
+    use ProvidesObjectManager;
+
     public function init($name = null)
     {
         $this->setName('postForm');
@@ -46,6 +50,23 @@ class PostForm extends Form
                     'id'        => 'submitbutton',
                     'class'     => 'btn btn-default',
                 ],
+            ])
+
+            ->add([
+                'type'      => 'DoctrineModule\Form\Element\ObjectMultiCheckbox',
+                'name'      => 'tags',
+                'options'   =>
+                [
+                    'object_manager'    => $this->getObjectManager(),
+                    'target_class'      => 'Application\Entity\Tag',
+                    'property'          => 'name',
+
+                    'label_attributes'  =>
+                        [
+                            'class' => 'checkbox-inline'
+                        ]
+                ],
+
             ])
 
         ;

@@ -2,6 +2,8 @@
 
 namespace Application\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,6 +34,13 @@ class Post
     protected $text;
 
     /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Application\Entity\Tag")
+     *
+     */
+    protected $tags;
+
+    /**
      * @ORM\Column(type="datetime", nullable=true)
      * @var \Datetime
      */
@@ -47,6 +56,11 @@ class Post
      * @ORM\Column(type="boolean", options={"default"=false})
      */
     protected $deleted = false;
+
+    public function __construct()
+    {
+        $this->tags = new ArrayCollection;
+    }
 
     /**
      * @return mixed
@@ -160,6 +174,32 @@ class Post
     public function isDeleted()
     {
         return $this->deleted;
+    }
+
+    /**
+     * @param Tag $tag
+     * @return $this
+     */
+    public function addTags(Collection $tags)
+    {
+        foreach($tags as $tag) {
+            $this->tags->add($tag);
+        }
+    }
+
+    public function removeTags(Collection $tags)
+    {
+        foreach($tags as $tag) {
+            $this->tags->removeElement($tag);
+        }
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getTags()
+    {
+        return $this->tags;
     }
 
 }

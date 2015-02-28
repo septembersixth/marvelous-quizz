@@ -10,19 +10,28 @@ $form->prepare();
 <?= $this->form()->openTag($form); ?>
 <?= $this->formHidden($form->get('id')); ?>
 
-<div class="form-group row">
-    <div class="col-lg-4">
-        <label for="exampleInputEmail1">Title</label>
-        <?= $this->formRow($form->get('title')); ?>
+    <div class="form-group row">
+        <div class="col-lg-4">
+            <label for="exampleInputEmail1">Title</label>
+            <?= $this->formRow($form->get('title')); ?>
+        </div>
     </div>
-</div>
 
-<div class="form-group row">
-    <div class="col-lg-8">
-        <label for="exampleInputPassword1">Text</label>
-        <?= $this->formRow($form->get('text')); ?>
+    <div class="form-group row">
+        <div class="col-lg-8">
+            <label for="exampleInputPassword1">Text</label>
+            <?= $this->formRow($form->get('text')); ?>
+        </div>
     </div>
-</div>
+
+    <div class="form-group row">
+        <div class="col-lg-8">
+            <label for="exampleInputPassword1">Tags</label>
+            <div>
+                <?= $this->formRow($form->get('tags')); ?>
+            </div>
+        </div>
+    </div>
 
 <?= $this->formSubmit($form->get('submit')); ?>
 <?= $this->form()->closeTag(); ?>

@@ -27,6 +27,11 @@ class PostInputFilter extends InputFilter
                     ['name'    => 'StringLength', 'options' => ['min' => '3', 'max' => '64']]
                 ],
             ])
+
+            ->add([
+                'name'          => 'tags',
+                'required'      => false,
+            ])
         ;
     }
 } 
