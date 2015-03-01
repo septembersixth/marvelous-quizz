@@ -5,6 +5,7 @@ namespace Administration\Controller;
 use Application\Entity\Post;
 use Doctrine\Common\Collections\ArrayCollection;
 use DoctrineModule\Paginator\Adapter\Collection;
+use Zend\Filter\File\RenameUpload;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Paginator\Paginator;
 
@@ -70,7 +71,11 @@ class PostsController extends AbstractActionController
         $form->bind($post);
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $form->setData($request->getPost());
+            $post = array_merge_recursive(
+                $request->getPost()->toArray(),
+                $request->getFiles()->toArray()
+            );
+            $form->setData($post);
             if ($form->isValid()) {
                 $this->getEntityManager()->flush();
 

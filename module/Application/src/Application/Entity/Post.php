@@ -31,6 +31,12 @@ class Post
      * @ORM\Column(type="string", nullable=true)
      * @var string
      */
+    protected $image;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     * @var string
+     */
     protected $text;
 
     /**
@@ -201,5 +207,24 @@ class Post
     {
         return $this->tags;
     }
+
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param $image
+     * @return $this
+     */
+    public function setImage($image)
+    {
+        $this->image = $image['name'];
+        return $this;
+    }
+
 
 }

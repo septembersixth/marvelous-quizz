@@ -3,6 +3,7 @@
 
 namespace Administration\InputFilter;
 
+use Zend\InputFilter\Factory;
 use Zend\InputFilter\InputFilter;
 
 class PostInputFilter extends InputFilter
@@ -13,7 +14,7 @@ class PostInputFilter extends InputFilter
             ->add([
                 'name'          => 'title',
                 'required'      => true,
-                'filter'        => [['name' => 'StringTrim'], ['name' => 'StripTags']],
+                'filters'       => [['name' => 'StringTrim'], ['name' => 'StripTags']],
                 'validators'    => [
                     ['name'    => 'StringLength', 'options' => ['min' => '3', 'max' => '64']]
                 ],
@@ -22,9 +23,9 @@ class PostInputFilter extends InputFilter
             ->add([
                 'name'          => 'text',
                 'required'      => true,
-                'filter'        => [['name' => 'StringTrim'], ['name' => 'StripTags']],
+                'filters'       => [['name' => 'StringTrim'], ['name' => 'StripTags']],
                 'validators'    => [
-                    ['name'    => 'StringLength', 'options' => ['min' => '3', 'max' => '64']]
+                    ['name'     => 'StringLength', 'options' => ['min' => '3', 'max' => '64']]
                 ],
             ])
 
@@ -32,6 +33,23 @@ class PostInputFilter extends InputFilter
                 'name'          => 'tags',
                 'required'      => false,
             ])
+
+
+            ->add([
+                'name'          => 'image',
+                'required'      => false,
+                'filters'       => [['name' => 'FileRenameUpload',
+                                    'options' => [
+                                                    'target'    => './data/upload/',
+                                                    'randomize' => true,
+                                                ]
+                                    ]],
+                'validator'     => [['name' => 'UploadFile']],
+            ])
+
+
+
         ;
+
     }
 } 

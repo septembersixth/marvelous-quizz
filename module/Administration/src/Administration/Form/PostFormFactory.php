@@ -28,6 +28,7 @@ class PostFormFactory implements FactoryInterface
             ->setHydrator(new DoctrineObject($formElementManager->getServiceLocator()->get('doctrine\ORM\EntityManager')))
             ->setObject(new Post)
         ;
+
         return $form;
     }
 

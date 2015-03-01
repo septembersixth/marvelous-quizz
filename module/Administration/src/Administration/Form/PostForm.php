@@ -13,6 +13,7 @@ class PostForm extends Form implements ObjectManagerAwareInterface
     public function init($name = null)
     {
         $this->setName('postForm');
+        $this->setAttribute('enctype', 'multipart/form-data');
 
         $this
             ->add([
@@ -28,6 +29,11 @@ class PostForm extends Form implements ObjectManagerAwareInterface
                     'class'         => 'form-control',
                     'placeholder'   => 'Enter title'
                 ]
+            ])
+
+            ->add([
+                'name'  => 'image',
+                'type'  => 'File',
             ])
 
             ->add([
