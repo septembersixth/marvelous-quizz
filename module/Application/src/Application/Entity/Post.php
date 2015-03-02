@@ -222,7 +222,7 @@ class Post
      */
     public function setImage($image)
     {
-        $this->image = $image['name'];
+        $this->image = substr(strrchr($image['tmp_name'], '/'), 1);
         return $this;
     }
 

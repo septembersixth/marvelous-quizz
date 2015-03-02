@@ -36,10 +36,13 @@ class PostsController extends AbstractActionController
         $form = $this->getPostForm();
 
         $request = $this->getRequest();
+        $form->bind($post);
         if ($request->isPost()) {
             $post = new Post;
-            $form->bind($post);
-            $form->setData($request->getPost());
+            $form->setData(array_merge_recursive(
+                $request->getPost()->toArray(),
+                $request->getFiles()->toArray()
+            ));
 
             if ($form->isValid()) {
                 $post->setCreated(date_create());
@@ -71,11 +74,11 @@ class PostsController extends AbstractActionController
         $form->bind($post);
         $request = $this->getRequest();
         if ($request->isPost()) {
-            $post = array_merge_recursive(
-                $request->getPost()->toArray(),
-                $request->getFiles()->toArray()
-            );
-            $form->setData($post);
+            $post->setUpdated(date_create());
+            $form->setData(array_merge_recursive(
+                                $request->getPost()->toArray(),
+                                $request->getFiles()->toArray()
+            ));
             if ($form->isValid()) {
                 $this->getEntityManager()->flush();
 

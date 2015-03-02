@@ -38,13 +38,27 @@ class PostInputFilter extends InputFilter
             ->add([
                 'name'          => 'image',
                 'required'      => false,
-                'filters'       => [['name' => 'FileRenameUpload',
+                'filters'       => [[
+                                    'name' => 'File\RenameUpload',
                                     'options' => [
-                                                    'target'    => './data/upload/',
+                                                    'target'    => 'data/upload',
                                                     'randomize' => true,
                                                 ]
                                     ]],
-                'validator'     => [['name' => 'UploadFile']],
+                'validators'     => [
+                                        [
+                                            'name'      => 'File\Size',
+                                            'options'   => ['max' => '2MB'],
+                                        ],
+                                        [
+                                            'name'      => 'File\Extension',
+                                            'options'   => ['extension' => 'jpg, gif'],
+                                        ],
+                                        [
+                                            'name'      => 'File\MimeType',
+                                            'options'   => ['mimeType' => 'image/jpeg, image/gif'],
+                                        ],
+                                    ],
             ])
 
 

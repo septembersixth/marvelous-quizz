@@ -20,6 +20,11 @@ $form->prepare();
         <?= $this->formRow($form->get('password')->setAttributes(['placeholder'   => 'Mot de passe', 'class' => 'form-control', 'autocomplete' => "off"])); ?>
         </div>
     </div>
-    <button class="btn btn-large btn-primary" type="submit">Se connecter</button>
+
+    <div class="form-group">
+        <div class="col-lg-3">
+            <button class="btn btn-large btn-primary btn-block" type="submit">Se connecter</button>
+        </div>
+    </div>
 
 <?= $this->form()->closeTag(); ?>
