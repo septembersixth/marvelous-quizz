@@ -9,13 +9,34 @@
 
 namespace Application\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Zend\Paginator\Paginator;
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
+use DoctrineModule\Paginator\Adapter\Collection;
 
 class IndexController extends AbstractActionController
 {
+    protected $em;
+
     public function indexAction()
     {
-        return new ViewModel();
+        $page = $this->params()->fromRoute('page') ? $this->params()->fromRoute('page') : 1;
+
+        $rep = $this->getEntityManager()->getRepository('Application\Entity\Post');
+        $posts = $rep->findByDeleted(false);
+        $paginator = new Paginator(new Collection(new ArrayCollection($posts)));
+        $paginator
+            ->setCurrentPageNumber($page)
+            ->setItemCountPerPage(5);
+
+        return ['posts' => $paginator];
+    }
+
+    public function getEntityManager()
+    {
+        if (! $this->em) {
+            $this->em = $this->getServiceLocator()->get('doctrine\ORM\EntityManager');
+        }
+        return $this->em;
     }
 }

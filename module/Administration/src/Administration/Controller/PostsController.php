@@ -5,7 +5,6 @@ namespace Administration\Controller;
 use Application\Entity\Post;
 use Doctrine\Common\Collections\ArrayCollection;
 use DoctrineModule\Paginator\Adapter\Collection;
-use Zend\Filter\File\RenameUpload;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Paginator\Paginator;
 

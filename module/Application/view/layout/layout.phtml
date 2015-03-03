@@ -12,9 +12,10 @@
 
         <!-- Le styles -->
         <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
-                        ->prependStylesheet($this->basePath() . '/css/style.css')
-                        ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
-                        ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
+            ->prependStylesheet($this->basePath() . '/css/style.css')
+            ->prependStylesheet($this->basePath() . '/css/blog.css')
+            ->prependStylesheet($this->basePath() . '/css/bootstrap-theme.min.css')
+            ->prependStylesheet($this->basePath() . '/css/bootstrap.min.css') ?>
 
         <!-- Scripts -->
         <?php echo $this->headScript()
@@ -50,12 +51,27 @@
         </nav>
         <?php endif; ?>
 
+        <div class="blog-masthead">
+            <div class="container">
+                <nav class="blog-nav">
+                    <a class="blog-nav-item active" href="#">Home</a>
+                    <a class="blog-nav-item" href="#">New features</a>
+                    <a class="blog-nav-item" href="#">Press</a>
+                    <a class="blog-nav-item" href="#">New hires</a>
+                    <a class="blog-nav-item" href="#">About</a>
+                </nav>
+            </div>
+        </div>
+
         <div class="container">
+
             <?php echo $this->content; ?>
             <hr>
+
             <footer>
             </footer>
         </div> <!-- /container -->
+
         <?php echo $this->inlineScript() ?>
     </body>
 </html>
