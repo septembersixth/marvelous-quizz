@@ -5,6 +5,7 @@ namespace Administration\Controller;
 use Application\Entity\Post;
 use Doctrine\Common\Collections\ArrayCollection;
 use DoctrineModule\Paginator\Adapter\Collection;
+use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Paginator\Paginator;
 
@@ -35,9 +36,9 @@ class PostsController extends AbstractActionController
         $form = $this->getPostForm();
 
         $request = $this->getRequest();
-        $form->bind($post);
         if ($request->isPost()) {
             $post = new Post;
+            $form->bind($post);
             $form->setData(array_merge_recursive(
                 $request->getPost()->toArray(),
                 $request->getFiles()->toArray()
@@ -58,31 +59,33 @@ class PostsController extends AbstractActionController
 
     public function editAction()
     {
+        /** @var \Administration\Form\PostForm $form */
+        $form = $this->getPostForm();
         $id = (int) $this->params()->fromRoute('id', 0);
-        if (! $id) {
-            return $this->redirect()->toRoute('administration/posts');
-        }
 
         if (! $post = $this->getEntityManager()->getRepository('Application\Entity\Post')->findOneById($id)) {
             return $this->redirect()->toRoute('administration/posts');
         }
 
-        /** @var \Administration\Form\PostForm $form */
-        $form = $this->getPostForm();
-
         $form->bind($post);
-        $request = $this->getRequest();
-        if ($request->isPost()) {
-            $post->setUpdated(date_create());
-            $form->setData(array_merge_recursive(
-                                $request->getPost()->toArray(),
-                                $request->getFiles()->toArray()
-            ));
-            if ($form->isValid()) {
-                $this->getEntityManager()->flush();
 
-                $this->flashMessenger()->addMessage(sprintf('Your post (id = %d) was updated', $id));
-                return $this->redirect()->toRoute('administration/posts');
+        if (($prg = $this->fileprg($form)) instanceof Response) {
+            return $prg;
+        } elseif ($prg === false) {
+            return compact('id', 'form');
+        }
+
+        if ($form->isValid()) {
+            $this->getEntityManager()->flush();
+            $this->flashMessenger()->addMessage(sprintf('Your post (id = %d) was updated', $id));
+            return $this->redirect()->toRoute('administration/posts');
+        }
+        else {
+            // Form not valid, but file uploads might be valid and uploaded
+            if (empty($prg['image']['error'])) {
+                $post->setImage($prg['image']);
+                $this->getEntityManager()->flush();
+                $form->get('image')->setValue($post->getImage());
             }
         }
 

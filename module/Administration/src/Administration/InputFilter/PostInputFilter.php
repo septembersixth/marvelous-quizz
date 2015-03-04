@@ -14,19 +14,13 @@ class PostInputFilter extends InputFilter
             ->add([
                 'name'          => 'title',
                 'required'      => true,
-//                'filters'       => [['name' => 'StringTrim'], ['name' => 'StripTags']],
-                'validators'    => [
-                    ['name'    => 'StringLength', 'options' => ['min' => '3', 'max' => '3000']]
-                ],
+                'filters'       => [['name' => 'StringTrim']],
             ])
 
             ->add([
                 'name'          => 'text',
                 'required'      => true,
-//                'filters'       => [['name' => 'StringTrim'], ['name' => 'StripTags']],
-//                'validators'    => [
-//                    ['name'     => 'StringLength', 'options' => ['min' => '3', 'max' => '10000']]
-//                ],
+                'filters'       => [['name' => 'StringTrim']],
             ])
 
             ->add([

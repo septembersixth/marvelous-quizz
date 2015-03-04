@@ -2,6 +2,7 @@
 $form->setAttribute('action', $this->url('administration/posts', ['action' => 'edit', 'id' => $id]));
 $form->get('submit')->setValue('Edit');
 $form->prepare();
+$image = $form->get('image')->getValue();
 ?>
 
 <div class="page-header">
@@ -18,9 +19,9 @@ $form->prepare();
         </div>
     </div>
 
-    <?php if (is_string($form->get('image')->getValue())): ?>
+    <?php if (! empty($image)): ?>
     <div class="form-group row col-lg-8">
-        <img src="/img/upload/<?= $form->get('image')->getValue();?>" class="img-thumbnail"/>
+        <img src="/img/upload/<?= $image;?>" class="img-thumbnail"/>
     </div>
     <?php endif; ?>
 

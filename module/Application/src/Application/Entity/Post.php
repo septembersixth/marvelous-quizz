@@ -22,7 +22,7 @@ class Post
     protected $id;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="text")
      * @var string
      */
     protected $title;
@@ -34,7 +34,7 @@ class Post
     protected $image;
 
     /**
-     * @ORM\Column(type="string", nullable=true)
+     * @ORM\Column(type="text", nullable=true)
      * @var string
      */
     protected $text;
@@ -222,9 +222,9 @@ class Post
      */
     public function setImage($image)
     {
-        $this->image = substr(strrchr($image['tmp_name'], '/'), 1);
+        if (empty($prg['image']['error'])) {
+            $this->image = substr(strrchr($image['tmp_name'], '/'), 1);
+        }
         return $this;
     }
-
-
 }
