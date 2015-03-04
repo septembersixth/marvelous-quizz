@@ -35,26 +35,29 @@ class PostsController extends AbstractActionController
         /** @var \Administration\Form\PostForm $form */
         $form = $this->getPostForm();
 
-        $request = $this->getRequest();
-        if ($request->isPost()) {
-            $post = new Post;
-            $form->bind($post);
-            $form->setData(array_merge_recursive(
-                $request->getPost()->toArray(),
-                $request->getFiles()->toArray()
-            ));
+        if (($prg = $this->fileprg($form)) instanceof Response) {
+            return $prg;
+        } elseif ($prg === false) {
+            return compact('form');
+        }
 
-            if ($form->isValid()) {
-                $post->setCreated(date_create());
-                $em = $this->getEntityManager();
-                $em->persist($post);
-                $em->flush();
-
-                $this->flashMessenger()->addMessage('Your post was added');
-                return $this->redirect()->toRoute('administration/posts');
+        $post = (new Post)->setCreated(date_create());
+        $form->bind($post);
+        $form->setData($prg);
+        if ($form->isValid()) {
+            $em = $this->getEntityManager();
+            $em->persist($post);
+            $em->flush();
+            $this->flashMessenger()->addMessage('Your post was added');
+            return $this->redirect()->toRoute('administration/posts');
+        }
+        else {
+            // Form not valid, but file uploads might be valid and uploaded
+            if (empty($prg['image']['error'])) {
+                $form->get('image')->setValue($prg['image']['tmp_name']);
             }
         }
-        return [ 'form' => $form ];
+        return compact('id', 'form');
     }
 
     public function editAction()
