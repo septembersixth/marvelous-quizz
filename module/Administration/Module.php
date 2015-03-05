@@ -34,6 +34,7 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
 //        $locator        = $event->getApplication()->getServiceManager();
 
         $sharedEvents->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, [$this, 'authOrRedirect'], 100);
+        $sharedEvents->attach(__NAMESPACE__, MvcEvent::EVENT_DISPATCH, [$this, 'setLayout'], 100);
     }
 
     public function authOrRedirect(MvcEvent $event)
@@ -49,5 +50,10 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
                     ->toRoute('administration/login', [], true)
             ;
         }
+    }
+
+    public function setLayout(MvcEvent $event)
+    {
+        $event->getViewModel()->setTemplate('layout/layout.phtml');
     }
 } 

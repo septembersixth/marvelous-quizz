@@ -13,6 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Zend\Paginator\Paginator;
 use Zend\Mvc\Controller\AbstractActionController;
 use DoctrineModule\Paginator\Adapter\Collection;
+use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
