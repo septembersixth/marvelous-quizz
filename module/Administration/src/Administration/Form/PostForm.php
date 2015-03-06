@@ -43,7 +43,7 @@ class PostForm extends Form implements ObjectManagerAwareInterface
                 [
                     'class'         => 'form-control',
                     'placeholder'   => 'Enter content',
-                    'rows'          => '8'
+                    'rows'          => '8',
                 ],
             ])
 
@@ -66,11 +66,18 @@ class PostForm extends Form implements ObjectManagerAwareInterface
                     'object_manager'    => $this->getObjectManager(),
                     'target_class'      => 'Application\Entity\Tag',
                     'property'          => 'name',
+                    'find_method'       =>
+                    [
+                        'name'          => 'findBy',
+                        'params'        => [
+                            'criteria'  => ['deleted' => false],
+                        ],
+                    ],
 
                     'label_attributes'  =>
-                        [
-                            'class' => 'checkbox-inline'
-                        ]
+                    [
+                        'class' => 'checkbox-inline'
+                    ]
                 ],
 
             ])

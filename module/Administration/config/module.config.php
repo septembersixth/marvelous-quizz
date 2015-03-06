@@ -6,8 +6,10 @@ return
     [
         'invokables' =>
         [
-            'Administration\Controller\Posts' => 'Administration\Controller\PostsController',
             'Administration\Controller\Index' => 'Administration\Controller\IndexController',
+            'Administration\Controller\Posts' => 'Administration\Controller\PostsController',
+            'Administration\Controller\Tags'  => 'Administration\Controller\TagsController',
+
         ],
     ],
 
@@ -70,6 +72,20 @@ return
                             ],
                     ],
 
+                    'tags' =>
+                    [
+                        'type'      => 'segment',
+                        'options'   =>
+                            [
+                                'route'     => '/tags[/:action[/:id]]',
+                                'defaults'  =>
+                                    [
+                                        'controller'    => 'Tags',
+                                        'action'        => 'index',
+                                    ],
+                            ],
+                    ],
+
                     'pagination' =>
                     [
                         'type'      => 'segment',
@@ -84,10 +100,23 @@ return
                             ],
 
                         ],
-
                     ],
 
+                    'tagsPagination' =>
+                    [
+                        'type'      => 'segment',
+                        'options'   =>
+                        [
+                            'route'         => '/tags/[page/:page]',
+                            'defaults'      =>
+                            [
+                                'page'          => 1,
+                                'controller'    => 'Tags',
+                                'action'        => 'index',
+                            ],
 
+                        ],
+                    ],
                 ],
             ],
         ],
@@ -111,12 +140,10 @@ return
         'factories' =>
         [
             'navigation'                                    => 'Zend\Navigation\Service\DefaultNavigationFactory',
-//            'Zend\Authentication\AuthenticationService'     => 'Administration\Service\Auth\AuthenticationFactory',
+            'front\navigation'                              => 'Application\Service\Navigation\FrontNavigationFactory',
             'Zend\Authentication\AuthenticationService'     => function($serviceManager) {
-                // If you are using DoctrineORMModule:
                 return $serviceManager->get('doctrine.authenticationservice.orm_default');
             }
-
         ],
 
         'shared' =>
@@ -129,7 +156,8 @@ return
     [
         'invokables' =>
         [
-            'Administration\InputFilter\PostInputFilter' => 'Administration\InputFilter\PostInputFilter',
+            'Administration\InputFilter\PostInputFilter'    => 'Administration\InputFilter\PostInputFilter',
+            'Administration\InputFilter\TagInputFilter'     => 'Administration\InputFilter\TagInputFilter',
         ],
 
         'shared' =>
@@ -147,9 +175,9 @@ return
 
         'factories' =>
         [
-            'Administration\Form\PostForm'                  => 'Administration\Form\PostFormFactory',
             'Administration\Form\Login'                     => 'Administration\Form\LoginFactory',
-
+            'Administration\Form\PostForm'                  => 'Administration\Form\PostFormFactory',
+            'Administration\Form\TagForm'                   => 'Administration\Form\TagFormFactory',
 
         ],
 
@@ -168,7 +196,31 @@ return
                 'route' => 'home',
             ],
             [
-                'label' => 'Post',
+                'label' => 'Posts',
+                'route' => 'administration/posts',
+            ],
+            [
+                'label' => 'Tags',
+                'route' => 'administration/tags',
+            ],
+        ],
+
+        'front' =>
+        [
+            [
+                'label' => 'front Home',
+                'route' => 'home',
+            ],
+            [
+                'label' => 'front Post',
+                'route' => 'administration/posts',
+            ],
+            [
+                'label' => 'front Post',
+                'route' => 'administration/posts',
+            ],
+            [
+                'label' => 'front Post',
                 'route' => 'administration/posts',
             ],
         ],

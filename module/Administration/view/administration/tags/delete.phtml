@@ -1,0 +1,12 @@
+<h1><?php echo $this->escapeHtml($entity->getName()); ?></h1>
+
+<p>Are you sure that you want to delete ?</p>
+
+
+<form action="<?= $this->url('administration/tags', ['action' => 'delete', 'id' => $this->id]); ?>" method="post">
+    <div>
+        <input type="hidden" name="id" value="<?php echo (int) $entity->getId(); ?>" />
+        <input type="submit" name="del" value="Yes" />
+        <input type="submit" name="del" value="No" />
+    </div>
+</form>

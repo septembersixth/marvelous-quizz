@@ -1,9 +1,10 @@
 <h1><?php echo $this->escapeHtml($post->getTitle()); ?></h1>
 
-<p>Are you sure that you want to delete
-    '<?php echo $this->escapeHtml($post->getTitle()); ?>' by
-    '<?php echo $this->escapeHtml($post->getText()); ?>'?
-</p>
+<p>Are you sure that you want to delete ?</p>
+<?php echo $this->escapeHtml($post->getTitle()); ?>
+<?php echo $this->escapeHtml($post->getText()); ?>
+
+<br><br>
 
 <form action="<?= $this->url('administration/posts', ['action' => 'delete', 'id' => $this->id]); ?>" method="post">
     <div>

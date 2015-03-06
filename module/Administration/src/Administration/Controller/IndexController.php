@@ -25,7 +25,6 @@ class IndexController extends AbstractActionController
             $authResult = $authService->authenticate();
 
             if ($authResult->isValid()) {
-                $this->flashMessenger()->addMessage(sprintf('Hi %s !', $authResult->getIdentity()->getName()));
                 return $this->redirect()->toRoute('administration/posts');
             }
 

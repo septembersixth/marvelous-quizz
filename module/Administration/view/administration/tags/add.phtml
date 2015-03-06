@@ -1,0 +1,21 @@
+<?php
+$form->setAttribute('action', $this->url('administration/tags', array('action' => 'add')));
+$form->get('submit')->setValue('Add');
+$form->prepare();
+?>
+
+    <div class="page-header">
+        <h3>Add Tag</h3>
+    </div>
+<?= $this->form()->openTag($form); ?>
+<?= $this->formHidden($form->get('id')); ?>
+
+    <div class="form-group row">
+        <div class="col-lg-8">
+            <label>Name</label>
+            <?= $this->formRow($form->get('name')); ?>
+        </div>
+    </div>
+
+<?= $this->formSubmit($form->get('submit')); ?>
+<?= $this->form()->closeTag(); ?>
