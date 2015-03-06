@@ -55,10 +55,54 @@ div.container a.brand {
 }
 
 
+.front_navbar-inverse .navbar-nav>li>a {
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 2px;
+    line-height: 60px;
+}
+
+.front_navbar-inverse .navbar-nav>.active>a {
+    color:rgb(34, 34, 34);
+}
+
+.front_navbar-inverse .navbar-nav>li>a:hover {
+    background: none;
+    color: #999
+}
+
+.front_navbar-inverse .navbar-nav>.active>a:hover{
+    background: none;
+    color:rgb(34, 34, 34);
+}
+
+.blog-header {
+    padding-bottom: 60px;
+    margin-bottom:10px;
+    border-bottom: 1px solid #dddddd;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
 
 @media (min-width: 600px) {
     .blog-header img {
         max-height: 124px;
 
     }
+
+    .front_navbar .navbar-nav{
+        float:none;
+    }
+
+    .front_navbar, .front_navbar ul>li, .front_navbar .nav>li>a  {
+        display: inline;
+        float:none;
+        text-align: center;
+
+    }
+
 }
