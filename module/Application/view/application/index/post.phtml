@@ -1,0 +1,73 @@
+
+<div class="col-sm-8 blog-main">
+
+        <div class="blog-post box-shadow">
+            <h2 class="blog-post-title"><span><?= $post->getTitle(); ?></span></h2>
+            <p class="blog-post-meta"><?= $post->getCreated()->format('M n Y'); ?></p>
+            <img class="img-responsive" src="<?= $this->basePath(sprintf('img/upload/%s', $post->getImage())); ?>"/>
+            <br>
+            <div class="blog-post-text"><?= $post->getText(); ?></div>
+
+        </div>
+
+</div>
+
+<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+
+    <div class="border-box sidebar-module sidebar-module-inset">
+        <div class="about">
+            <h3><span>Hi there!</span></h3>
+            <p><img src="img/me.jpg" width="200" height="200" style="margin-bottom: 10px;"></p>
+            <p>Welcome to my blog.</p>
+            <p>I'm <strong>Sandrine</strong> - I'm a parisian... I'm passionate at Beauty, Travel, Fashion. This
+                blog is a place where I want to share all the things I love to you !</p>
+        </div>
+    </div>
+
+    <div class="sidebar-module sidebar-module-inset">
+        <div class="yt-mailchimp-subscription-form-content">
+            <p><img src="img/sketch-subscribe.png" width="250" height="65" alt="Daily Newsletter in your Inbox"></p>
+
+            <form method="post">
+                <div class="form-group hidden"><input type="hidden" name="yt_mailchimp_subscribe_nonce" value="2ef67774d8">
+                    <input type="hidden" name="yt_mailchimp_subscribe_list" value="">
+                    <input type="text" name="yt_mailchimp_subscribe_check" class="form-control" value=""
+                           placeholder="If you want to submit this form, do not enter anything in this field">
+                </div>
+                <div class="input-group form-group" style="margin-bottom:0;">
+                    <input type="email" name="yt_mailchimp_subscribe_email" class="form-control"
+                           placeholder="Enter your E-mail...">
+                    <span class="input-group-btn"> <input class="btn btn-primary" type="submit" value="OK"> </span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="sidebar-module sidebar-module-inset">
+        <h4>Archives</h4>
+        <ol class="list-unstyled">
+            <li><a href="#">March 2014</a></li>
+            <li><a href="#">February 2014</a></li>
+            <li><a href="#">January 2014</a></li>
+            <li><a href="#">December 2013</a></li>
+            <li><a href="#">November 2013</a></li>
+            <li><a href="#">October 2013</a></li>
+            <li><a href="#">September 2013</a></li>
+            <li><a href="#">August 2013</a></li>
+            <li><a href="#">July 2013</a></li>
+            <li><a href="#">June 2013</a></li>
+            <li><a href="#">May 2013</a></li>
+            <li><a href="#">April 2013</a></li>
+        </ol>
+    </div>
+    <div class="sidebar-module sidebar-module-inset">
+        <h4>Elsewhere</h4>
+        <ol class="list-unstyled">
+            <li><a href="#">GitHub</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Facebook</a></li>
+        </ol>
+    </div>
+</div>

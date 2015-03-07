@@ -47,6 +47,12 @@ class Post
     protected $tags;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     * @var string
+     */
+    protected $url;
+
+    /**
      * @ORM\Column(type="datetime", nullable=true)
      * @var \Datetime
      */
@@ -206,6 +212,22 @@ class Post
     public function getTags()
     {
         return $this->tags;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
     }
 
     /**

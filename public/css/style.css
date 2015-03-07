@@ -229,6 +229,33 @@ div.container a.brand {
     margin-top:20px;
 }
 
+.more-tag {
+    display: inline-block;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 500;
+    outline: 0;
+    border-radius: 0;
+    color: white;
+    background: #4472B9;
+    white-space: nowrap;
+    padding: 9px 16px !important;
+    line-height: 1.4;
+    border: 0;
+    position: relative;
+    -webkit-transition: 0.1s;
+    transition: 0.1s;
+}
+
+.more-tag:hover {
+    background: #29446e;
+    color: #ffffff;
+}
+
+.more-tag-align {
+    text-align: center;
+}
+
+
 .box-shadow {
     -moz-box-shadow: 1px 2px 5px 1px rgba(34, 34, 34, 0.0980392);
     -webkit-box-shadow: 1px 2px 5px 1px rgba(34, 34, 34, 0.0980392);
@@ -277,5 +304,9 @@ div.container a.brand {
 
     .front-navbar-inverse li {
         border-bottom: none;
+    }
+
+    .more-tag-align {
+        text-align: left;
     }
 }

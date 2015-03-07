@@ -33,6 +33,20 @@ class IndexController extends AbstractActionController
         return ['posts' => $paginator];
     }
 
+    public function postAction()
+    {
+        $url = $this->params()->fromRoute('url');
+
+        $repo = $this->getEntityManager()->getRepository('Application\Entity\Post');
+        $post = $repo->findOneByUrl($url);
+        if (! $post) {
+            $this->flashMessenger()->addMessage(sprintf('wrong url'));
+            $this->redirect()->toRoute('home');
+        }
+        
+        return compact('post');
+    }
+
     public function getEntityManager()
     {
         if (! $this->em) {

@@ -6,7 +6,11 @@
             <p class="blog-post-meta"><?= $post->getCreated()->format('M n Y'); ?></p>
             <img class="img-responsive" src="img/upload/<?= $post->getImage(); ?>"/>
             <br>
-            <div class="blog-post-text"><?= $post->getText(); ?></div>
+            <div class="blog-post-text"><?= substr($post->getText(), 0, 500); ?> ...</div>
+
+            <div class="more-tag-align">
+                <a class="more-tag btn btn-default" href="<?= $this->url('post', ['url'=> $post->getUrl()]) ?>"> Read More…</a>
+            </div>
         </div>
     <?php endforeach; ?>
 </div>
@@ -41,7 +45,6 @@
             </form>
         </div>
     </div>
-
 
     <br>
 
