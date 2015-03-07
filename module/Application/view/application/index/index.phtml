@@ -1,14 +1,12 @@
 
 <div class="col-sm-8 blog-main">
     <?php foreach($posts as $post) : ?>
-        <div class="blog-post">
-            <h2 class="blog-post-title"><?= $post->getTitle(); ?></h2>
+        <div class="blog-post box-shadow">
+            <h2 class="blog-post-title"><span><?= $post->getTitle(); ?></span></h2>
             <p class="blog-post-meta"><?= $post->getCreated()->format('M n Y'); ?></p>
             <img class="img-responsive" src="img/upload/<?= $post->getImage(); ?>"/>
             <br>
-
             <div class="blog-post-text"><?= $post->getText(); ?></div>
-
         </div>
     <?php endforeach; ?>
 </div>
@@ -16,15 +14,10 @@
 <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
 
     <div class="border-box sidebar-module sidebar-module-inset">
-
         <div class="about">
-            <h3>Hi there!</h3>
-            <p>
-            <img src="img/me.jpg" width="200" height="200" style="margin-bottom: 10px;">
-            </p>
-
+            <h3><span>Hi there!</span></h3>
+            <p><img src="img/me.jpg" width="200" height="200" style="margin-bottom: 10px;"></p>
             <p>Welcome to my blog.</p>
-
             <p>I'm <strong>Sandrine</strong> - I'm a parisian... I'm passionate at Beauty, Travel, Fashion. This
                 blog is a place where I want to share all the things I love to you !</p>
         </div>

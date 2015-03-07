@@ -47,22 +47,30 @@ div.container a.brand {
     background: #ffffff;
 }
 
+.front-navbar .navbar-toggle {
+    border: none;
+}
+
+
 .front-navbar ul {
     padding-bottom: 40px;
 }
 
-.navbar-inverse .navbar-nav>.active>a {
+.front-navbar-inverse .navbar-nav>.active>a, .front-navbar-inverse .navbar-nav>.active>a:focus {
     background: #ffffff;
     background-image: none;
     color: #999;
     -webkit-box-shadow: none;
 }
 
+.front-navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
+    border: none;
+}
+
 .front-navbar-inverse .navbar-nav>li>a {
     text-transform: uppercase;
     font-size: 13px;
     letter-spacing: 2px;
-    line-height: 60px;
 }
 
 .front-navbar-inverse .navbar-nav>.active>a {
@@ -71,7 +79,7 @@ div.container a.brand {
 
 .front-navbar-inverse .navbar-nav>li>a:hover {
     background: none;
-    color: #999
+    color: #999;
 }
 
 .front-navbar-inverse .navbar-nav>.active>a:hover{
@@ -79,8 +87,20 @@ div.container a.brand {
     color:rgb(34, 34, 34);
 }
 
+.front-navbar-inverse .navbar-toggle .icon-bar {
+    background: #222;
+}
+
+.front-navbar-inverse .navbar-toggle:hover, .front-navbar-inverse .navbar-toggle:focus {
+    background: #ffffff;
+}
+
+.front-navbar-inverse li {
+    border-bottom: 1px solid #ccc;
+}
+
 .blog-header {
-    padding-bottom: 60px;
+    padding-bottom: 20px;
     border-bottom: 1px solid #dddddd;
 }
 
@@ -103,6 +123,8 @@ div.container a.brand {
 
 .blog-post {
     text-align: center;
+    border: 1px solid rgba(34, 34, 34, 0.0980392);
+    padding: 15px;
 }
 
 .blog-post .img-responsive {
@@ -130,16 +152,9 @@ div.container a.brand {
 }
 
 .blog-post-title {
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-    -webkit-transition-delay: 0s;
-    -webkit-transition-duration: 0.2s;
-    -webkit-transition-property: color;
-    -webkit-transition-timing-function: linear;
-    background-color: rgba(0, 0, 0, 0);
-    box-sizing: border-box;
+
     color: rgb(34, 34, 34);
     cursor: auto;
-    display: inline;
     font-family: Raleway;
     font-size: 30px;
     font-style: normal;
@@ -150,13 +165,16 @@ div.container a.brand {
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
-    transition-delay: 0s;
-    transition-duration: 0.2s;
-    transition-property: color;
-    transition-timing-function: linear;
+    margin-top: -40px;
+
 }
 
-.border-box {
+.blog-post-title span {
+    background-color: #ffffff;
+    padding:0 20px;
+}
+
+.border-box{
     margin-bottom: 40px;
     background: #ffffff;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -193,13 +211,33 @@ div.container a.brand {
 }
 
 .border-box .about h3 {
-
     text-align: center;
-    width:150px;
     margin: 0 auto;
     margin-top: -30px;
     margin-bottom: 20px;
+
+}
+
+.border-box .about h3 span{
     background: #ffffff;
+    padding: 0 20px;
+}
+
+
+.blog-main {
+    padding: 0;
+    margin-top:20px;
+}
+
+.box-shadow {
+    -moz-box-shadow: 1px 2px 5px 1px rgba(34, 34, 34, 0.0980392);
+    -webkit-box-shadow: 1px 2px 5px 1px rgba(34, 34, 34, 0.0980392);
+    -o-box-shadow: 1px 2px 5px 1px rgba(34, 34, 34, 0.0980392);
+    box-shadow: 1px 2px 5px 1px rgba(34, 34, 34, 0.0980392);
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#dddddd, Direction=153, Strength=5);
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
 }
 
 @media (min-width: 1200px) {
@@ -209,6 +247,15 @@ div.container a.brand {
 }
 
 @media (min-width: 600px) {
+
+    .front-navbar-inverse .navbar-nav>li>a {
+        line-height: 60px;
+    }
+
+    .blog-header {
+        padding-bottom: 60px;
+    }
+
     .blog-header img {
         max-height: 124px;
 
@@ -222,7 +269,13 @@ div.container a.brand {
         display: inline;
         float:none;
         text-align: center;
-
+    }
+    
+    .blog-main {
+        margin-top: 0px;
     }
 
+    .front-navbar-inverse li {
+        border-bottom: none;
+    }
 }
