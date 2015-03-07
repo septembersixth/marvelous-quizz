@@ -43,8 +43,12 @@ div.container a.brand {
     display: block;
 }
 
-.front_navbar {
+.front-navbar {
     background: #ffffff;
+}
+
+.front-navbar ul {
+    padding-bottom: 40px;
 }
 
 .navbar-inverse .navbar-nav>.active>a {
@@ -54,32 +58,148 @@ div.container a.brand {
     -webkit-box-shadow: none;
 }
 
-
-.front_navbar-inverse .navbar-nav>li>a {
+.front-navbar-inverse .navbar-nav>li>a {
     text-transform: uppercase;
     font-size: 13px;
     letter-spacing: 2px;
     line-height: 60px;
 }
 
-.front_navbar-inverse .navbar-nav>.active>a {
+.front-navbar-inverse .navbar-nav>.active>a {
     color:rgb(34, 34, 34);
 }
 
-.front_navbar-inverse .navbar-nav>li>a:hover {
+.front-navbar-inverse .navbar-nav>li>a:hover {
     background: none;
     color: #999
 }
 
-.front_navbar-inverse .navbar-nav>.active>a:hover{
+.front-navbar-inverse .navbar-nav>.active>a:hover{
     background: none;
     color:rgb(34, 34, 34);
 }
 
 .blog-header {
     padding-bottom: 60px;
-    margin-bottom:10px;
     border-bottom: 1px solid #dddddd;
+}
+
+.blog-post-meta {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    color: rgb(170, 170, 170);
+    cursor: auto;
+    font-family: Lora;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: normal;
+    height: auto;
+    letter-spacing: 1.10000002384186px;
+    line-height: 19.25px;
+    text-align: center;
+    text-transform: uppercase;
+    width: auto;
+}
+
+.blog-post {
+    text-align: center;
+}
+
+.blog-post .img-responsive {
+    margin: 0 auto;
+}
+
+.blog-post-text {
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    color: rgb(119, 119, 119);
+    display: block;
+    font-family: Lora;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: normal;
+    line-height: 26.25px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    text-transform: none;
+    text-align: justify;
+}
+
+.blog-post-title {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-transition-delay: 0s;
+    -webkit-transition-duration: 0.2s;
+    -webkit-transition-property: color;
+    -webkit-transition-timing-function: linear;
+    background-color: rgba(0, 0, 0, 0);
+    box-sizing: border-box;
+    color: rgb(34, 34, 34);
+    cursor: auto;
+    display: inline;
+    font-family: Raleway;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: normal;
+    height: auto;
+    letter-spacing: 3px;
+    line-height: 37.5px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition-delay: 0s;
+    transition-duration: 0.2s;
+    transition-property: color;
+    transition-timing-function: linear;
+}
+
+.border-box {
+    margin-bottom: 40px;
+    background: #ffffff;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(34, 34, 34, 0.0980392);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: rgba(34, 34, 34, 0.0980392);
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-right-color: rgba(34, 34, 34, 0.0980392);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-top-color: rgba(34, 34, 34, 0.0980392);
+    border-top-style: solid;
+    border-top-width: 1px;
+    box-sizing: border-box;
+    color: rgb(119, 119, 119);
+    display: block;
+    font-family: Lora;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: normal;
+    line-height: 26.25px;
+
+    position: relative;
+    text-transform: none;
+
+}
+
+.border-box .about p {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.border-box .about h3 {
+
+    text-align: center;
+    width:150px;
+    margin: 0 auto;
+    margin-top: -30px;
+    margin-bottom: 20px;
+    background: #ffffff;
 }
 
 @media (min-width: 1200px) {
@@ -94,11 +214,11 @@ div.container a.brand {
 
     }
 
-    .front_navbar .navbar-nav{
+    .front-navbar .navbar-nav{
         float:none;
     }
 
-    .front_navbar, .front_navbar ul>li, .front_navbar .nav>li>a  {
+    .front-navbar, .front-navbar ul>li, .front-navbar .nav>li>a  {
         display: inline;
         float:none;
         text-align: center;
