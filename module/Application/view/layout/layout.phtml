@@ -82,11 +82,10 @@
             </nav>
 
 
-            <?php echo $this->content; ?>
-            <hr>
+            <?= $this->content; ?>
 
-            <footer>
-            </footer>
+            <?= $this->partial('partial/sidebar.phtml'); ?>
+
         </div> <!-- /container -->
 
         <?php echo $this->inlineScript() ?>

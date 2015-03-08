@@ -152,8 +152,8 @@ div.container a.brand {
 }
 
 .blog-post-title {
-
-    color: rgb(34, 34, 34);
+    color: #428bca;
+    /*color: rgb(34, 34, 34);*/
     cursor: auto;
     font-family: Raleway;
     font-size: 30px;
@@ -166,7 +166,10 @@ div.container a.brand {
     text-decoration: none;
     text-transform: uppercase;
     margin-top: -40px;
+}
 
+.blog-post-title a:hover {
+    text-decoration: none;
 }
 
 .blog-post-title span {
@@ -211,6 +214,7 @@ div.container a.brand {
 }
 
 .border-box .about h3 {
+    color: #428bca;
     text-align: center;
     margin: 0 auto;
     margin-top: -30px;

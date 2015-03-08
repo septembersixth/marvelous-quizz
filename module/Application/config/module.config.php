@@ -22,10 +22,6 @@ return array(
                 ],
             ],
 
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
             'post' =>
             [
                 'type'      => 'segment',
@@ -42,6 +38,7 @@ return array(
             ],
         ],
     ],
+
     'service_manager' => array(
         'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
@@ -51,6 +48,7 @@ return array(
             'translator' => 'MvcTranslator',
         ),
     ),
+
     'translator' => array(
         'locale' => 'en_US',
         'translation_file_patterns' => array(
@@ -61,11 +59,13 @@ return array(
             ),
         ),
     ),
+
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController'
         ),
     ),
+
     'view_manager' => array(
         'display_not_found_reason' => true,
         'display_exceptions'       => true,
@@ -108,6 +108,13 @@ return array(
                     'Application\Entity' => 'application_entities',
                 ],
             ],
+        ],
+    ],
+
+    'view_helpers' =>
+    [
+        'invokables' =>
+        [
         ],
     ],
 );
