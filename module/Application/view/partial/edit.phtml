@@ -1,0 +1,3 @@
+<?php if ($this->identity()) :?>
+    <a href="<?= $this->url('administration/posts', ['action' => 'edit', 'id' => $post->getId()]);?>">Edit</a>
+<?php endif; ?>

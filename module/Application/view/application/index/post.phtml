@@ -10,6 +10,7 @@
             <br>
             <div class="blog-post-text"><?= $post->getText(); ?></div>
 
+            <?= $this->partial('partial/edit.phtml', [ 'post'=>$post ]); ?>
         </div>
 
 </div>

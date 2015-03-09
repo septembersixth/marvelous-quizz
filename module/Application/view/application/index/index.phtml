@@ -13,6 +13,8 @@
             <div class="more-tag-align">
                 <a class="more-tag btn btn-default" href="<?= $this->url('post', ['url'=> $post->getUrl()]) ?>"> Read More…</a>
             </div>
+
+            <?= $this->partial('partial/edit.phtml', [ 'post'=>$post ]); ?>
         </div>
     <?php endforeach; ?>
 </div>
