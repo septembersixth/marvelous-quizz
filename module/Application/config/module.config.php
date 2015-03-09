@@ -27,27 +27,57 @@ return array(
                 'type'      => 'segment',
                 'options'   =>
                 [
-                    'route'     => '/post/:url',
-                    'defaults'   =>
+                    'route'         => '/post/:url',
+                    'constraint'    =>
+                    [
+                        'url'       => '[a-zA-Z0-9_-]+',
+                    ],
+                    'defaults'      =>
                     [
                         'controller'    => 'Application\Controller\Index',
                         'action'        => 'post',
-                        'constraint'    => '[a-zA-Z0-9_-]+',
+                    ],
+                ],
+            ],
+
+            'tag' =>
+            [
+                'type'      => 'segment',
+                'options'   =>
+                [
+                    'route'         => '/tag/:tagName',
+                    'constraint'    =>
+                    [
+                        'tagName'       => '[a-zA-Z0-9_-]+',
+                    ],
+                    'defaults'      =>
+                    [
+                        'controller'    => 'Application\Controller\Index',
+                        'action'        => 'tag',
                     ],
                 ],
             ],
         ],
     ],
 
-    'service_manager' => array(
-        'abstract_factories' => array(
+    'service_manager' =>
+    [
+        'abstract_factories' =>
+        [
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
             'Zend\Log\LoggerAbstractServiceFactory',
-        ),
-        'aliases' => array(
+        ],
+
+        'factories' =>
+        [
+            'front\navigation' => 'Application\Service\Navigation\FrontNavigationFactory',
+        ],
+
+        'aliases' =>
+        [
             'translator' => 'MvcTranslator',
-        ),
-    ),
+        ],
+    ],
 
     'translator' => array(
         'locale' => 'en_US',
@@ -60,28 +90,34 @@ return array(
         ),
     ),
 
-    'controllers' => array(
-        'invokables' => array(
+    'controllers' =>
+    [
+        'invokables' =>
+        [
             'Application\Controller\Index' => 'Application\Controller\IndexController'
-        ),
-    ),
+        ],
+    ],
 
-    'view_manager' => array(
+    'view_manager' =>
+    [
         'display_not_found_reason' => true,
         'display_exceptions'       => true,
         'doctype'                  => 'HTML5',
         'not_found_template'       => 'error/404',
         'exception_template'       => 'error/index',
-        'template_map' => array(
+        'template_map' =>
+        [
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
             'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
-        ),
-        'template_path_stack' => array(
+        ],
+        'template_path_stack' =>
+        [
             __DIR__ . '/../view',
-        ),
-    ),
+        ],
+    ],
+
     // Placeholder for console routes
     'console' => array(
         'router' => array(
@@ -115,6 +151,41 @@ return array(
     [
         'invokables' =>
         [
+        ],
+    ],
+
+    'navigation' =>
+    [
+        'front' =>
+        [
+            [
+                'label' => 'Home',
+                'route' => 'home',
+            ],
+            [
+                'label' => 'Humeur',
+                'route' => 'tag',
+                'params' =>
+                [
+                    'tagName' => 'humeur',
+                ],
+            ],
+            [
+                'label' => 'Famille',
+                'route' => 'tag',
+                'params' =>
+                [
+                    'tagName' => 'famille',
+                ],
+            ],
+            [
+                'label' => 'Miam Miam',
+                'route' => 'tag',
+                'params' =>
+                [
+                    'tagName' => 'miam_miam',
+                ],
+            ],
         ],
     ],
 );

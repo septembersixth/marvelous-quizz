@@ -23,8 +23,8 @@ class IndexController extends AbstractActionController
     {
         $page = $this->params()->fromRoute('page') ? $this->params()->fromRoute('page') : 1;
 
-        $rep = $this->getEntityManager()->getRepository('Application\Entity\Post');
-        $posts = $rep->findByDeleted(false);
+        $repo = $this->getEntityManager()->getRepository('Application\Entity\Post');
+        $posts = $repo->findByDeleted(false);
         $paginator = new Paginator(new Collection(new ArrayCollection($posts)));
         $paginator
             ->setCurrentPageNumber($page)
@@ -40,11 +40,28 @@ class IndexController extends AbstractActionController
         $repo = $this->getEntityManager()->getRepository('Application\Entity\Post');
         $post = $repo->findOneByUrl($url);
         if (! $post) {
-            $this->flashMessenger()->addMessage(sprintf('wrong url'));
-            $this->redirect()->toRoute('home');
+            return $this->redirect()->toRoute('home');
         }
-        
         return compact('post');
+    }
+
+    public function tagAction()
+    {
+        $page = $this->params()->fromRoute('page') ? $this->params()->fromRoute('page') : 1;
+        $tagName = $this->params()->fromRoute('tagName') ? $this->params()->fromRoute('tagName') : null;
+        $repo = $this->getEntityManager()->getRepository('Application\Entity\Post');
+
+        $posts = $repo->getPostsByTagName($tagName);
+
+        $paginator = new Paginator(new Collection(new ArrayCollection($posts)));
+        $paginator
+            ->setCurrentPageNumber($page)
+            ->setItemCountPerPage(5);
+
+        return (new ViewModel)
+            ->setTemplate('application/index/index.phtml')
+            ->setVariable('posts', $paginator)
+        ;
     }
 
     public function getEntityManager()

@@ -48,6 +48,16 @@ class PostForm extends Form implements ObjectManagerAwareInterface
             ])
 
             ->add([
+                'name'  => 'url',
+                'type'  => 'text',
+                'attributes' =>
+                [
+                    'class'         => 'form-control',
+                    'placeholder'   => 'Enter url'
+                ]
+            ])
+
+            ->add([
                 'name'  => 'submit',
                 'type'  => 'Submit',
                 'attributes' =>

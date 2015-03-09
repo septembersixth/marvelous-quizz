@@ -140,7 +140,6 @@ return
         'factories' =>
         [
             'navigation'                                    => 'Zend\Navigation\Service\DefaultNavigationFactory',
-            'front\navigation'                              => 'Application\Service\Navigation\FrontNavigationFactory',
             'Zend\Authentication\AuthenticationService'     => function($serviceManager) {
                 return $serviceManager->get('doctrine.authenticationservice.orm_default');
             }
@@ -202,26 +201,6 @@ return
             [
                 'label' => 'Tags',
                 'route' => 'administration/tags',
-            ],
-        ],
-
-        'front' =>
-        [
-            [
-                'label' => 'front Home',
-                'route' => 'home',
-            ],
-            [
-                'label' => 'front Post',
-                'route' => 'administration/posts',
-            ],
-            [
-                'label' => 'front Post',
-                'route' => 'administration/posts',
-            ],
-            [
-                'label' => 'front Post',
-                'route' => 'administration/posts',
             ],
         ],
     ],

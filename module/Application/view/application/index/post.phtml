@@ -4,7 +4,9 @@
         <div class="blog-post box-shadow">
             <h2 class="blog-post-title"><span><?= $post->getTitle(); ?></span></h2>
             <p class="blog-post-meta"><?= $post->getCreated()->format('M n Y'); ?></p>
+            <?php if ($post->getImage()): ?>
             <img class="img-responsive" src="<?= $this->basePath(sprintf('img/upload/%s', $post->getImage())); ?>"/>
+            <?php endif;?>
             <br>
             <div class="blog-post-text"><?= $post->getText(); ?></div>
 

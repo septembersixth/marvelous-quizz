@@ -4,7 +4,9 @@
         <div class="blog-post box-shadow">
             <h2 class="blog-post-title"><span><a href="<?= $this->url('post', ['url' => $post->getUrl()]); ?>"><?= $post->getTitle(); ?></a></span></h2>
             <p class="blog-post-meta"><?= $post->getCreated()->format('M n Y'); ?></p>
-            <a href="<?= $this->url('post', ['url' => $post->getUrl()]); ?>"><img class="img-responsive" src="img/upload/<?= $post->getImage(); ?>"/></a>
+            <?php if ($post->getImage()): ?>
+            <a href="<?= $this->url('post', ['url' => $post->getUrl()]); ?>"><img class="img-responsive" src="<?= $this->basePath(sprintf('img/upload/%s',$post->getImage())); ?>"/></a>
+            <?php endif; ?>
             <br>
             <div class="blog-post-text"><?= substr($post->getText(), 0, 500); ?> ...</div>
 
