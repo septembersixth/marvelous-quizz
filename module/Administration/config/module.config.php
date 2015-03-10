@@ -76,14 +76,14 @@ return
                     [
                         'type'      => 'segment',
                         'options'   =>
+                        [
+                            'route'     => '/tags[/:action[/:id]]',
+                            'defaults'  =>
                             [
-                                'route'     => '/tags[/:action[/:id]]',
-                                'defaults'  =>
-                                    [
-                                        'controller'    => 'Tags',
-                                        'action'        => 'index',
-                                    ],
+                                'controller'    => 'Tags',
+                                'action'        => 'index',
                             ],
+                        ],
                     ],
 
                     'pagination' =>
@@ -231,7 +231,7 @@ return
 
         'driver' =>
         [
-            'application_entities' =>
+            'administration_entities' =>
                 [
                     'class' =>'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
                     'cache' => 'array',
@@ -242,7 +242,7 @@ return
                 [
                     'drivers' =>
                         [
-                            'Administration\Entity' => 'application_entities',
+                            'Administration\Entity' => 'administration_entities',
                         ],
                 ],
         ],

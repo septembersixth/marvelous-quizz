@@ -81,6 +81,9 @@
                 </div>
             </nav>
 
+            <div class="front-flashMessenger">
+                <?= $this->flashMessenger()->render('default', array('alert', 'alert-dismissible', 'alert-warning')); ?>
+            </div>
 
             <?= $this->content; ?>
 

@@ -9,6 +9,7 @@
 
 namespace Application\Controller;
 
+use Application\Entity\Comment;
 use Doctrine\Common\Collections\ArrayCollection;
 use Zend\Paginator\Paginator;
 use Zend\Mvc\Controller\AbstractActionController;
@@ -42,7 +43,23 @@ class IndexController extends AbstractActionController
         if (! $post) {
             return $this->redirect()->toRoute('home');
         }
-        return compact('post');
+
+        $commentForm = $this->getServiceLocator()->get('FormElementManager')->get('Application\Form\CommentForm');
+        $request = $this->getRequest();
+        $comment = new Comment;
+        $commentForm->bind($comment);
+        if ($request->isPost()) {
+            $commentForm->setData($data = $request->getPost());
+            $comment->setPost($post);
+            if ($commentForm->isValid()) {
+                $em = $this->getEntityManager();
+                $em->persist($comment);
+                $em->flush();
+                $this->flashMessenger()->addMessage('Your comment was added ');
+                $this->redirect()->toRoute('post', ['url' => $post->getUrl()]);
+            }
+        }
+        return compact('post', 'commentForm');
     }
 
     public function tagAction()
@@ -64,11 +81,18 @@ class IndexController extends AbstractActionController
         ;
     }
 
+
     public function getEntityManager()
     {
         if (! $this->em) {
             $this->em = $this->getServiceLocator()->get('doctrine\ORM\EntityManager');
         }
         return $this->em;
+    }
+
+    public function getForm()
+    {
+        $form = $this->getServiceLocator()->get('FormElementManager')->get('Application\Form\CommentForm');
+        return $form;
     }
 }

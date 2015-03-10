@@ -1,3 +1,8 @@
+<?php
+$commentForm->setAttribute('action', $this->url('post', ['url' => $post->getUrl()]));
+$commentForm->setAttribute('method', 'post');
+$commentForm->prepare();
+?>
 
 <div class="col-sm-8 blog-main">
 
@@ -11,6 +16,28 @@
             <div class="blog-post-text"><?= $post->getText(); ?></div>
 
             <?= $this->partial('partial/edit.phtml', [ 'post'=>$post ]); ?>
+
+            <h2>Comments :</h2>
+
+            <?= $this->form()->openTag($commentForm); ?>
+
+            <?= $this->formRow($commentForm->get('csrf')); ?>
+
+            <?= $this->formRow($commentForm->get('captcha')); ?>
+
+            <?= $this->formRow($commentForm->get('name'))?>
+
+            <?= $this->formRow($commentForm->get('email'))?>
+
+            <?= $this->formRow($commentForm->get('text'))?>
+
+            <?= $this->formSubmit($commentForm->get('submit'))?>
+
+            <?= $this->form()->closeTag(); ?>
+
+            <?php foreach ($post->getComments() as $comment) : ?>
+            <?= $comment->getText(); ?>
+            <?php endforeach; ?>
         </div>
 
 </div>

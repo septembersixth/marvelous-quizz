@@ -47,6 +47,12 @@ class Post
     protected $tags;
 
     /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Application\Entity\Comment", mappedBy="post")
+     */
+    protected $comments;
+
+    /**
      * @ORM\Column(type="string", nullable=true)
      * @var string
      */
@@ -71,7 +77,8 @@ class Post
 
     public function __construct()
     {
-        $this->tags = new ArrayCollection;
+        $this->tags     = new ArrayCollection;
+        $this->comments = new ArrayCollection;
     }
 
     /**
@@ -199,10 +206,33 @@ class Post
         }
     }
 
+    /**
+     * @param Collection $tags
+     */
     public function removeTags(Collection $tags)
     {
         foreach($tags as $tag) {
             $this->tags->removeElement($tag);
+        }
+    }
+
+    /**
+     * @param Collection $comments
+     */
+    public function addComments(Collection $comments)
+    {
+        foreach($comments as $comment) {
+            $this->comments->add($comment);
+        }
+    }
+
+    /**
+     * @param Collection $comments
+     */
+    public function removeComments(Collection $comments)
+    {
+        foreach($comments as $comment) {
+            $this->comments->removeElement($comment);
         }
     }
 
@@ -212,6 +242,14 @@ class Post
     public function getTags()
     {
         return $this->tags;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 
     /**

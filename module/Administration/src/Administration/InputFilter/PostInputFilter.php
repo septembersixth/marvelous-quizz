@@ -37,7 +37,7 @@ class PostInputFilter extends InputFilter
                                     'options' => [
                                                     'target'    => 'data/upload',
                                                     'randomize' => true,
-                                                ]
+                                        ]
                                     ]],
                 'validators'     => [
                                         [

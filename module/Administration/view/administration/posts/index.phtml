@@ -23,10 +23,10 @@
             <?php foreach($posts as $post): ?>
             <tr>
                 <td><?= $post->getId(); ?></td>
-                <td><?= $post->getTitle(); ?></td>
-                <td><?= $post->getText(); ?></td>
-                <td><?= $post->getCreated() !== null ? $post->getCreated()->format('Y-m-d H:i:s') : '-'; ?></td>
-                <td><?= $post->getUpdated() !== null ? $post->getUpdated()->format('Y-m-d H:i:s') : '-'; ?></td>
+                <td><?= substr($post->getTitle(), 0, 30); ?></td>
+                <td><?= substr($post->getText(), 0, 70); ?></td>
+                <td><?= $post->getCreated() !== null ? $post->getCreated()->format('Y-m-d H:i') : '-'; ?></td>
+                <td><?= $post->getUpdated() !== null ? $post->getUpdated()->format('Y-m-d H:i') : '-'; ?></td>
                 <td>
                     <a href="<?= $this->url('administration/posts', ['action' => 'edit', 'id' => $post->getId()]); ?>" class="btn btn-sm" role="button">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>

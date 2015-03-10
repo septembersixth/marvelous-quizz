@@ -53,7 +53,7 @@ class PostsController extends AbstractActionController
         }
         else {
             // Form not valid, but file uploads might be valid and uploaded
-            if (empty($prg['image']['error'])) {
+            if (empty($prg['image']['error']) && !empty($prg['image']['tmp_name'])) {
                 $form->get('image')->setValue($prg['image']['tmp_name']);
             }
         }

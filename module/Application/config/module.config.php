@@ -40,6 +40,24 @@ return array(
                 ],
             ],
 
+            'comment' =>
+            [
+                'type'      => 'segment',
+                'options'   =>
+                [
+                    'route'         => '/comment/post/:postId',
+                    'constraint'    =>
+                    [
+                        'postId'    => '[0-9]+',
+                    ],
+                    'defaults'      =>
+                    [
+                        'controller'    => 'Application\Controller\Index',
+                        'action'        => 'comment',
+                    ]
+                ],
+            ],
+
             'tag' =>
             [
                 'type'      => 'segment',
@@ -77,6 +95,26 @@ return array(
         [
             'translator' => 'MvcTranslator',
         ],
+    ],
+
+    'form_elements' =>
+    [
+        'invokables' =>
+        [
+        ],
+
+        'factories' =>
+        [
+            'Application\Form\CommentForm'  => 'Application\Form\CommentFormFactory',
+        ]
+    ],
+
+    'input_filters' =>
+    [
+        'invokables' =>
+        [
+            'Application\InputFilter\CommentFilter' => 'Application\InputFilter\CommentFilter',
+        ]
     ],
 
     'translator' => array(

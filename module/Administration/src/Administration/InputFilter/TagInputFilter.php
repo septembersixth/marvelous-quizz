@@ -3,7 +3,6 @@
 
 namespace Administration\InputFilter;
 
-use Zend\InputFilter\Factory;
 use Zend\InputFilter\InputFilter;
 
 class TagInputFilter extends InputFilter

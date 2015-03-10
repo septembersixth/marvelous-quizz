@@ -43,6 +43,10 @@ div.container a.brand {
     display: block;
 }
 
+.front-flashMessenger div{
+    margin-bottom: 50px;
+}
+
 .front-navbar {
     background: #ffffff;
 }
@@ -314,3 +318,4 @@ div.container a.brand {
         text-align: left;
     }
 }
+
