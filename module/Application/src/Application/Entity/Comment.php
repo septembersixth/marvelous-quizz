@@ -170,4 +170,22 @@ class Comment
         return $this;
     }
 
+    /**
+     * @return boolean
+     */
+    public function isDeleted()
+    {
+        return $this->deleted;
+    }
+
+    /**
+     * @param $deleted
+     * @return $this
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted = $deleted;
+        return $this;
+    }
+
 }

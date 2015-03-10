@@ -263,6 +263,50 @@ div.container a.brand {
     text-align: center;
 }
 
+.comments {
+    text-align: left;
+}
+
+.comment{
+    padding: 20px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.comment-author {
+    font-family: Lora;
+    color: #222;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 15px;
+    font-style: normal;
+}
+
+.comment-metadata {
+    display: inline;
+    vertical-align: baseline;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.75;
+    color: rgb(34, 34, 34);
+    font-family: Lora;
+}
+
+.comment-content {
+    color: rgb(119, 119, 119);
+    font-family: Lora;
+    font-size: 15px;
+    font-style: normal;
+}
+
+#commentForm {
+    text-align: left;
+}
+
+#commentForm input {
+    width: 100%;
+}
 
 .box-shadow {
     -moz-box-shadow: 1px 2px 5px 1px rgba(34, 34, 34, 0.0980392);

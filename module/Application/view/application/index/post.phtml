@@ -19,25 +19,43 @@ $commentForm->prepare();
 
             <h2>Comments :</h2>
 
+
             <?= $this->form()->openTag($commentForm); ?>
 
             <?= $this->formRow($commentForm->get('csrf')); ?>
 
-            <?= $this->formRow($commentForm->get('captcha')); ?>
+            <div class="form-group row">
+                <div class="col-lg-12"><?= $this->formRow($commentForm->get('captcha')->setAttributes(['class'=>'form-control'])); ?></div>
+            </div>
 
-            <?= $this->formRow($commentForm->get('name'))?>
+            <div class="form-group row">
+                <div class="col-md-6"><?= $this->formRow($commentForm->get('name')->setAttributes(['class'=>'form-control'])); ?></div>
+                <div class="col-md-6"><?= $this->formRow($commentForm->get('email')->setAttributes(['class'=>'form-control'])); ?></div>
+            </div>
 
-            <?= $this->formRow($commentForm->get('email'))?>
+            <div class="form-group row">
+                <div class="col-lg-12"><?= $this->formRow($commentForm->get('text')->setAttributes(['class'=>'form-control'])); ?></div>
+            </div>
 
-            <?= $this->formRow($commentForm->get('text'))?>
+            <div class="form-group row">
+                <div class="col-lg-3"><?= $this->formRow($commentForm->get('submit'))?></div>
+            </div>
 
-            <?= $this->formSubmit($commentForm->get('submit'))?>
 
             <?= $this->form()->closeTag(); ?>
 
+
+            <div class="comments">
             <?php foreach ($post->getComments() as $comment) : ?>
-            <?= $comment->getText(); ?>
+                <?php if (! $comment->isDeleted()): ?>
+                    <div class="comment">
+                        <span class="comment-author"><?= $comment->getName(); ?></span>
+                        <span class="comment-metadata"><?= $comment->getCreated()->format('M n Y H:i:s'); ?></span>
+                        <div class="comment-content"><?= $comment->getText(); ?></div>
+                    </div>
+                <?php endif; ?>
             <?php endforeach; ?>
+            </div>
         </div>
 
 </div>

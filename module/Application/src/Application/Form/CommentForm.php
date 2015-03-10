@@ -61,7 +61,11 @@ class CommentForm extends Form implements ObjectManagerAwareInterface
                 'type'      => 'captcha',
                 'options'   =>
                 [
-                    'captcha'   => ['class' => 'Figlet', 'outputWidth' => 30, 'wordLen' => 2],
+                    'captcha'       => ['class' => 'Figlet', 'outputWidth' => 30, 'wordLen' => 2],
+                ],
+                'attributes' =>
+                [
+                    'placeholder'   => 'Captcha',
                 ],
             ])
 
@@ -70,7 +74,7 @@ class CommentForm extends Form implements ObjectManagerAwareInterface
                 'type'          => 'submit',
                 'attributes'    =>
                 [
-                    'value'     => 'Submit',
+                    'value'     => 'Add a comment',
                 ],
             ])
         ;
