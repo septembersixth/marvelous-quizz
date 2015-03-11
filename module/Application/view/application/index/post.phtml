@@ -24,7 +24,7 @@ $commentForm->prepare();
 
             <?= $this->formRow($commentForm->get('csrf')); ?>
 
-            <div class="form-group row">
+            <div class="form-group row row-captcha">
                 <div class="col-lg-12"><?= $this->formRow($commentForm->get('captcha')->setAttributes(['class'=>'form-control'])); ?></div>
             </div>
 

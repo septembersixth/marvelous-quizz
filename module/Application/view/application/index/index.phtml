@@ -17,4 +17,8 @@
             <?= $this->partial('partial/edit.phtml', [ 'post'=>$post ]); ?>
         </div>
     <?php endforeach; ?>
+
+    <?= $this->paginationControl($posts, 'sliding', 'partial/paginator.phtml', ['route' => $this->route,
+                                                                                'params' => $this->routeParams
+                                                                                ]); ?>
 </div>

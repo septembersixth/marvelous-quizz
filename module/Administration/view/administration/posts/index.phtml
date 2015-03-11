@@ -43,14 +43,5 @@
         </tbody>
     </table>
 
-    <?php
-    echo $this->paginationControl(
-        $posts,
-        'sliding',
-        'partial/paginator.phtml',
-        [
-            'route' => 'administration/pagination'
-        ]
-    );
-    ?>
+    <?= $this->paginationControl($posts, 'sliding', 'partial/paginator.phtml', ['route' => 'administration/pagination']); ?>
 </div>

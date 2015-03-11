@@ -40,6 +40,22 @@ return array(
                 ],
             ],
 
+            'posts' =>
+            [
+                'type'      => 'segment',
+                'options'   =>
+                [
+                    'route'         => '/posts[/page/:page]',
+                    'constraint'    => ['page' => '[0-9]*'],
+                    'defaults'  =>
+                    [
+                        'page'          => 1,
+                        'controller'    => 'Application\Controller\Index',
+                        'action'        => 'index'
+                    ],
+                ],
+            ],
+
             'comment' =>
             [
                 'type'      => 'segment',
@@ -63,13 +79,15 @@ return array(
                 'type'      => 'segment',
                 'options'   =>
                 [
-                    'route'         => '/tag/:tagName',
+                    'route'         => '/tag/:tagName[/page/:page]',
                     'constraint'    =>
                     [
                         'tagName'       => '[a-zA-Z0-9_-]+',
+                        'page'          => '[0-9]*',
                     ],
                     'defaults'      =>
                     [
+                        'page'          => 1,
                         'controller'    => 'Application\Controller\Index',
                         'action'        => 'tag',
                     ],

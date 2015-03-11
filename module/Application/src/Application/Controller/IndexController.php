@@ -31,7 +31,10 @@ class IndexController extends AbstractActionController
             ->setCurrentPageNumber($page)
             ->setItemCountPerPage(5);
 
-        return ['posts' => $paginator];
+        return [
+            'posts' => $paginator,
+            'route' => 'posts',
+        ];
     }
 
     public function postAction()
@@ -78,6 +81,8 @@ class IndexController extends AbstractActionController
         return (new ViewModel)
             ->setTemplate('application/index/index.phtml')
             ->setVariable('posts', $paginator)
+            ->setVariable('route', 'tag')
+            ->setVariable('routeParams', ['tagName' => $tagName])
         ;
     }
 

@@ -23,7 +23,7 @@ class TagsController extends AbstractActionController
         $paginator = new Paginator(new Collection(new ArrayCollection($tags)));
         $paginator
             ->setCurrentPageNumber($page)
-            ->setItemCountPerPage(5);
+            ->setItemCountPerPage(15);
 
         return [
             'entities'              => $paginator,

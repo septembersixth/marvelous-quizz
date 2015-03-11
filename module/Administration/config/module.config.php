@@ -91,7 +91,7 @@ return
                         'type'      => 'segment',
                         'options'   =>
                         [
-                            'route'         => '/posts/[page/:page]',
+                            'route'         => '/posts[/page/:page]',
                             'defaults'      =>
                             [
                                 'page'          => 1,
@@ -107,7 +107,7 @@ return
                         'type'      => 'segment',
                         'options'   =>
                         [
-                            'route'         => '/tags/[page/:page]',
+                            'route'         => '/tags[/page/:page]',
                             'defaults'      =>
                             [
                                 'page'          => 1,
