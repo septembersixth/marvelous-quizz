@@ -2,12 +2,12 @@
 
 namespace Administration\Form;
 
-use Application\Entity\Post;
+use Application\Entity\Test;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class PostFormFactory implements FactoryInterface
+class TestFormFactory implements FactoryInterface
 {
     /**
      * Create service
@@ -17,16 +17,16 @@ class PostFormFactory implements FactoryInterface
      */
     public function createService(ServiceLocatorInterface $formElementManager)
     {
-        $form = new PostForm;
+        $form = new TestForm;
         $form->setInputFilter($formElementManager
                                 ->getServiceLocator()
                                 ->get('InputFilterManager')
-                                ->get('Administration\InputFilter\PostInputFilter')
+                                ->get('Administration\InputFilter\TestInputFilter')
         );
 
         $form
             ->setHydrator(new DoctrineObject($formElementManager->getServiceLocator()->get('doctrine\ORM\EntityManager')))
-            ->setObject(new Post)
+            ->setObject(new Test)
         ;
 
         return $form;

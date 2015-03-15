@@ -1,0 +1,43 @@
+
+<?= $this->flashMessenger()->render('default', array('alert', 'alert-dismissible', 'alert-warning')); ?>
+
+<div class="page-header">
+<a href="<?= $this->url('administration/tests', ['action' => 'add']); ?>" class="btn btn-primary btn-sm" role="button">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    Add
+</a>
+</div>
+<div>
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>hash</th>
+                <th>created</th>
+                <th>action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($tests as $test): ?>
+            <tr>
+                <td><?= $test->getId(); ?></td>
+                <td><?= substr($test->getHash(), 0, 30); ?></td>
+                <td><?= $test->getCreated() !== null ? $test->getCreated()->format('Y-m-d H:i') : '-'; ?></td>
+                <td>
+                    <a href="<?= $this->url('administration/tests', ['action' => 'edit', 'id' => $test->getId()]); ?>" class="btn btn-sm" role="button">
+                        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                        Edit
+                    </a>
+
+                    <a href="<?= $this->url('administration/tests', ['action' => 'delete', 'id' => $test->getId()]); ?>" class="btn btn-sm" role="button">
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        Delete
+                    </a>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <?= $this->paginationControl($tests, 'sliding', 'partial/paginator.phtml', ['route' => 'administration/pagination']); ?>
+</div>

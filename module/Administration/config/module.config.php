@@ -7,7 +7,7 @@ return
         'invokables' =>
         [
             'Administration\Controller\Index' => 'Administration\Controller\IndexController',
-            'Administration\Controller\Posts' => 'Administration\Controller\PostsController',
+            'Administration\Controller\Tests' => 'Administration\Controller\TestsController',
             'Administration\Controller\Tags'  => 'Administration\Controller\TagsController',
 
         ],
@@ -58,15 +58,15 @@ return
                         ],
                     ],
 
-                    'posts' =>
+                    'tests' =>
                     [
                         'type'      => 'segment',
                         'options'   =>
                             [
-                                'route'     => '/posts[/:action[/:id]]',
+                                'route'     => '/tests[/:action[/:id]]',
                                 'defaults'  =>
                                 [
-                                    'controller'    => 'Posts',
+                                    'controller'    => 'Tests',
                                     'action'        => 'index',
                                 ],
                             ],
@@ -91,11 +91,11 @@ return
                         'type'      => 'segment',
                         'options'   =>
                         [
-                            'route'         => '/posts[/page/:page]',
+                            'route'         => '/tests[/page/:page]',
                             'defaults'      =>
                             [
                                 'page'          => 1,
-                                'controller'    => 'Posts',
+                                'controller'    => 'Tests',
                                 'action'        => 'index',
                             ],
 
@@ -155,8 +155,8 @@ return
     [
         'invokables' =>
         [
-            'Administration\InputFilter\PostInputFilter'    => 'Administration\InputFilter\PostInputFilter',
-            'Administration\InputFilter\TagInputFilter'     => 'Administration\InputFilter\TagInputFilter',
+            'Administration\InputFilter\TestInputFilter'     => 'Administration\InputFilter\TestInputFilter',
+            'Administration\InputFilter\TagInputFilter'      => 'Administration\InputFilter\TagInputFilter',
         ],
 
         'shared' =>
@@ -175,7 +175,7 @@ return
         'factories' =>
         [
             'Administration\Form\Login'                     => 'Administration\Form\LoginFactory',
-            'Administration\Form\PostForm'                  => 'Administration\Form\PostFormFactory',
+            'Administration\Form\TestForm'                  => 'Administration\Form\TestFormFactory',
             'Administration\Form\TagForm'                   => 'Administration\Form\TagFormFactory',
 
         ],
@@ -195,8 +195,8 @@ return
                 'route' => 'home',
             ],
             [
-                'label' => 'Posts',
-                'route' => 'administration/posts',
+                'label' => 'Tests',
+                'route' => 'administration/tests',
             ],
             [
                 'label' => 'Tags',

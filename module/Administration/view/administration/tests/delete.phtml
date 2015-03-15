@@ -1,0 +1,24 @@
+<p>Are you sure that you want to delete ?</p>
+<div class="form-group row col-lg-8">
+    <?php echo $this->escapeHtml($test->getHash()); ?>
+</div>
+
+<?php if ($test->getImage() !== null) : ?>
+<div class="form-group row col-lg-8">
+    <img src="/img/upload/<?= $test->getImage();?>" class="img-thumbnail"/>
+</div>
+<?php endif; ?>
+
+<div class="form-group row col-lg-8">
+    <?php echo $this->escapeHtml($test->getExplanation()); ?>
+</div>
+
+<div class="form-group row col-lg-8">
+    <form action="<?= $this->url('administration/tests', ['action' => 'delete', 'id' => $this->id]); ?>" method="post">
+        <div>
+            <input type="hidden" name="id" value="<?php echo (int) $test->getId(); ?>" />
+            <input type="submit" name="del" value="Yes" />
+            <input type="submit" name="del" value="No" />
+        </div>
+    </form>
+</div>

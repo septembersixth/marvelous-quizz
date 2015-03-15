@@ -3,22 +3,16 @@
 
 namespace Administration\InputFilter;
 
-use Zend\InputFilter\Factory;
 use Zend\InputFilter\InputFilter;
 
-class PostInputFilter extends InputFilter
+class TestInputFilter extends InputFilter
 {
     public function init()
     {
         $this
-            ->add([
-                'name'          => 'title',
-                'required'      => true,
-                'filters'       => [['name' => 'StringTrim']],
-            ])
 
             ->add([
-                'name'          => 'text',
+                'name'          => 'explanation',
                 'required'      => true,
                 'filters'       => [['name' => 'StringTrim']],
             ])
@@ -27,7 +21,6 @@ class PostInputFilter extends InputFilter
                 'name'          => 'tags',
                 'required'      => false,
             ])
-
 
             ->add([
                 'name'          => 'image',
@@ -46,11 +39,11 @@ class PostInputFilter extends InputFilter
                                         ],
                                         [
                                             'name'      => 'File\Extension',
-                                            'options'   => ['extension' => 'jpg, gif'],
+                                            'options'   => ['extension' => 'jpg'],
                                         ],
                                         [
                                             'name'      => 'File\MimeType',
-                                            'options'   => ['mimeType' => 'image/jpeg, image/gif'],
+                                            'options'   => ['mimeType' => 'image/jpeg'],
                                         ],
                                     ],
             ])

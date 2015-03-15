@@ -1,1 +1,1 @@
-# glory-blog
+# marvelous-quizz

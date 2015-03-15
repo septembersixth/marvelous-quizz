@@ -6,13 +6,13 @@ use DoctrineModule\Persistence\ObjectManagerAwareInterface;
 use DoctrineModule\Persistence\ProvidesObjectManager;
 use Zend\Form\Form;
 
-class PostForm extends Form implements ObjectManagerAwareInterface
+class TestForm extends Form implements ObjectManagerAwareInterface
 {
     use ProvidesObjectManager;
 
     public function init($name = null)
     {
-        $this->setName('postForm');
+        $this->setName('testForm');
         $this->setAttribute('enctype', 'multipart/form-data');
 
         $this
@@ -22,14 +22,10 @@ class PostForm extends Form implements ObjectManagerAwareInterface
             ])
 
             ->add([
-                'name'  => 'title',
+                'name'  => 'hash',
                 'type'  => 'text',
-                'attributes' =>
-                [
-                    'class'         => 'form-control',
-                    'placeholder'   => 'Enter title'
-                ]
             ])
+
 
             ->add([
                 'name'  => 'image',
@@ -37,7 +33,7 @@ class PostForm extends Form implements ObjectManagerAwareInterface
             ])
 
             ->add([
-                'name'  => 'text',
+                'name'  => 'explanation',
                 'type'  => 'textarea',
                 'attributes' =>
                 [
@@ -47,15 +43,6 @@ class PostForm extends Form implements ObjectManagerAwareInterface
                 ],
             ])
 
-            ->add([
-                'name'  => 'url',
-                'type'  => 'text',
-                'attributes' =>
-                [
-                    'class'         => 'form-control',
-                    'placeholder'   => 'Enter url'
-                ]
-            ])
 
             ->add([
                 'name'  => 'submit',
