@@ -1,37 +1,94 @@
 <?php
 $form->setAttribute('action', $this->url('administration/tests', ['action' => 'add']));
-$form->get('submit')->setValue('Add');
 $form->prepare();
+$form->get('submit')->setValue('Add');
+
+$test = $form->get('test');
+$image = $test->get('image')->getValue();
+
 ?>
 
-<div class="page-header">
-    <h3>Add Test</h3>
-</div>
+<?php
+//echo $this->form()->openTag($form);
+
+
+
+//echo $this->formRow($test->get('id'));
+//echo $this->formRow($test->get('hash'));
+//echo $this->formRow($test->get('explanation'));
+//echo $this->formRow($test->get('image'));
+//echo $this->formCollection($test->get('questions'));
+
+//echo $this->formRow($test->get('tags'));
+//
+//echo $this->formElement($form->get('submit'));
+//
+//echo $this->form()->closeTag();
+?>
+
+
+    <div class="page-header">
+        <h3>Add Test</h3>
+    </div>
 <?= $this->form()->openTag($form); ?>
-<?= $this->formHidden($form->get('id')); ?>
+<?= $this->formHidden($test->get('id')); ?>
+
+    <div class="form-group row">
+        <div class="col-lg-8">
+            <label>Tags</label>
+            <div>
+            <?= $this->formRow($test->get('tags')); ?>
+            </div>
+        </div>
+    </div>
+
+    <?php if (! empty($image)): ?>
+    <div class="form-group row col-lg-8">
+        <img src="/img/upload/<?= $image;?>" class="img-thumbnail"/>
+    </div>
+    <?php endif; ?>
+
 
     <div class="form-group row">
         <div class="col-lg-8">
             <label>Image</label>
-            <?= $this->formRow($form->get('image')); ?>
+            <?= $this->formRow($test->get('image')); ?>
         </div>
     </div>
 
     <div class="form-group row">
         <div class="col-lg-8">
             <label>Explanation</label>
-            <?= $this->formRow($form->get('explanation')); ?>
+            <?= $this->formRow($test->get('explanation')->setAttributes(['class' => 'form-control'])); ?>
         </div>
     </div>
 
-    <div class="form-group row">
+    <div onclick="return add_question()">Add a new question</div>
+
+    <div class="form-group row" >
         <div class="col-lg-8">
-            <label">Tags</label>
-            <div>
-                <?= $this->formRow($form->get('tags')); ?>
+            <label>Questions</label>
+            <div id="questions">
+                <?= $this->formCollection($test->get('questions')); ?>
             </div>
         </div>
     </div>
 
 <?= $this->formSubmit($form->get('submit')); ?>
 <?= $this->form()->closeTag(); ?>
+
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+
+<script>
+    function add_question() {
+        var currentCount = $('#questions fieldset fieldset').length;
+
+        var template = $('#questions fieldset span').data('template');
+        console.log(template);
+        template = template.replace(/__index__/g, currentCount);
+
+        $('#questions > fieldset').append(template);
+
+        return false;
+    }
+</script>

@@ -27,7 +27,7 @@ class TestsController extends AbstractActionController
         ];
     }
 
-    public function addAction()
+    public function addbisAction()
     {
         /** @var \Administration\Form\TestForm $form */
         $form = $this->getTestForm();
@@ -60,7 +60,7 @@ class TestsController extends AbstractActionController
         return compact('form');
     }
 
-    public function addbisAction()
+    public function addAction()
     {
         $form = $this->getServiceLocator()->get('formElementManager')->get('Administration\Form\CreateTestForm');
         if (($prg = $this->fileprg($form)) instanceof \Zend\Http\PhpEnvironment\Response) {

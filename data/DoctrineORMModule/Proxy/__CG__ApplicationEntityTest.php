@@ -353,4 +353,48 @@ class Test extends \Application\Entity\Test implements \Doctrine\ORM\Proxy\Proxy
         return parent::setTags($tags);
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function addQuestions(\Doctrine\Common\Collections\Collection $questions)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addQuestions', array($questions));
+
+        return parent::addQuestions($questions);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeQuestions(\Doctrine\Common\Collections\Collection $questions)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeQuestions', array($questions));
+
+        return parent::removeQuestions($questions);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addTags(\Doctrine\Common\Collections\Collection $tags)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addTags', array($tags));
+
+        return parent::addTags($tags);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeTags(\Doctrine\Common\Collections\Collection $tags)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeTags', array($tags));
+
+        return parent::removeTags($tags);
+    }
+
 }

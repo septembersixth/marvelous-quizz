@@ -31,8 +31,12 @@ class QuestionFieldset extends Fieldset implements InputFilterProviderInterface,
             ->add([
                 'name'  => 'text',
                 'type'  => 'text',
+                'attributes' =>
+                    [
+                        'class'         => 'form-control',
+                        'placeholder'   => 'Enter question',
+                    ],
             ])
-
         ;
     }
 

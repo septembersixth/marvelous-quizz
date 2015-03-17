@@ -80,16 +80,13 @@ class TestFieldset extends Fieldset implements InputFilterProviderInterface, Ser
         ;
 
 
-//            $questionFieldset = new QuestionFieldset($this->getObjectManager());
-//            $questionFieldset = new QuestionFieldset;
             $this->add([
                 'type'    => 'Zend\Form\Element\Collection',
                 'name'    => 'questions',
                 'options' => [
-                    'label' => 'Please choose categories for this product',
                     'should_create_template' => true,
-                    'count'           => 2,
-//                    'allow_add' => true,
+                    'count'           => 1,
+                    'allow_add' => true,
                     'target_element' => ['type' => 'Administration\Form\Fieldset\QuestionFieldset' ],
                 ],
             ]);
