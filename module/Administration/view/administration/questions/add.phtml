@@ -1,0 +1,22 @@
+<?php
+$form->setAttribute('action', $this->url('administration/questions', ['action' => 'add', 'testId' => $testId]));
+$form->get('submit')->setValue('Add question');
+$form->prepare();
+?>
+
+<div class="page-header">
+    <h3>Add question</h3>
+</div>
+<?= $this->form()->openTag($form); ?>
+<?= $this->formHidden($form->get('id')); ?>
+
+
+    <div class="form-group row">
+        <div class="col-lg-8">
+            <label>Text</label>
+            <?= $this->formRow($form->get('text')->setAttributes(['class' => 'form-control'])); ?>
+        </div>
+    </div>
+
+<?= $this->formSubmit($form->get('submit')); ?>
+<?= $this->form()->closeTag(); ?>

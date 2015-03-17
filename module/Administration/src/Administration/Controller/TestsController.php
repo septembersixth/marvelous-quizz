@@ -15,8 +15,13 @@ class TestsController extends AbstractActionController
 
     public function indexAction()
     {
+        $page = $this->params()->fromRoute('page') ? $this->params()->fromRoute('page') : 1;
+        
         $tests = $this->getEntityManager()->getRepository('Application\Entity\Test')->findByDeleted(false);
         $paginator = new Paginator(new Collection(new ArrayCollection($tests)));
+        $paginator
+            ->setCurrentPageNumber($page)
+            ->setItemCountPerPage(20);
         return [
             'tests' => $paginator,
         ];
@@ -29,7 +34,7 @@ class TestsController extends AbstractActionController
 
         if (($prg = $this->fileprg($form)) instanceof Response) {
             return $prg;
-        } elseif ($prg == false) {
+        } elseif ($prg === false) {
             return compact('form');
         }
 
@@ -52,6 +57,33 @@ class TestsController extends AbstractActionController
                 $form->get('image')->setValue($prg['image']['tmp_name']);
             }
         }
+        return compact('form');
+    }
+
+    public function addbisAction()
+    {
+        $form = $this->getServiceLocator()->get('formElementManager')->get('Administration\Form\CreateTestForm');
+        if (($prg = $this->fileprg($form)) instanceof \Zend\Http\PhpEnvironment\Response) {
+            return $prg;
+        } elseif (is_array($prg)) {
+            $test = new Test;
+            $form->bind($test);
+            $form->setData($prg);
+            if ($form->isValid()) {
+                $em = $this->getEntityManager();
+                $em->persist($test);
+                $em->flush();
+
+                $this->flashMessenger()->addMessage('test added');
+                return $this->redirect()->toRoute('administration/tests');
+            } else {
+                if (empty($prg['test']['image']['error']) && !empty($prg['test']['image']['tmp_name'])) {
+                    $test->setImage($prg['test']['image']);
+                    $form->get('test')->get('image')->setValue($test->getImage());
+                }
+            }
+        }
+
         return compact('form');
     }
 

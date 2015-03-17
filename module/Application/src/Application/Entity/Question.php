@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Question
  * @package Application\Entity
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Application\Repository\Question")
  * @ORM\Table(name="questions")
  */
 class Question
@@ -54,6 +54,7 @@ class Question
     public function __construct()
     {
         $this->options = new ArrayCollection;
+        $this->created = date_create();
     }
 
     /**

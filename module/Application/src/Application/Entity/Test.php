@@ -3,6 +3,7 @@
 namespace Application\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -41,7 +42,7 @@ class Test
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Application\Entity\Question", mappedBy="test")
+     * @ORM\OneToMany(targetEntity="Application\Entity\Question", mappedBy="test", cascade={"persist"})
      */
     protected $questions;
 
@@ -67,6 +68,7 @@ class Test
     {
         $this->questions = new ArrayCollection;
         $this->tags = new ArrayCollection;
+        $this->created = date_create();
     }
 
     /**
@@ -168,12 +170,12 @@ class Test
     }
 
     /**
-     * @param $picture
+     * @param $image
      * @return $this
      */
     public function setImage($image)
     {
-        if (empty($image['image']['error'])) {
+        if (empty($image['error'])) {
             $this->image = substr(strrchr($image['tmp_name'], '/'), 1);
         }
         return $this;
@@ -213,6 +215,48 @@ class Test
     {
         $this->tags = $tags;
         return $this;
+    }
+
+    /**
+     * @param Collection $questions
+     */
+    public function addQuestions(Collection $questions)
+    {
+        foreach ($questions as $question) {
+            $question->setTest($this);
+            $this->questions->add($question);
+        }
+    }
+
+    /**
+     * @param Collection $questions
+     */
+    public function removeQuestions(Collection $questions)
+    {
+        foreach ($questions as $question) {
+            $question->setTest(null);
+            $this->questions->removeElement($question);
+        }
+    }
+
+    /**
+     * @param Collection $tags
+     */
+    public function addTags(Collection $tags)
+    {
+        foreach ($tags as $tag) {
+            $this->tags->add($tag);
+        }
+    }
+
+    /**
+     * @param Collection $tags
+     */
+    public function removeTags(Collection $tags)
+    {
+        foreach ($tags as $tag) {
+            $this->tags->removeElement($tag);
+        }
     }
 
 } 

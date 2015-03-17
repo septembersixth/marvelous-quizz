@@ -6,9 +6,10 @@ return
     [
         'invokables' =>
         [
-            'Administration\Controller\Index' => 'Administration\Controller\IndexController',
-            'Administration\Controller\Tests' => 'Administration\Controller\TestsController',
-            'Administration\Controller\Tags'  => 'Administration\Controller\TagsController',
+            'Administration\Controller\Index'       => 'Administration\Controller\IndexController',
+            'Administration\Controller\Tests'       => 'Administration\Controller\TestsController',
+            'Administration\Controller\Questions'   => 'Administration\Controller\QuestionsController',
+            'Administration\Controller\Tags'        => 'Administration\Controller\TagsController',
 
         ],
     ],
@@ -62,15 +63,32 @@ return
                     [
                         'type'      => 'segment',
                         'options'   =>
+                        [
+                            'route'         => '/tests[/:action[/:id]]',
+                            'constraint'    => ['id' => '[0-9]+'],
+                            'defaults'      =>
                             [
-                                'route'     => '/tests[/:action[/:id]]',
-                                'defaults'  =>
-                                [
-                                    'controller'    => 'Tests',
-                                    'action'        => 'index',
-                                ],
+                                'controller'    => 'Tests',
+                                'action'        => 'index',
                             ],
+                        ],
                     ],
+
+                    'questions' =>
+                    [
+                        'type'      => 'segment',
+                        'options'   =>
+                        [
+                            'route'     => '/tests/:testId/questions[/:action[/:questionId]]',
+                            'defaults'  =>
+                            [
+                                'constraint'    => ['testId' => '[0-9]+', 'questionId' => '[0-9]+'],
+                                'controller'    => 'Questions',
+                                'action'        => 'index',
+                            ],
+                        ],
+                    ],
+
 
                     'tags' =>
                     [
@@ -155,8 +173,9 @@ return
     [
         'invokables' =>
         [
-            'Administration\InputFilter\TestInputFilter'     => 'Administration\InputFilter\TestInputFilter',
-            'Administration\InputFilter\TagInputFilter'      => 'Administration\InputFilter\TagInputFilter',
+            'Administration\InputFilter\TestInputFilter'            => 'Administration\InputFilter\TestInputFilter',
+            'Administration\InputFilter\QuestionInputFilter'        => 'Administration\InputFilter\QuestionInputFilter',
+            'Administration\InputFilter\TagInputFilter'             => 'Administration\InputFilter\TagInputFilter',
         ],
 
         'shared' =>
@@ -169,15 +188,17 @@ return
     [
         'invokables' =>
         [
-
+            'Administration\Form\CreateTestForm'            => 'Administration\Form\CreateTestForm',
         ],
 
         'factories' =>
         [
             'Administration\Form\Login'                     => 'Administration\Form\LoginFactory',
             'Administration\Form\TestForm'                  => 'Administration\Form\TestFormFactory',
+            'Administration\Form\QuestionForm'              => 'Administration\Form\QuestionFormFactory',
             'Administration\Form\TagForm'                   => 'Administration\Form\TagFormFactory',
 
+//            'Administration\Form\CreateTestForm'            => 'Administration\Form\CreateTestFormFactory',
         ],
 
         'shared' =>
