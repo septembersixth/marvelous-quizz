@@ -3,10 +3,8 @@
 namespace Administration\Form\Fieldset;
 
 use Application\Entity\Test;
-use DoctrineModule\Persistence\ObjectManagerAwareInterface;
-use DoctrineModule\Persistence\ProvidesObjectManager;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
-use DoctrineModuleTest\Stdlib\Hydrator\DoctrineObjectTest;
+use DoctrineModule\Stdlib\Hydrator\Strategy\DisallowRemoveByValue;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
@@ -18,14 +16,17 @@ class TestFieldset extends Fieldset implements InputFilterProviderInterface, Ser
 
     public function init()
     {
+        $this->setName('test');
         $em = $this->getServiceLocator()->getServiceLocator()->get('doctrine\ORM\EntityManager');
 
-        $this->setName('test');
+        $hydrator = new DoctrineObject($em);
 
         $this
-            ->setHydrator(new DoctrineObject($em))
+            ->setHydrator($hydrator)
             ->setObject(new Test)
         ;
+
+
 
         $this
             ->add([
@@ -79,15 +80,16 @@ class TestFieldset extends Fieldset implements InputFilterProviderInterface, Ser
             ])
         ;
 
-
             $this->add([
                 'type'    => 'Zend\Form\Element\Collection',
                 'name'    => 'questions',
                 'options' => [
-                    'should_create_template' => true,
-                    'count'           => 1,
-                    'allow_add' => true,
-                    'target_element' => ['type' => 'Administration\Form\Fieldset\QuestionFieldset' ],
+                    'should_create_template'    => true,
+                    'allow_add'                 => true,
+                    'allow_remove'              => true,
+                    'count'                     => 1,
+                    'template_placeholder'      => '__index-question__',
+                    'target_element'            => ['type' => 'Administration\Form\Fieldset\QuestionFieldset' ],
                 ],
             ]);
     }

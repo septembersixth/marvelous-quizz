@@ -30,7 +30,7 @@ class Option
      * @var boolean
      * @ORM\Column(type="boolean")
      */
-    protected $correct;
+    protected $correct = false;
 
     /**
      * @var \Application\Entity\Question
@@ -49,6 +49,11 @@ class Option
      * @ORM\Column(type="boolean")
      */
     protected $deleted = false;
+
+    public function __construct()
+    {
+        $this->created = date_create();
+    }
 
     /**
      * @return boolean
@@ -134,7 +139,7 @@ class Option
      * @param Question $question
      * @return $this
      */
-    public function setQuestion($question)
+    public function setQuestion(Question $question = null)
     {
         $this->question = $question;
         return $this;

@@ -65,22 +65,26 @@ class TestsController extends AbstractActionController
         $form = $this->getServiceLocator()->get('formElementManager')->get('Administration\Form\CreateTestForm');
         if (($prg = $this->fileprg($form)) instanceof \Zend\Http\PhpEnvironment\Response) {
             return $prg;
-        } elseif (is_array($prg)) {
-            $test = new Test;
-            $form->bind($test);
-            $form->setData($prg);
-            if ($form->isValid()) {
-                $em = $this->getEntityManager();
-                $em->persist($test);
-                $em->flush();
+        } elseif ($prg === false) {
+            return compact('form');
+        }
 
-                $this->flashMessenger()->addMessage('test added');
-                return $this->redirect()->toRoute('administration/tests');
-            } else {
-                if (empty($prg['test']['image']['error']) && !empty($prg['test']['image']['tmp_name'])) {
-                    $test->setImage($prg['test']['image']);
-                    $form->get('test')->get('image')->setValue($test->getImage());
-                }
+        $test = (new Test)
+            ->setHash(md5(uniqid()))
+        ;
+
+        $form->bind($test);
+        $form->setData($prg);
+        if ($form->isValid()) {
+            $em = $this->getEntityManager();
+            $em->persist($test);
+            $em->flush();
+            $this->flashMessenger()->addMessage('test added');
+            return $this->redirect()->toRoute('administration/tests');
+        } else {
+            if (empty($prg['test']['image']['error']) && !empty($prg['test']['image']['tmp_name'])) {
+                $test->setImage($prg['test']['image']);
+                $form->get('test')->get('image')->setValue($test->getImage());
             }
         }
 

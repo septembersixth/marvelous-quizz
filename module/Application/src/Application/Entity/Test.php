@@ -220,11 +220,11 @@ class Test
     /**
      * @param Collection $questions
      */
-    public function addQuestions(Collection $questions)
+    public function addQuestions(ArrayCollection $questions)
     {
         foreach ($questions as $question) {
             $question->setTest($this);
-            $this->questions->add($question);
+            $this->questions[] = $question;
         }
     }
 

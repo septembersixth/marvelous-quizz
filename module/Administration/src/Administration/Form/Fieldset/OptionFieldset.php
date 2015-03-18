@@ -2,7 +2,7 @@
 
 namespace Administration\Form\Fieldset;
 
-use Application\Entity\Question;
+use Application\Entity\Option;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
 use DoctrineModule\Stdlib\Hydrator\Strategy\DisallowRemoveByValue;
 use Zend\Form\Fieldset;
@@ -10,25 +10,25 @@ use Zend\InputFilter\InputFilterProviderInterface;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorAwareTrait;
 
-class QuestionFieldset extends Fieldset implements InputFilterProviderInterface, ServiceLocatorAwareInterface
+class OptionFieldset extends Fieldset implements InputFilterProviderInterface, ServiceLocatorAwareInterface
 {
     use ServiceLocatorAwareTrait;
 
     public function init()
     {
         $em = $this->getServiceLocator()->getServiceLocator()->get('doctrine\ORM\EntityManager');
-
-        $hydrator = new DoctrineObject($em);
-
         $this
-            ->setHydrator($hydrator)
-            ->setObject(new Question)
+            ->setHydrator(new DoctrineObject($em))
+            ->setObject(new Option)
         ;
 
         $this
             ->add([
-                'name'  => 'id',
-                'type'  => 'Hidden',
+                'name'          => 'id',
+                'type'          => 'Hidden',
+                'attributes'    => [
+                    'class'     => 'option-input',
+                ]
             ])
 
             ->add([
@@ -36,23 +36,24 @@ class QuestionFieldset extends Fieldset implements InputFilterProviderInterface,
                 'type'  => 'text',
                 'attributes' =>
                 [
-                    'class'         => 'form-control option-input',
-                    'placeholder'   => 'Enter question',
+                    'class'         => 'option-input',
+                    'placeholder'   => 'Enter answer',
                 ],
             ])
-        ;
 
-        $this->add([
-            'type'    => 'Zend\Form\Element\Collection',
-            'name'    => 'options',
-            'options' => [
-                'allow_add'                 => true,
-                'allow_remove'              => true,
-                'count'                     => 2,
-                'template_placeholder'      => '__index-option__',
-                'target_element'            => ['type' => 'Administration\Form\Fieldset\OptionFieldset' ],
-            ],
-        ]);
+            ->add([
+                'name'      => 'correct',
+                'type'      => 'Checkbox',
+                'options'   =>
+                [
+                    'use_hidden_element'    => false,
+                    'checked_value'         => '1',
+                ],
+                'attributes'    => [
+                    'class'     => 'option-input',
+                ]
+            ])
+        ;
     }
 
     /**
@@ -69,6 +70,9 @@ class QuestionFieldset extends Fieldset implements InputFilterProviderInterface,
             ],
             'text' => [
                 'required' => true,
+            ],
+            'correct' => [
+                'required' => false,
             ]
         ];
     }

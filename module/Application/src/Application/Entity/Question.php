@@ -3,6 +3,7 @@
 namespace Application\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -29,7 +30,7 @@ class Question
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="Application\Entity\Option", mappedBy="question")
+     * @ORM\OneToMany(targetEntity="Application\Entity\Option", mappedBy="question", cascade={"persist"})
      */
     protected $options;
 
@@ -52,6 +53,12 @@ class Question
     protected $deleted = false;
 
     public function __construct()
+    {
+        $this->options = new ArrayCollection;
+        $this->created = date_create();
+    }
+
+    public function __clone()
     {
         $this->options = new ArrayCollection;
         $this->created = date_create();
@@ -123,7 +130,7 @@ class Question
      * @param $options
      * @return $this
      */
-    public function setOptions($options)
+    public function setOptions(Option $options)
     {
         $this->options = $options;
         return $this;
@@ -135,7 +142,6 @@ class Question
     public function getText()
     {
         return $this->text;
-        return $this;
     }
 
     /**
@@ -149,7 +155,7 @@ class Question
     }
 
     /**
-     * @return Tesr
+     * @return Test
      */
     public function getTest()
     {
@@ -157,13 +163,37 @@ class Question
     }
 
     /**
-     * @param Tesr $test
+     * @param Test $test
      * @return $this
      */
-    public function setTest($test)
+    public function setTest(Test $test = null)
     {
         $this->test = $test;
         return $this;
+    }
+
+    /**
+     * @param Collection $options
+     */
+    public function addOptions(ArrayCollection $options)
+    {
+        foreach ($options as $option) {
+            $option->setQuestion($this);
+            $this->options[] = $option;
+        }
+    }
+
+    /**
+     * @param Collection $options
+     */
+    public function removeOptions(Collection $options)
+    {
+        /*
+        foreach ($options as $option) {
+            $option->setQuestion(null);
+            $this->options->removeElement($option);
+        }
+        */
     }
 
 }

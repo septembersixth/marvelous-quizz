@@ -8,28 +8,10 @@ $image = $test->get('image')->getValue();
 
 ?>
 
-<?php
-//echo $this->form()->openTag($form);
+<div class="page-header">
+    <h3>Add Test</h3>
+</div>
 
-
-
-//echo $this->formRow($test->get('id'));
-//echo $this->formRow($test->get('hash'));
-//echo $this->formRow($test->get('explanation'));
-//echo $this->formRow($test->get('image'));
-//echo $this->formCollection($test->get('questions'));
-
-//echo $this->formRow($test->get('tags'));
-//
-//echo $this->formElement($form->get('submit'));
-//
-//echo $this->form()->closeTag();
-?>
-
-
-    <div class="page-header">
-        <h3>Add Test</h3>
-    </div>
 <?= $this->form()->openTag($form); ?>
 <?= $this->formHidden($test->get('id')); ?>
 
@@ -74,21 +56,27 @@ $image = $test->get('image')->getValue();
         </div>
     </div>
 
-<?= $this->formSubmit($form->get('submit')); ?>
+<input type="submit" name="submit" id="submitbutton" class="btn btn-default" value="Add" onclick="disableEmptyInput()">
 <?= $this->form()->closeTag(); ?>
 
 <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
 
 <script>
     function add_question() {
-        var currentCount = $('#questions fieldset fieldset').length;
-
+        var currentCount = $('#questions > fieldset > fieldset').length;
         var template = $('#questions fieldset span').data('template');
-        console.log(template);
-        template = template.replace(/__index__/g, currentCount);
-
+        template = template.replace(/__index-question__/g, currentCount);
         $('#questions > fieldset').append(template);
-
         return false;
+    }
+
+    function disableEmptyInput() {
+        // disable every empty option-inputs
+        $('.option-input[type=text]').each(function(index) {
+            if (! $(this).val().trim()) {
+                $(this).siblings('input').prop('disabled', true);
+                $(this).prop('disabled', true);
+            }
+        });
     }
 </script>
