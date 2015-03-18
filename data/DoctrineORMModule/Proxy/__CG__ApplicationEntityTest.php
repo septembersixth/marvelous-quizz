@@ -356,7 +356,7 @@ class Test extends \Application\Entity\Test implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function addQuestions(\Doctrine\Common\Collections\Collection $questions)
+    public function addQuestions(\Doctrine\Common\Collections\ArrayCollection $questions)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'addQuestions', array($questions));

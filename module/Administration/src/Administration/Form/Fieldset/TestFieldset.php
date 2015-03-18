@@ -91,6 +91,10 @@ class TestFieldset extends Fieldset implements InputFilterProviderInterface, Ser
                     'template_placeholder'      => '__index-question__',
                     'target_element'            => ['type' => 'Administration\Form\Fieldset\QuestionFieldset' ],
                 ],
+
+                'attributes' => [
+                    'class'     => 'questionFieldset',
+                ],
             ]);
     }
 

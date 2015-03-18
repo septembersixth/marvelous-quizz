@@ -46,6 +46,7 @@ class OptionFieldset extends Fieldset implements InputFilterProviderInterface, S
                 'type'      => 'Checkbox',
                 'options'   =>
                 [
+                    'label'                 => 'correct',
                     'use_hidden_element'    => false,
                     'checked_value'         => '1',
                 ],

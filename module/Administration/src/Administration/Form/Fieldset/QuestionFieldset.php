@@ -48,9 +48,12 @@ class QuestionFieldset extends Fieldset implements InputFilterProviderInterface,
             'options' => [
                 'allow_add'                 => true,
                 'allow_remove'              => true,
-                'count'                     => 2,
+                'count'                     => 4,
                 'template_placeholder'      => '__index-option__',
                 'target_element'            => ['type' => 'Administration\Form\Fieldset\OptionFieldset' ],
+            ],
+            'attributes' => [
+                'class' => 'optionFieldset',
             ],
         ]);
     }
