@@ -134,7 +134,7 @@ class TestFieldset extends Fieldset implements InputFilterProviderInterface, Ser
                         'name' => 'File\RenameUpload',
                         'options' =>
                         [
-                            'target'    => 'data/upload',
+                            'target'    => 'data/upload/test',
                             'randomize' => true,
                         ]
                     ]

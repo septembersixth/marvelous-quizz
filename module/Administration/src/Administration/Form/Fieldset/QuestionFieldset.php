@@ -36,7 +36,7 @@ class QuestionFieldset extends Fieldset implements InputFilterProviderInterface,
                 'type'  => 'text',
                 'attributes' =>
                 [
-                    'class'         => 'form-control option-input',
+                    'class'         => 'form-control option-input question-text-input',
                     'placeholder'   => 'Enter question',
                 ],
             ])

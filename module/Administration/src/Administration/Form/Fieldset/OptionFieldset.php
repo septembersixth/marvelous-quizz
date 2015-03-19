@@ -36,7 +36,7 @@ class OptionFieldset extends Fieldset implements InputFilterProviderInterface, S
                 'type'  => 'text',
                 'attributes' =>
                 [
-                    'class'         => 'option-input',
+                    'class'         => 'option-input option-text-input',
                     'placeholder'   => 'Enter answer',
                 ],
             ])
@@ -47,11 +47,11 @@ class OptionFieldset extends Fieldset implements InputFilterProviderInterface, S
                 'options'   =>
                 [
                     'label'                 => 'correct',
-                    'use_hidden_element'    => false,
+                    'use_hidden_element'    => true,
                     'checked_value'         => '1',
                 ],
                 'attributes'    => [
-                    'class'     => 'option-input',
+                    'class'     => 'option-input option-checkbox-input',
                 ]
             ])
         ;

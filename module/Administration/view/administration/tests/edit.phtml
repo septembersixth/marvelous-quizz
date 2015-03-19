@@ -1,8 +1,11 @@
 <?php
-$form->setAttribute('action', $this->url('administration/tests', ['action' => 'edit', 'id' => $id]));
-$form->get('submit')->setValue('Edit');
+$form->setAttribute('action', $this->url('administration/tests', ['action' => 'edit', 'id' => $testId]));
 $form->prepare();
-$image = $form->get('image')->getValue();
+$form->get('submit')->setValue('Edit');
+
+$test = $form->get('test');
+$image = $test->get('image')->getValue();
+
 ?>
 
 <div class="page-header">
@@ -10,7 +13,16 @@ $image = $form->get('image')->getValue();
 </div>
 
 <?= $this->form()->openTag($form); ?>
-<?= $this->formHidden($form->get('id')); ?>
+<?= $this->formHidden($test->get('id')); ?>
+
+    <div class="form-group row">
+        <div class="col-lg-8">
+            <label>Tags</label>
+            <div>
+            <?= $this->formRow($test->get('tags')); ?>
+            </div>
+        </div>
+    </div>
 
     <?php if (! empty($image)): ?>
     <div class="form-group row col-lg-8">
@@ -18,29 +30,68 @@ $image = $form->get('image')->getValue();
     </div>
     <?php endif; ?>
 
+
     <div class="form-group row">
         <div class="col-lg-8">
             <label>Image</label>
-            <?= $this->formRow($form->get('image')); ?>
+            <?= $this->formRow($test->get('image')); ?>
         </div>
     </div>
 
     <div class="form-group row">
         <div class="col-lg-8">
             <label>Explanation</label>
-            <?= $this->formRow($form->get('explanation')); ?>
+            <?= $this->formRow($test->get('explanation')->setAttributes(['class' => 'form-control'])); ?>
         </div>
     </div>
 
     <div class="form-group row">
         <div class="col-lg-8">
-            <label>Tags</label>
-            <div>
-                <?= $this->formRow($form->get('tags')); ?>
+            <div onclick="return add_question()" class="btn btn-xs btn-info">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                Add a new question
             </div>
         </div>
     </div>
 
+    <div class="form-group row" >
+        <div class="col-lg-8">
+            <label>Questions</label>
+            <div id="questions">
+                <?= $this->formCollection($test->get('questions')); ?>
+            </div>
+        </div>
+    </div>
 
-<?= $this->formSubmit($form->get('submit')); ?>
+<input type="submit" name="submit" id="submitbutton" class="btn btn-primary" value="Submit" onclick="disableEmptyInput()">
 <?= $this->form()->closeTag(); ?>
+
+<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+
+<script>
+    function add_question() {
+        var currentCount = $('#questions > fieldset > fieldset').length;
+        var template = $('#questions fieldset span[data-template]').data('template');
+        template = template.replace(/__index-question__/g, currentCount);
+        $('#questions > fieldset').append(template);
+        return false;
+    }
+
+    function disableEmptyInput() {
+        $('.question-text-input').each(function(index) {
+            if (! $(this).val().trim()) {
+                $(this).prop('disabled', true);
+                $(this).siblings('input').prop('disabled', true);
+                $(this).siblings('fieldset').find('input').prop('disabled', true);
+            }
+        });
+
+        $('.option-text-input').each(function(index) {
+            if (! $(this).val().trim()) {
+                $(this).prop('disabled', true);
+                $(this).siblings('input').prop('disabled', true);
+                $(this).siblings('label').find('input').prop('disabled', true);
+            }
+        });
+    }
+</script>

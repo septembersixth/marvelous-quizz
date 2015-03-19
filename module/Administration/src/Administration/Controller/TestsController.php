@@ -75,6 +75,7 @@ class TestsController extends AbstractActionController
 
         $form->bind($test);
         $form->setData($prg);
+
         if ($form->isValid()) {
             $em = $this->getEntityManager();
             $em->persist($test);
@@ -91,6 +92,45 @@ class TestsController extends AbstractActionController
         return compact('form');
     }
 
+    public function editAction()
+    {
+        $id = (int) $this->params()->fromRoute('id', 0);
+        if (! $test = $this->getEntityManager()->getRepository('Application\Entity\Test')->findOneById($id)) {
+            return $this->redirect()->toRoute('administration/tests');
+        }
+
+        $form = $this->getServiceLocator()->get('formElementManager')->get('Administration\Form\CreateTestForm');
+        $form->bind($test);
+
+        if (($prg = $this->fileprg($form)) instanceof \Zend\Http\PhpEnvironment\Response) {
+            return $prg;
+        } elseif ($prg === false) {
+            return [
+                'form'      => $form,
+                'testId'    => $test->getId(),
+            ];
+        }
+
+//        var_dump($prg, $prg['test']['questions'][0]['options']);die;
+        $form->setData($prg);
+        if ($form->isValid()) {
+            $em = $this->getEntityManager();
+            $em->flush();
+            $this->flashMessenger()->addMessage('test updated');
+            return $this->redirect()->toRoute('administration/tests');
+        } else {
+            if (empty($prg['test']['image']['error']) && !empty($prg['test']['image']['tmp_name'])) {
+                $test->setImage($prg['test']['image']);
+                $form->get('test')->get('image')->setValue($test->getImage());
+            }
+        }
+        return [
+            'form'      => $form,
+            'testId'    => $test->getId(),
+        ];
+    }
+
+    /*
     public function editAction()
     {
         $form = $this->getTestForm();
@@ -114,7 +154,6 @@ class TestsController extends AbstractActionController
             return $this->redirect()->toRoute('administration/tests');
         }
         else {
-            // Form not valid, but file uploads might be valid and uploaded
             if (empty($prg['image']['error'])) {
                 $test->setImage($prg['image']);
                 $this->getEntityManager()->flush();
@@ -124,6 +163,7 @@ class TestsController extends AbstractActionController
 
         return compact('form');
     }
+    */
 
     public function deleteAction()
     {
