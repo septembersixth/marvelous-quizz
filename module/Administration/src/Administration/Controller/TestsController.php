@@ -111,7 +111,6 @@ class TestsController extends AbstractActionController
             ];
         }
 
-//        var_dump($prg, $prg['test']['questions'][0]['options']);die;
         $form->setData($prg);
         if ($form->isValid()) {
             $em = $this->getEntityManager();
@@ -129,41 +128,6 @@ class TestsController extends AbstractActionController
             'testId'    => $test->getId(),
         ];
     }
-
-    /*
-    public function editAction()
-    {
-        $form = $this->getTestForm();
-        $id = (int) $this->params()->fromRoute('id', 0);
-
-        if (! $test = $this->getEntityManager()->getRepository('Application\Entity\Test')->findOneById($id)) {
-            return $this->redirect()->toRoute('administration/tests');
-        }
-
-        $form->bind($test);
-
-        if (($prg = $this->fileprg($form)) instanceof Response) {
-            return $prg;
-        } elseif ($prg === false) {
-            return compact('id', 'form');
-        }
-
-        if ($form->isValid()) {
-            $this->getEntityManager()->flush();
-            $this->flashMessenger()->addMessage(sprintf('test (id = %d) was updated', $id));
-            return $this->redirect()->toRoute('administration/tests');
-        }
-        else {
-            if (empty($prg['image']['error'])) {
-                $test->setImage($prg['image']);
-                $this->getEntityManager()->flush();
-                $form->get('image')->setValue($test->getImage());
-            }
-        }
-
-        return compact('form');
-    }
-    */
 
     public function deleteAction()
     {

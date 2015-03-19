@@ -237,8 +237,8 @@ return
     'view_helpers' =>
     [
         'invokables' => [
-            'optionCollection'    => 'Administration\View\Helper\OptionCollection',
-            'optionRow'           => 'Administration\View\Helper\OptionRow',
+            'questionCollection'    => 'Administration\View\Helper\QuestionCollection',
+            'questionRow'           => 'Administration\View\Helper\QuestionRow',
         ],
     ],
 
