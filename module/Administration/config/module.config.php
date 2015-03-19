@@ -73,23 +73,7 @@ return
                             ],
                         ],
                     ],
-
-                    'questions' =>
-                    [
-                        'type'      => 'segment',
-                        'options'   =>
-                        [
-                            'route'     => '/tests/:testId/questions[/:action[/:questionId]]',
-                            'defaults'  =>
-                            [
-                                'constraint'    => ['testId' => '[0-9]+', 'questionId' => '[0-9]+'],
-                                'controller'    => 'Questions',
-                                'action'        => 'index',
-                            ],
-                        ],
-                    ],
-
-
+                    
                     'tags' =>
                     [
                         'type'      => 'segment',
@@ -197,8 +181,6 @@ return
             'Administration\Form\TestForm'                  => 'Administration\Form\TestFormFactory',
             'Administration\Form\QuestionForm'              => 'Administration\Form\QuestionFormFactory',
             'Administration\Form\TagForm'                   => 'Administration\Form\TagFormFactory',
-
-//            'Administration\Form\CreateTestForm'            => 'Administration\Form\CreateTestFormFactory',
         ],
 
         'shared' =>

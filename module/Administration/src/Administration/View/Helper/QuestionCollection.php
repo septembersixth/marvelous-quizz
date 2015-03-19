@@ -12,10 +12,10 @@ use Zend\Form\LabelAwareInterface;
 
 class QuestionCollection extends FormCollection
 {
-    protected $defaultElementHelper = 'formrow';
+    protected $defaultElementHelper = 'questionRow';
     protected $wrapper = '<fieldset%4$s>%2$s%1$s%3$s</fieldset>';
     protected $templateWrapper = '<span data-template="%s%s"></span>';
-    protected $deleteTemplate = '<div class="form-group row pull-right" onclick="deleteQuestion(this)">
+    protected $deleteTemplate = '<div class="form-group row pull-right deleteButton" onclick="deleteQuestion(this)">
             <div class="col-lg-8">
                 <div class="btn btn-xs btn-default">
                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
@@ -43,14 +43,18 @@ class QuestionCollection extends FormCollection
         }
 
         foreach ($element->getIterator() as $elementOrFieldset) {
-            if ($elementOrFieldset instanceof QuestionFieldset) {
-                $markup = $this->deleteTemplate.$markup;
-            }
+//            var_dump(get_class($elementOrFieldset));
+
+
 
             if ($elementOrFieldset instanceof FieldsetInterface) {
                 $markup .= $fieldsetHelper($elementOrFieldset, $this->shouldWrap());
             } elseif ($elementOrFieldset instanceof ElementInterface) {
                 $markup .= $elementHelper($elementOrFieldset);
+            }
+
+            if ($elementOrFieldset instanceof QuestionFieldset) {
+                $markup = $markup.$this->deleteTemplate;
             }
         }
 
@@ -114,8 +118,8 @@ class QuestionCollection extends FormCollection
 
         return sprintf(
             $this->templateWrapper,
-            htmlspecialchars($this->deleteTemplate),
-            $escapeHtmlAttribHelper($templateMarkup)
+            $escapeHtmlAttribHelper($templateMarkup),
+            htmlspecialchars($this->deleteTemplate)
         );
     }
 }

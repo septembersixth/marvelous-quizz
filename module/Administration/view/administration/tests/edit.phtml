@@ -26,7 +26,7 @@ $image = $test->get('image')->getValue();
 
     <?php if (! empty($image)): ?>
     <div class="form-group row col-lg-8">
-        <img src="/img/upload/<?= $image;?>" class="img-thumbnail"/>
+        <img src="/img/upload/<?= $image;?>" class="img-thumbnail img-max-height"/>
     </div>
     <?php endif; ?>
 
@@ -46,7 +46,7 @@ $image = $test->get('image')->getValue();
 
     <div class="form-group row">
         <div class="col-lg-8">
-            <div onclick="return add_question()" class="btn btn-xs btn-info">
+            <div onclick="return addQuestion()" class="btn btn-xs btn-info">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 Add question
             </div>
@@ -64,40 +64,3 @@ $image = $test->get('image')->getValue();
 
 <input type="submit" name="submit" id="submitbutton" class="btn btn-primary" value="Submit" onclick="disableEmptyInput()">
 <?= $this->form()->closeTag(); ?>
-
-<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-
-<script>
-    function add_question() {
-        var currentCount = $('#questions > fieldset > fieldset').length;
-        var template = $('#questions fieldset span[data-template]').data('template');
-        template = template.replace(/__index-question__/g, currentCount);
-        $('#questions > fieldset').append(template);
-        return false;
-    }
-
-    function disableEmptyInput() {
-        $('.question-text-input').each(function(index) {
-            if (! $(this).val().trim()) {
-                $(this).prop('disabled', true);
-                $(this).siblings('input').prop('disabled', true);
-                $(this).siblings('fieldset').find('input').prop('disabled', true);
-            }
-        });
-
-        $('.option-text-input').each(function(index) {
-            if (! $(this).val().trim()) {
-                $(this).prop('disabled', true);
-                $(this).siblings('input').prop('disabled', true);
-                $(this).siblings('label').find('input').prop('disabled', true);
-            }
-        });
-    }
-
-    function deleteQuestion(element)
-    {
-        $(element).context.nextElementSibling.remove();
-        $(element).remove();
-    }
-
-</script>

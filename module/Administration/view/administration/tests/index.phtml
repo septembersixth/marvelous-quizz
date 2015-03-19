@@ -24,11 +24,6 @@
                 <td><?= substr($test->getHash(), 0, 30); ?></td>
                 <td><?= $test->getCreated() !== null ? $test->getCreated()->format('Y-m-d H:i') : '-'; ?></td>
                 <td>
-                    <a href="<?= $this->url('administration/questions', ['action' => 'index', 'testId' => $test->getId()]); ?>" class="btn btn-sm" role="button">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                        questions
-                    </a>
-
                     <a href="<?= $this->url('administration/tests', ['action' => 'edit', 'id' => $test->getId()]); ?>" class="btn btn-sm" role="button">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                         Edit

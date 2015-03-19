@@ -97,6 +97,10 @@ class Question
     public function setDeleted($deleted)
     {
         $this->deleted = $deleted;
+        foreach ($this->options as $option) {
+            $option->setDeleted(true);
+        }
+
         return $this;
     }
 
@@ -188,12 +192,11 @@ class Question
      */
     public function removeOptions(Collection $options)
     {
-        /*
         foreach ($options as $option) {
             $option->setQuestion(null);
+            $option->setDeleted(true);
             $this->options->removeElement($option);
         }
-        */
     }
 
 }

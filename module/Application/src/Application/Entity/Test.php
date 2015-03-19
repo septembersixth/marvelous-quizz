@@ -104,6 +104,10 @@ class Test
     public function setDeleted($deleted)
     {
         $this->deleted = $deleted;
+        foreach ($this->questions as $question) {
+            $question->setDeleted(true);
+        }
+
         return $this;
     }
 
@@ -235,6 +239,7 @@ class Test
     {
         foreach ($questions as $question) {
             $question->setTest(null);
+            $question->setDeleted(true);
             $this->questions->removeElement($question);
         }
     }

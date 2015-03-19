@@ -37,7 +37,7 @@ div.container a.brand {
 }
 
 .questionFieldset > fieldset{
-    margin:30px 0;
+    margin:0;
 }
 
 .optionFieldset fieldset{
@@ -76,4 +76,12 @@ div.container a.brand {
     border:1px solid red;
     color: red;
     list-style: none;
+}
+
+.deleteButton {
+    margin-bottom:50px;
+}
+
+.img-max-height {
+    max-height: 200px;
 }
