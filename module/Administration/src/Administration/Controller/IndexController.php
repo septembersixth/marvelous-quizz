@@ -10,7 +10,6 @@ class IndexController extends AbstractActionController
     {
         $authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
         if ($loggedUser = $authService->getIdentity()) {
-            var_dump($loggedUser);
         }
 
         $form = $this->getServiceLocator()->get('FormElementManager')->get('Administration\Form\Login');
@@ -25,7 +24,7 @@ class IndexController extends AbstractActionController
             $authResult = $authService->authenticate();
 
             if ($authResult->isValid()) {
-                return $this->redirect()->toRoute('administration/posts');
+                return $this->redirect()->toRoute('administration/tests');
             }
 
         }

@@ -150,7 +150,8 @@ return array(
     [
         'invokables' =>
         [
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+            'Application\Controller\Index'  => 'Application\Controller\IndexController',
+            'Application\Controller\Json'   => 'Application\Controller\JsonController'
         ],
     ],
 
@@ -182,6 +183,55 @@ return array(
         ),
     ),
 
+    'router' =>
+    [
+        'routes' =>
+        [
+            'home' =>
+            [
+                'type' => 'literal',
+                'options' =>
+                [
+                    'route'     => '/',
+                    'default'   =>
+                    [
+                        'controller' => 'Application\Controller\Index',
+                        'action'     => 'index',
+                    ],
+                ],
+            ],
+
+            'json' =>
+            [
+                'type'      => 'literal',
+                'options'   =>
+                [
+                    'route'         => '/json',
+                    'defaults'       =>
+                    [
+                        'controller'    => 'Application\Controller\Json',
+                    ],
+                ],
+
+                'child_routes' =>
+                [
+                    'test'  =>
+                    [
+                        'type'      => 'segment',
+                        'options'   =>
+                        [
+                            'route'     => '/test[/:params]',
+                            'defaults'   =>
+                            [
+                                'action' => 'test',
+                            ],
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
+
     'doctrine' =>
     [
         'driver' =>
@@ -210,38 +260,4 @@ return array(
         ],
     ],
 
-    'navigation' =>
-    [
-        'front' =>
-        [
-            [
-                'label' => 'Home',
-                'route' => 'home',
-            ],
-            [
-                'label' => 'Humeur',
-                'route' => 'tag',
-                'params' =>
-                [
-                    'tagName' => 'humeur',
-                ],
-            ],
-            [
-                'label' => 'Famille',
-                'route' => 'tag',
-                'params' =>
-                [
-                    'tagName' => 'famille',
-                ],
-            ],
-            [
-                'label' => 'Miam Miam',
-                'route' => 'tag',
-                'params' =>
-                [
-                    'tagName' => 'miam_miam',
-                ],
-            ],
-        ],
-    ],
 );

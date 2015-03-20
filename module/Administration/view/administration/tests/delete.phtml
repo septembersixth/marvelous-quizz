@@ -1,11 +1,11 @@
 <p>Are you sure that you want to delete ?</p>
 <div class="form-group row col-lg-8">
-    <?php echo $this->escapeHtml($test->getHash()); ?>
+    <?php echo $this->escapeHtml(implode(' / ',$test->getQuestionsText())); ?>
 </div>
 
 <?php if ($test->getImage() !== null) : ?>
 <div class="form-group row col-lg-8">
-    <img src="/img/upload/<?= $test->getImage();?>" class="img-thumbnail"/>
+    <img src="/img/upload/<?= $test->getImage();?>" class="img-thumbnail img-max-height"/>
 </div>
 <?php endif; ?>
 

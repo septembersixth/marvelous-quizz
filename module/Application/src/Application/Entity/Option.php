@@ -162,4 +162,12 @@ class Option
         $this->text = $text;
         return $this;
     }
+
+    public function toArray()
+    {
+        return [
+            'text'      => $this->text,
+            'correct'   => $this->correct,
+        ];
+    }
 } 

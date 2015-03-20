@@ -19,6 +19,8 @@ class Module
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
+
+        $eventManager->attach('render', [$this, 'registerJsonStrategy'], 100);
     }
 
     public function getConfig()
@@ -35,5 +37,16 @@ class Module
                 ),
             ),
         );
+    }
+
+    public function registerJsonStrategy(MvcEvent $e)
+    {
+        $app          = $e->getTarget();
+        $locator      = $app->getServiceManager();
+        $view         = $locator->get('Zend\View\View');
+        $jsonStrategy = $locator->get('ViewJsonStrategy');
+
+        // Attach strategy, which is a listener aggregate, at high priority
+        $view->getEventManager()->attach($jsonStrategy, 100);
     }
 }

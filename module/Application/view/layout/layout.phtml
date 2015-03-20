@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <?php echo $this->headTitle('ZF2 '. $this->translate('Glory Blog'))->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?php echo $this->headTitle('ZF2 '. $this->translate('Quizz'))->setSeparator(' - ')->setAutoEscape(false) ?>
 
         <?php echo $this->headMeta()
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
@@ -25,7 +25,6 @@
             ->prependFile($this->basePath() . '/js/html5shiv.js',   'text/javascript', array('conditional' => 'lt IE 9',))
         ; ?>
 
-        <style type="text/css">@import url("http://fonts.googleapis.com/css?family=Raleway:400,700|Lora:400");</style>
 
     </head>
     <body style="padding-top:<?= $this->identity() ?'50px': '0' ?>">
@@ -39,7 +38,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><img src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="Glory Blog"/>&nbsp;<?php echo $this->translate('Glory Blog') ?></a>
+                    <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><img src="<?php echo $this->basePath('img/zf2-logo.png') ?>" alt="Quizz"/>&nbsp;<?php echo $this->translate('Quizz') ?></a>
                 </div>
                 <div class="collapse admin-navbar-collapse navbar-collapse">
                     <?php echo $this->
@@ -55,29 +54,8 @@
 
         <div class="container">
 
-            <div class="blog-header">
-                <a href="/"><img src="<?= $this->basePath('img/front.png');?>"/></a>
-            </div>
 
-            <nav class="front-navbar navbar-inverse front-navbar-inverse" role="navigation">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".front-navbar-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                    </div>
-                    <div class="collapse front-navbar-collapse navbar-collapse">
-                        <?php echo $this->
-                        navigation('front\navigation')
-                            ->menu()
-                            ->setUlClass('nav navbar-nav')
-                            ->setPartial('partial/front_navigation.phtml');
-                        ?>
-                    </div>
-                </div>
-            </nav>
+
 
             <div class="front-flashMessenger">
                 <?= $this->flashMessenger()->render('default', array('alert', 'alert-dismissible', 'alert-warning')); ?>

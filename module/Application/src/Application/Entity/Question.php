@@ -199,4 +199,21 @@ class Question
         }
     }
 
+    public function getOptionssToArray()
+    {
+        $result = [];
+        foreach($this->options as $option) {
+            $result[] = $option->toArray();
+        }
+
+        return $result;
+    }
+
+    public function toArray()
+    {
+        return [
+            'text'      => $this->text,
+            'options'   => $this->getOptionssToArray(),
+        ];
+    }
 }

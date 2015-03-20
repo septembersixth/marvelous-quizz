@@ -1,4 +1,6 @@
 
+
+
 <?= $this->flashMessenger()->render('default', array('alert', 'alert-dismissible', 'alert-warning')); ?>
 
 <div class="page-header">
@@ -12,7 +14,7 @@
         <thead>
             <tr>
                 <th>id</th>
-                <th>hash</th>
+                <th>question</th>
                 <th>created</th>
                 <th>action</th>
             </tr>
@@ -21,7 +23,7 @@
             <?php foreach($tests as $test): ?>
             <tr>
                 <td><?= $test->getId(); ?></td>
-                <td><?= substr($test->getHash(), 0, 30); ?></td>
+                <td><?= substr(implode(' / ', $test->getQuestionsText()), 0, 50); ?></td>
                 <td><?= $test->getCreated() !== null ? $test->getCreated()->format('Y-m-d H:i') : '-'; ?></td>
                 <td>
                     <a href="<?= $this->url('administration/tests', ['action' => 'edit', 'id' => $test->getId()]); ?>" class="btn btn-sm" role="button">

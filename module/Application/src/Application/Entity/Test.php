@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Test
  * @package Application\Entity
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Application\Repository\Test")
  * @ORM\Table(name="tests")
  */
 class Test
@@ -262,6 +262,39 @@ class Test
         foreach ($tags as $tag) {
             $this->tags->removeElement($tag);
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function getQuestionsText()
+    {
+        $result = [];
+        foreach($this->questions as $question) {
+            $result[] = $question->getText();
+        }
+
+        return $result;
+    }
+
+    public function getQuestionsToArray()
+    {
+        $result = [];
+        foreach($this->questions as $question) {
+            $result[] = $question->toArray();
+        }
+
+        return $result;
+    }
+
+    public function toArray()
+    {
+        return [
+            'hash'          => $this->hash,
+            'image'         => $this->image,
+            'explanation'   => $this->explanation,
+            'questions'     => $this->getQuestionsToArray(),
+        ];
     }
 
 } 

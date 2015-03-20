@@ -73,7 +73,7 @@ return
                             ],
                         ],
                     ],
-                    
+
                     'tags' =>
                     [
                         'type'      => 'segment',
