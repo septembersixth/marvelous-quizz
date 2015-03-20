@@ -166,6 +166,7 @@ class Option
     public function toArray()
     {
         return [
+            'id'        => $this->id,
             'text'      => $this->text,
             'correct'   => $this->correct,
         ];

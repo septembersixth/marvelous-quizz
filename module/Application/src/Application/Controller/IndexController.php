@@ -24,13 +24,6 @@ class IndexController extends AbstractActionController
     {
     }
 
-    public function postAction()
-    {
-
-    }
-
-
-
     public function getEntityManager()
     {
         if (! $this->em) {

@@ -277,6 +277,15 @@ class Test
         return $result;
     }
 
+    public function getSolutionsToArray()
+    {
+        $result = [];
+        foreach($this->questions as $question) {
+            $result = array_merge($result, $question->getSolutionstoArray());
+        }
+        return $result;
+    }
+
     public function getQuestionsToArray()
     {
         $result = [];
@@ -294,6 +303,7 @@ class Test
             'image'         => $this->image,
             'explanation'   => $this->explanation,
             'questions'     => $this->getQuestionsToArray(),
+            'solutions'     => $this->getSolutionsToArray(),
         ];
     }
 

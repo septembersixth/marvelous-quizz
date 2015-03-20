@@ -8,6 +8,7 @@ use DoctrineModule\Paginator\Adapter\Collection;
 use Zend\Http\PhpEnvironment\Response;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\Paginator\Paginator;
+use Zend\View\Model\ViewModel;
 
 class TestsController extends AbstractActionController
 {

@@ -194,16 +194,16 @@ return
         'default' =>
         [
             [
-                'label' => 'Home',
-                'route' => 'home',
+                'label'     => 'Home',
+                'route'     => 'home',
             ],
             [
-                'label' => 'Tests',
-                'route' => 'administration/tests',
+                'label'     => 'Tests',
+                'route'     => 'administration/tests',
             ],
             [
-                'label' => 'Tags',
-                'route' => 'administration/tags',
+                'label'     => 'Tags',
+                'route'     => 'administration/tags',
             ],
         ],
     ],

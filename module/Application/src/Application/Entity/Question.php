@@ -199,7 +199,24 @@ class Question
         }
     }
 
-    public function getOptionssToArray()
+    public function getSolutionsToArray()
+    {
+        $result = [];
+        foreach($this->options as $option) {
+            if ($option->isCorrect()) {
+                $result[] = $option->getId();
+            }
+        }
+        /*
+        if ($result) {
+            print_r($result);
+        }
+        */
+
+        return $result;
+    }
+
+    public function getOptionsToArray()
     {
         $result = [];
         foreach($this->options as $option) {
@@ -212,8 +229,9 @@ class Question
     public function toArray()
     {
         return [
+            'id'        => $this->id,
             'text'      => $this->text,
-            'options'   => $this->getOptionssToArray(),
+            'options'   => $this->getOptionsToArray(),
         ];
     }
 }

@@ -41,6 +41,12 @@ class Module
 
     public function registerJsonStrategy(MvcEvent $e)
     {
+        $matches    = $e->getRouteMatch();
+        $controller = $matches->getParam('controller');
+        if (false === strpos($controller, 'Json')) {
+            return;
+        }
+
         $app          = $e->getTarget();
         $locator      = $app->getServiceManager();
         $view         = $locator->get('Zend\View\View');

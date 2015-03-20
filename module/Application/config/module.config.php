@@ -7,94 +7,8 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-return array(
-    'router' => [
-        'routes' => [
-
-            'home' => [
-                'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => [
-                    'route'    => '/',
-                    'defaults' => [
-                        'controller' => 'Application\Controller\Index',
-                        'action'     => 'index',
-                    ],
-                ],
-            ],
-
-            'post' =>
-            [
-                'type'      => 'segment',
-                'options'   =>
-                [
-                    'route'         => '/post/:url',
-                    'constraint'    =>
-                    [
-                        'url'       => '[a-zA-Z0-9_-]+',
-                    ],
-                    'defaults'      =>
-                    [
-                        'controller'    => 'Application\Controller\Index',
-                        'action'        => 'post',
-                    ],
-                ],
-            ],
-
-            'posts' =>
-            [
-                'type'      => 'segment',
-                'options'   =>
-                [
-                    'route'         => '/posts[/page/:page]',
-                    'constraint'    => ['page' => '[0-9]*'],
-                    'defaults'  =>
-                    [
-                        'page'          => 1,
-                        'controller'    => 'Application\Controller\Index',
-                        'action'        => 'index'
-                    ],
-                ],
-            ],
-
-            'comment' =>
-            [
-                'type'      => 'segment',
-                'options'   =>
-                [
-                    'route'         => '/comment/post/:postId',
-                    'constraint'    =>
-                    [
-                        'postId'    => '[0-9]+',
-                    ],
-                    'defaults'      =>
-                    [
-                        'controller'    => 'Application\Controller\Index',
-                        'action'        => 'comment',
-                    ]
-                ],
-            ],
-
-            'tag' =>
-            [
-                'type'      => 'segment',
-                'options'   =>
-                [
-                    'route'         => '/tag/:tagName[/page/:page]',
-                    'constraint'    =>
-                    [
-                        'tagName'       => '[a-zA-Z0-9_-]+',
-                        'page'          => '[0-9]*',
-                    ],
-                    'defaults'      =>
-                    [
-                        'page'          => 1,
-                        'controller'    => 'Application\Controller\Index',
-                        'action'        => 'tag',
-                    ],
-                ],
-            ],
-        ],
-    ],
+return
+[
 
     'service_manager' =>
     [
@@ -189,11 +103,11 @@ return array(
         [
             'home' =>
             [
-                'type' => 'literal',
-                'options' =>
+                'type'      => 'literal',
+                'options'   =>
                 [
                     'route'     => '/',
-                    'default'   =>
+                    'defaults'   =>
                     [
                         'controller' => 'Application\Controller\Index',
                         'action'     => 'index',
@@ -260,4 +174,4 @@ return array(
         ],
     ],
 
-);
+];

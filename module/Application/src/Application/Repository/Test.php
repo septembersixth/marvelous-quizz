@@ -6,11 +6,10 @@ use Doctrine\ORM\EntityRepository;
 
 class Test extends EntityRepository
 {
-    public function getAllToArray()
+    public function findAllToArray()
     {
-        $qb = $this->createQueryBuilder('test');
+        $qb = $this->createQueryBuilder('t');
         $qb
-            ->from('Application\Entity\Test', 't')
             ->where('t.deleted = false')
         ;
 
@@ -21,5 +20,10 @@ class Test extends EntityRepository
         }
 
         return $result;
+    }
+
+    public function findQuestionById()
+    {
+//        $qb = $this->createQueryBuilder()
     }
 } 
