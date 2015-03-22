@@ -11,15 +11,11 @@ class JsonController extends AbstractActionController
 {
     protected $em;
 
-    public function testAction()
+    public function testsAction()
     {
         $testRepository = $this->getEntityManager()->getRepository('Application\Entity\Test');
 
-        return  new JsonModel(
-            [
-                'tests'         => $testRepository->findAllToArray(),
-            ]
-        );
+        return  new JsonModel($testRepository->findAllToArray());
     }
 
     public function getEntityManager()

@@ -134,10 +134,10 @@ return
                         'type'      => 'segment',
                         'options'   =>
                         [
-                            'route'     => '/test[/:params]',
+                            'route'     => '/tests[/:params]',
                             'defaults'   =>
                             [
-                                'action' => 'test',
+                                'action' => 'tests',
                             ],
                         ],
                     ],

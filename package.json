@@ -1,0 +1,6 @@
+{
+    "name": "marvelous-quizz",
+    "dependencies": {
+        "angular": "~1.3.*"
+    }
+}

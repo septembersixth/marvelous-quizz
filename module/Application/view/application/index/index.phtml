@@ -1,0 +1,30 @@
+<div ng-app="quizz">
+
+    <div ng-controller="quizzController as ctrl">
+
+        <img ng-src={{'img/upload/'+ctrl.tests[0].image}}  style='height:100px'/>
+
+        <p>{{ctrl.tests[0].explanation}}</p>
+
+        <div class="question">
+            <ul>
+                <li class="option">1 option</li>
+                <li class="option">2 option</li>
+            </ul>
+        </div>
+
+        <div class="question">
+            <ul>
+                <li class="option">3 option</li>
+                <li class="option">4 option</li>
+            </ul>
+        </div>
+
+        <test-panel>
+
+        </test-panel>
+
+        <p>solution</p>
+
+    </div>
+</div>
