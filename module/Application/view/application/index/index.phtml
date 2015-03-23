@@ -2,29 +2,36 @@
 
     <div ng-controller="quizzController as ctrl">
 
-        <img ng-src={{'img/upload/'+ctrl.tests[0].image}}  style='height:100px'/>
-
-        <p>{{ctrl.tests[0].explanation}}</p>
+        <img ng-src={{'img/upload/'+ctrl.currentTest.image}}  style='height:100px'/>
 
         <div class="question">
+            <div ng-repeat="question in ctrl.currentTest.questions">
+            {{question.text}}
             <ul>
-                <li class="option">1 option</li>
-                <li class="option">2 option</li>
+                <li class="option" ng-repeat="option in question.options"
+                    ng-click="ctrl.setAnswer(option.id)"
+                    ng-class="{active: ctrl.isActiveOption(option.id)}"
+                    >
+                    {{option.text}}
+                </li>
             </ul>
+            </div>
         </div>
 
-        <div class="question">
-            <ul>
-                <li class="option">3 option</li>
-                <li class="option">4 option</li>
-            </ul>
-        </div>
+        <p>{{ctrl.currentTest.solutions}}</p>
+        <p>{{ctrl.currentTest.explanation}}</p>
+        <p>{{ctrl.answers}}</p>
 
-        <test-panel>
+        <p>{{ctrl.valid}}</p>
 
-        </test-panel>
-
-        <p>solution</p>
-
+        <button ng-click="ctrl.nextTest()">
+            next
+        </button>
     </div>
 </div>
+
+<style>
+    .active {
+        color: red;
+    }
+</style>
