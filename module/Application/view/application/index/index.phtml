@@ -1,10 +1,10 @@
-<div ng-app="quizz">
+    <div ng-controller="quizzController as ctrl" class="container">
 
-    <div ng-controller="quizzController as ctrl">
+        <img ng-src={{'img/upload/'+ctrl.currentTest.image}} class="row test-image" />
 
-        <img ng-src={{'img/upload/'+ctrl.currentTest.image}}  style='height:100px'/>
 
-        <div class="question">
+
+        <div class="row question">
             <div ng-repeat="question in ctrl.currentTest.questions">
             {{question.text}}
             <ul>
@@ -12,26 +12,20 @@
                     ng-click="ctrl.setAnswer(option.id)"
                     ng-class="{active: ctrl.isActiveOption(option.id)}"
                     >
+                    <button class="button-option"></button>
                     {{option.text}}
                 </li>
             </ul>
             </div>
         </div>
-
-        <p>{{ctrl.currentTest.solutions}}</p>
-        <p>{{ctrl.currentTest.explanation}}</p>
-        <p>{{ctrl.answers}}</p>
-
+        
         <p>{{ctrl.valid}}</p>
 
         <button ng-click="ctrl.nextTest()">
             next
         </button>
-    </div>
-</div>
 
-<style>
-    .active {
-        color: red;
-    }
-</style>
+        <div ng-show="ctrl.state === 1" class="row explanation">
+            <p>{{ctrl.currentTest.explanation}}</p>
+        </div>
+    </div>

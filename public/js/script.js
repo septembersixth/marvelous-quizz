@@ -58,9 +58,14 @@
             if (this.currentTestIndex + 1 == this.tests.length) {
                 return;
             }
-            this.currentTest = this.tests[++this.currentTestIndex];
-            this.valid = false;
-            this.answers = [];
+            if (this.state === 1) {
+                this.state = 0;
+                this.currentTest = this.tests[++this.currentTestIndex];
+                this.valid = false;
+                this.answers = [];
+            } else {
+                this.state = 1;
+            }
         };
 
     }]);
