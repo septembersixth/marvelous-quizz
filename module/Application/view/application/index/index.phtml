@@ -1,31 +1,41 @@
     <div ng-controller="quizzController as ctrl" class="container">
 
-        <img ng-src={{'img/upload/'+ctrl.currentTest.image}} class="row test-image" />
+        <div class="image-container row">
+            <img ng-src={{'img/upload/'+ctrl.currentTest.image}} class="row test-image" />
 
+            <div ng-show="ctrl.state === 1" class="explanation-row">
+                <div class="explanation">
+                    {{ctrl.currentTest.explanation}}
+                    <p>réponse : {{ctrl.currentTest.solutions | optionsMappingFilter : ctrl.optionsMapping}}</p>
+                </div>
+            </div>
+        </div>
 
+        <div ng-class="{'alert-success': ctrl.valid, 'alert-danger': ! ctrl.valid}"
+             class="msg alert"
+             ng-show="ctrl.state === 1"
+             role="alert">
+            {{ctrl.valid | validation}}
+        </div>
 
         <div class="row question">
             <div ng-repeat="question in ctrl.currentTest.questions">
             {{question.text}}
             <ul>
                 <li class="option" ng-repeat="option in question.options"
-                    ng-click="ctrl.setAnswer(option.id)"
-                    ng-class="{active: ctrl.isActiveOption(option.id)}"
+                    ng-class="{active: ctrl.isActiveOption(option.id), correct: ctrl.state && ctrl.isCorrectOption(option.id)}"
                     >
-                    <button class="button-option"></button>
-                    {{option.text}}
+                    <div ng-click="ctrl.setAnswer(option.id)">
+                        <button class="button-option">{{ctrl.optionsMapping[option.id]}}</button>
+                        {{option.text}}
+                    </div>
                 </li>
             </ul>
             </div>
         </div>
-        
-        <p>{{ctrl.valid}}</p>
 
-        <button ng-click="ctrl.nextTest()">
-            next
+        <button ng-click="ctrl.nextTest()" class="pull-right">
+            {{ctrl.state | next}}
         </button>
 
-        <div ng-show="ctrl.state === 1" class="row explanation">
-            <p>{{ctrl.currentTest.explanation}}</p>
-        </div>
     </div>

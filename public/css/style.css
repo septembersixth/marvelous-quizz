@@ -52,10 +52,10 @@ ul {
 }
 
 .button-option {
-    padding: 12px;
-    line-height: 1.42857143;
+    padding: 5px 10px;
+    font-size: 16px;
+    text-transform: uppercase;
     text-align: center;
-    white-space: nowrap;
     vertical-align: middle;
     cursor: pointer;
     background-image: none;
@@ -64,14 +64,58 @@ ul {
 }
 
 li.option {
-    margin:10px 0;
+    margin:5px 0;
+    padding: 5px;
+}
+
+li.option div{
+    display:inline-block;
+    cursor: pointer;
 }
 
 li.option:hover {
-    cursor: pointer;
     color: black;
 }
 
 li.option.active .button-option {
     background: grey;
+    color: #ffffff;
+}
+
+.image-container {
+    position: relative;
+}
+
+.explanation-row {
+    position: absolute;
+    width: 100%;
+    margin:0 auto;
+    bottom: 30px;
+    font-size: 18px;
+    padding: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.explanation {
+    background: #ffffff;
+    padding: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.option .glyphicon-ok {
+    color: green;
+    top:5px;
+}
+
+.option.correct{
+    border: 1px solid green;
+    padding: 5px;
+}
+
+.msg {
+    text-align: center;
 }

@@ -9,14 +9,25 @@
         this.currentTestIndex = 0;
         this.answers = [];
         this.valid = false;
+        this.optionsMapping = [];
 
         this.state = 0;
 
         $http.get('/json/tests').success(function(data){
             quizz.tests = data;
             quizz.currentTest = quizz.tests[0];
-
+            quizz.initMapping(quizz.currentTest);
         });
+
+        this.initMapping = function(test){
+            var char = 'A';
+            for(var question in test.questions) {
+                for(var option in test.questions[question].options) {
+                    quizz.optionsMapping[test.questions[question].options[option].id] = char;
+                    char = String.fromCharCode(char.charCodeAt() + 1);
+                }
+            }
+        };
 
         this.setAnswer = function(optionId) {
             var index = this.answers.indexOf(optionId);
@@ -30,6 +41,10 @@
 
         this.isActiveOption = function(optionId) {
             return this.answers.indexOf(optionId) != -1 ;
+        };
+
+        this.isCorrectOption = function(optionId) {
+            return (this.currentTest.solutions.indexOf(optionId) != -1);
         };
 
         this.isTestValid = function() {
@@ -68,16 +83,31 @@
             }
         };
 
+        this.map = function(optionId) {
+            return 'A';
+        };
+
     }]);
 
-    app.directive('testPanel', function(){
-        return {
-            restrict: 'E',
-            templateUrl: 'js/template/testTemplate.html',
-            controllerAs: 'quizz',
-            controller: function() {
-                this.tutu = 'tutututiioo ok';
+    app.filter('next', function(){
+       return function(input){
+           return (input === 0) ? 'Valider' : 'Question suivante';
+       }
+    });
+
+    app.filter('validation', function(){
+        return function(input){
+            return input ? 'Bravo !' : 'Mauvaise réponse';
+        };
+    });
+
+    app.filter('optionsMappingFilter', function(){
+        return function(solutions, optionsMapping) {
+            var result = [];
+            for(solution in solutions) {
+                result.push(optionsMapping[solutions[solution]]);
             }
+            return result.join(', ');
         };
     });
 
