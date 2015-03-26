@@ -1,6 +1,7 @@
 (function() {
+    'use strict';
 
-    var app = angular.module('quizz', []);
+    var app = angular.module('quizz', ['testFilters']);
 
     app.controller('quizzController', ['$http', function($http){
         var quizz = this;
@@ -92,17 +93,20 @@
 
     }]);
 
+    /*
     app.filter('next', function(){
        return function(input){
            return (input === 0) ? 'Valider ' : 'Question suivante ';
        }
     });
 
+
     app.filter('validation', function(){
         return function(input){
             return input ? 'Bravo !' : 'Mauvaise réponse';
         };
     });
+
 
     app.filter('optionsMappingFilter', function(){
         return function(solutions, optionsMapping) {
@@ -113,5 +117,6 @@
             return result.join(', ');
         };
     });
+     */
 
 })();
