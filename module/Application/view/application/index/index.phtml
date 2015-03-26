@@ -1,6 +1,6 @@
-    <div ng-controller="quizzController as ctrl" class="container">
+    <div ng-controller="quizzController as ctrl" class="container container-main">
 
-        <div class="image-container row">
+        <div class="image-container">
             <img ng-src={{'img/upload/'+ctrl.currentTest.image}} class="row test-image" />
 
             <div ng-show="ctrl.state === 1" class="explanation-row">
@@ -11,14 +11,14 @@
             </div>
         </div>
 
-        <div ng-class="{'alert-success': ctrl.valid, 'alert-danger': ! ctrl.valid}"
+        <div ng-class="{'alert-success': ctrl.valid, 'alert-danger': ! ctrl.valid, 'visible': ctrl.state, 'visible-hidden': ! ctrl.state }"
              class="msg alert"
-             ng-show="ctrl.state === 1"
+             id="msg-answer"
              role="alert">
             {{ctrl.valid | validation}}
         </div>
 
-        <div class="row question">
+        <div class="questions">
             <div ng-repeat="question in ctrl.currentTest.questions">
             {{question.text}}
             <ul>
@@ -34,8 +34,8 @@
             </div>
         </div>
 
-        <button ng-click="ctrl.nextTest()" class="pull-right">
-            {{ctrl.state | next}}
+        <button ng-click="ctrl.nextTest()" class="btn pull-right" ng-class="{'btn-info': ! ctrl.state, 'btn-primary': ctrl.state}">
+            {{ctrl.state | next}} <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
         </button>
 
     </div>

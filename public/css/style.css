@@ -6,6 +6,7 @@ body {
     font-weight: 400;
     color: #0f2e42;
     letter-spacing: 0.5px;
+    background-color: #eeeeee;
 }
 
 .zf-green {
@@ -41,18 +42,25 @@ div.container a.brand {
     padding: 8px 20px 12px 40px;
 }
 
+.container-main {
+    background-color:#ffffff;
+    padding-bottom: 20px;
+}
+
 .test-image {
     width:100%;
-    margin:30px 0;
+    height:350px;
+    margin:20px 0;
 }
 
 ul {
     list-style: none;
-
+    margin:0;
 }
 
 .button-option {
     padding: 5px 10px;
+    margin-right:5px;
     font-size: 16px;
     text-transform: uppercase;
     text-align: center;
@@ -90,7 +98,7 @@ li.option.active .button-option {
     position: absolute;
     width: 100%;
     margin:0 auto;
-    bottom: 30px;
+    bottom: 20px;
     font-size: 18px;
     padding: 5px;
     -webkit-box-sizing: border-box;
@@ -114,8 +122,30 @@ li.option.active .button-option {
 .option.correct{
     border: 1px solid green;
     padding: 5px;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.25),0 1px 2px rgba(0,0,0,0.05);
 }
 
 .msg {
     text-align: center;
+}
+
+.button-state-1{
+    background-color: #0f2e42;
+}
+
+.questions {
+    box-sizing: padding-box;
+}
+
+#msg-answer {
+    padding:5px;
+}
+
+.visible {
+    visibility: visible;
+}
+
+.visible-hidden {
+    visibility: hidden;
 }

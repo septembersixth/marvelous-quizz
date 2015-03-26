@@ -21,6 +21,8 @@
 
         this.initMapping = function(test){
             var char = 'A';
+
+            quizz.optionsMapping = [];
             for(var question in test.questions) {
                 for(var option in test.questions[question].options) {
                     quizz.optionsMapping[test.questions[question].options[option].id] = char;
@@ -78,6 +80,7 @@
                 this.currentTest = this.tests[++this.currentTestIndex];
                 this.valid = false;
                 this.answers = [];
+                this.initMapping(this.currentTest);
             } else {
                 this.state = 1;
             }
@@ -91,7 +94,7 @@
 
     app.filter('next', function(){
        return function(input){
-           return (input === 0) ? 'Valider' : 'Question suivante';
+           return (input === 0) ? 'Valider ' : 'Question suivante ';
        }
     });
 
