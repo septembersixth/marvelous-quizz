@@ -11,11 +11,11 @@
             </div>
         </div>
 
-        <div ng-class="{'alert-success': ctrl.valid, 'alert-danger': ! ctrl.valid, 'visible': ctrl.state, 'visible-hidden': ! ctrl.state }"
+        <div ng-class="{'alert-success': ctrl.validator.valid, 'alert-danger': ! ctrl.validator.valid, 'visible': ctrl.state, 'visible-hidden': ! ctrl.state }"
              class="msg alert"
              id="msg-answer"
              role="alert">
-            {{ctrl.valid | validation}}
+            {{ctrl.validator.valid | validation}}
         </div>
 
         <div class="questions">
@@ -25,7 +25,7 @@
                 <li class="option" ng-repeat="option in question.options"
                     ng-class="{active: ctrl.isActiveOption(option.id), correct: ctrl.state && ctrl.isCorrectOption(option.id)}"
                     >
-                    <div ng-click="ctrl.setAnswer(option.id)">
+                    <div ng-click="ctrl.addAnswer(option.id)">
                         <button class="button-option">{{ctrl.optionsMapping[option.id]}}</button>
                         {{option.text}}
                     </div>
@@ -37,5 +37,6 @@
         <button ng-click="ctrl.nextTest()" class="btn pull-right" ng-class="{'btn-info': ! ctrl.state, 'btn-primary': ctrl.state}">
             {{ctrl.state | next}} <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
         </button>
+
 
     </div>
