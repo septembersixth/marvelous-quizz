@@ -56,6 +56,67 @@
                 return validator;
             };
         })
+
+        .factory('mappingService', function(){
+            var optionsMapping = [];
+
+            return function(test) {
+                var char = 'A';
+                for(var question in test.questions) {
+                    for(var option in test.questions[question].options) {
+                        optionsMapping[test.questions[question].options[option].id] = char;
+                        char = String.fromCharCode(char.charCodeAt() + 1);
+                    }
+                }
+                return optionsMapping;
+            };
+        })
+
+        .factory('testCollectorService', function(){
+            var collector   = {
+                tests       : [],
+                currentTest : {},
+                count       : 0,
+                correct     : 0,
+                wrong       : 0,
+
+                setTests             : function(tests) {
+                    this.tests       = tests;
+                    this.count       = 0;
+                    this.correct     = 0;
+                    this.wrong       = 0;
+                    this.currentTest = this.tests[this.count];
+                },
+
+                saveOneCorrect : function() {
+                    this.correct++;
+                },
+
+                saveOneWrong : function() {
+                    this.wrong++;
+                },
+
+                next : function(isValid){
+                    this.count++;
+                    if (this.tests.length <= this.count) {
+                        return;
+                    }
+                    this.currentTest = this.tests[this.count];
+                    if (isValid) {
+                        this.saveOneCorrect();
+                    }else {
+                        this.saveOneWrong();
+                    }
+                    return true;
+                }
+            };
+
+            return function(tests) {
+                collector.tests = tests;
+                return collector;
+            };
+
+        })
     ;
 
 })();

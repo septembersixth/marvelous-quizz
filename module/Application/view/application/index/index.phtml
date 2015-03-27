@@ -1,12 +1,12 @@
     <div ng-controller="quizzController as ctrl" class="container container-main">
 
         <div class="image-container">
-            <img ng-src={{'img/upload/'+ctrl.currentTest.image}} class="row test-image" />
+            <img ng-src={{'img/upload/'+ctrl.getCurrentTest().image}} class="row test-image" />
 
             <div ng-show="ctrl.state === 1" class="explanation-row">
                 <div class="explanation">
-                    {{ctrl.currentTest.explanation}}
-                    <p>réponse : {{ctrl.currentTest.solutions | optionsMappingFilter : ctrl.optionsMapping}}</p>
+                    {{ctrl.getCurrentTest().explanation}}
+                    <p>réponse : {{ctrl.getCurrentTest().solutions | optionsMappingFilter : ctrl.optionsMapping}}</p>
                 </div>
             </div>
         </div>
@@ -19,7 +19,7 @@
         </div>
 
         <div class="questions">
-            <div ng-repeat="question in ctrl.currentTest.questions">
+            <div ng-repeat="question in ctrl.getCurrentTest().questions">
             {{question.text}}
             <ul>
                 <li class="option" ng-repeat="option in question.options"
@@ -37,6 +37,5 @@
         <button ng-click="ctrl.nextTest()" class="btn pull-right" ng-class="{'btn-info': ! ctrl.state, 'btn-primary': ctrl.state}">
             {{ctrl.state | next}} <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
         </button>
-
 
     </div>

@@ -3,23 +3,21 @@
 
     var app = angular.module('quizz', ['testFilters', 'testServices']);
 
-    app.controller('quizzController', ['$http', 'validatorService', function($http, validatorService){
+    app.controller('quizzController', ['$http', 'validatorService', 'mappingService', 'testCollectorService',
+        function($http, validatorService, mappingService, testCollectorService){
+
         var quizz = this;
         this.tests = [];
-        this.currentTest = {};
-        this.currentTestIndex = 0;
         this.optionsMapping = [];
-
         this.validator = validatorService();
+        this.collector = testCollectorService();
 
         this.state = 0;
 
         $http.get('/json/tests').success(function(data){
-            quizz.tests = data;
-            quizz.currentTest = quizz.tests[0];
-            quizz.initMapping(quizz.currentTest);
-
-            quizz.validator.setSolutions(data[0].solutions);
+            quizz.collector.setTests(data);
+            quizz.optionsMapping = mappingService(quizz.getCurrentTest());
+            quizz.validator.setSolutions(quizz.getCurrentTest().solutions);
         });
 
         this.isActiveOption = function(optionId) {
@@ -34,38 +32,24 @@
             return (this.validator.addAnswer(optionId));
         };
 
-        this.nextTest = function() {
-            if (this.currentTestIndex + 1 == this.tests.length) {
-                return;
-            }
-            if (this.state === 1) {
-                this.state = 0;
-                this.currentTest = this.tests[++this.currentTestIndex];
-                this.validator.setSolutions(this.tests[this.currentTestIndex]);
-                this.initMapping(this.currentTest);
-            }else {
-                this.state = 1;
-            }
+        this.getCurrentTest = function() {
+            return this.collector.currentTest;
         };
 
+        this.updateMapping = function() {
+            this.optionMapping = mappingService(this.getCurrentTest());
+        };
 
-
-
-        this.initMapping = function(test){
-            var char = 'A';
-
-            quizz.optionsMapping = [];
-            for(var question in test.questions) {
-                for(var option in test.questions[question].options) {
-                    quizz.optionsMapping[test.questions[question].options[option].id] = char;
-                    char = String.fromCharCode(char.charCodeAt() + 1);
+        this.nextTest = function() {
+            if (this.state === 0) {
+                this.state++;
+            } else {
+                if (this.collector.next(this.validator.valid)) {
+                    this.validator.setSolutions(this.getCurrentTest().solutions);
+                    this.updateMapping();
+                    this.state = 0;
                 }
             }
-        };
-
-
-        this.map = function(optionId) {
-            return 'A';
         };
 
     }]);
