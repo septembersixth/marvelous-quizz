@@ -11,6 +11,7 @@ namespace Application\Controller;
 
 use Application\Entity\Comment;
 use Doctrine\Common\Collections\ArrayCollection;
+use Zend\Json\Json;
 use Zend\Paginator\Paginator;
 use Zend\Mvc\Controller\AbstractActionController;
 use DoctrineModule\Paginator\Adapter\Collection;
@@ -22,7 +23,17 @@ class IndexController extends AbstractActionController
 
     public function indexAction()
     {
-        return [];
+        $repository = $this->getEntityManager()->getRepository('Application\Entity\Test');
+
+        $testsJson = Json::encode($repository->findAllToArray(), true);
+        return compact('testsJson');
+    }
+
+    public function resultAction()
+    {
+        $correct    = $this->params()->fromRoute('correct');
+        $wrong      = $this->params()->fromRoute('wrong');
+        return compact('correct', 'wrong');
     }
 
     public function getEntityManager()

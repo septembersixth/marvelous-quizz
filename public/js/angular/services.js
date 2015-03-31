@@ -98,15 +98,19 @@
 
                 next : function(isValid){
                     this.count++;
-                    if (this.tests.length <= this.count) {
-                        return;
-                    }
-                    this.currentTest = this.tests[this.count];
                     if (isValid) {
                         this.saveOneCorrect();
                     }else {
                         this.saveOneWrong();
                     }
+
+                    if (this.tests.length <= this.count) {
+                        window.location.href = window.location.origin + '/result/' + this.correct + '/' + this.wrong;
+                        return;
+                    } else {
+                        this.currentTest = this.tests[this.count];
+                    }
+
                     return true;
                 }
             };

@@ -65,7 +65,7 @@ return
                         'options'   =>
                         [
                             'route'         => '/tests[/:action[/:id]]',
-                            'constraint'    => ['id' => '[0-9]+'],
+                            'constraints'   => ['id' => '[0-9]+'],
                             'defaults'      =>
                             [
                                 'controller'    => 'Tests',

@@ -1,24 +1,29 @@
 (function() {
     'use strict';
 
-    var app = angular.module('quizz', ['testFilters', 'testServices']);
+    var app = angular.module('quizz', ['testFilters', 'testServices', 'testsInitService']);
 
-    app.controller('quizzController', ['$http', 'validatorService', 'mappingService', 'testCollectorService',
-        function($http, validatorService, mappingService, testCollectorService){
+    app.controller('quizzController', ['$http', 'validatorService', 'mappingService', 'testCollectorService', 'getTestsJsonService',
+        function($http, validatorService, mappingService, testCollectorService, getTestsJsonService){
 
         var quizz = this;
-        this.tests = [];
         this.optionsMapping = [];
         this.validator = validatorService();
         this.collector = testCollectorService();
 
         this.state = 0;
 
+        /*
         $http.get('/json/tests').success(function(data){
             quizz.collector.setTests(data);
             quizz.optionsMapping = mappingService(quizz.getCurrentTest());
             quizz.validator.setSolutions(quizz.getCurrentTest().solutions);
         });
+        */
+
+        this.collector.setTests(getTestsJsonService());
+        this.optionsMapping = mappingService(this.collector.currentTest);
+        this.validator.setSolutions(this.collector.currentTest.solutions);
 
         this.isActiveOption = function(optionId) {
             return this.validator.answers.indexOf(optionId) != -1 ;

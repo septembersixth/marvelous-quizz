@@ -113,6 +113,29 @@ return
                         'action'     => 'index',
                     ],
                 ],
+
+                'may_terminate' => true,
+
+                'child_routes' =>
+                [
+                    'result' =>
+                    [
+                        'type'      => 'segment',
+                        'options'   =>
+                        [
+                            'route'         => 'result/:correct/:wrong',
+                            'constraints'   =>
+                            [
+                                'correct'   => '[0-9]+',
+                                'wrong'     => '[0-9]+',
+                            ],
+                            'defaults'   =>
+                            [
+                                'action'        => 'result',
+                            ],
+                        ],
+                    ],
+                ],
             ],
 
             'json' =>

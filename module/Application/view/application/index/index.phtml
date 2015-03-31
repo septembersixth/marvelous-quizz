@@ -39,3 +39,17 @@
         </button>
 
     </div>
+
+
+<script>
+    (function(){
+        'use strict';
+        angular.module('testsInitService', [])
+            .factory('getTestsJsonService', function(){
+                return function() {
+                    return <?= $testsJson ?>;
+                }
+            })
+        ;
+    })();
+</script>

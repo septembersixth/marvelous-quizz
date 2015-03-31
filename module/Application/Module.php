@@ -41,7 +41,9 @@ class Module
 
     public function registerJsonStrategy(MvcEvent $e)
     {
-        $matches    = $e->getRouteMatch();
+        if (! $matches = $e->getRouteMatch()) {
+            return;
+        }
         $controller = $matches->getParam('controller');
         if (false === strpos($controller, 'Json')) {
             return;
