@@ -9,6 +9,8 @@ body {
     /*background-color: #eeeeee;*/
 }
 
+button:focus {outline:0;}
+
 .zf-green {
     color: #68b604;
 }
@@ -148,4 +150,9 @@ li.option.active .button-option {
 
 .visible-hidden {
     visibility: hidden;
+}
+
+#button-next {
+    margin-top:20px;
+    width: 141px;
 }

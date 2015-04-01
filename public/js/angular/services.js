@@ -96,14 +96,16 @@
                     this.wrong++;
                 },
 
-                next : function(isValid){
+                addCount : function(isValid) {
                     this.count++;
                     if (isValid) {
                         this.saveOneCorrect();
                     }else {
                         this.saveOneWrong();
                     }
+                },
 
+                next : function(){
                     if (this.tests.length <= this.count) {
                         window.location.href = window.location.origin + '/result/' + this.correct + '/' + this.wrong;
                         return;

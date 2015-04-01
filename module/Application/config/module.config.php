@@ -37,7 +37,7 @@ return
 
         'factories' =>
         [
-            'Application\Form\CommentForm'  => 'Application\Form\CommentFormFactory',
+            'Application\Form\Subscribe'  => 'Application\Form\SubscribeFactory',
         ]
     ],
 
@@ -118,6 +118,24 @@ return
 
                 'child_routes' =>
                 [
+                    'subscribe' =>
+                    [
+                        'type'      => 'segment',
+                        'options'   =>
+                        [
+                            'route'         => 'subscribe/:correct/:wrong',
+                            'constraints'   =>
+                            [
+                                'correct'   => '[0-9]+',
+                                'wrong'     => '[0-9]+',
+                            ],
+                            'defaults'   =>
+                            [
+                                'action'        => 'subscribe',
+                            ],
+                        ],
+                    ],
+
                     'result' =>
                     [
                         'type'      => 'segment',

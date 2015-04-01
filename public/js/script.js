@@ -13,14 +13,6 @@
 
         this.state = 0;
 
-        /*
-        $http.get('/json/tests').success(function(data){
-            quizz.collector.setTests(data);
-            quizz.optionsMapping = mappingService(quizz.getCurrentTest());
-            quizz.validator.setSolutions(quizz.getCurrentTest().solutions);
-        });
-        */
-
         this.collector.setTests(getTestsJsonService());
         this.optionsMapping = mappingService(this.collector.currentTest);
         this.validator.setSolutions(this.collector.currentTest.solutions);
@@ -34,7 +26,9 @@
         };
 
         this.addAnswer = function(optionId) {
-            return (this.validator.addAnswer(optionId));
+            if (this.state === 0) {
+                return (this.validator.addAnswer(optionId));
+            }
         };
 
         this.getCurrentTest = function() {
@@ -48,12 +42,12 @@
         this.nextTest = function() {
             if (this.state === 0) {
                 this.state++;
+                this.collector.addCount(this.validator.valid);
             } else {
-                if (this.collector.next(this.validator.valid)) {
-                    this.validator.setSolutions(this.getCurrentTest().solutions);
-                    this.updateMapping();
-                    this.state = 0;
-                }
+                this.collector.next();
+                this.validator.setSolutions(this.getCurrentTest().solutions);
+                this.updateMapping();
+                this.state = 0;
             }
         };
 

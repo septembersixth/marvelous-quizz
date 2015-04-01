@@ -43,7 +43,8 @@ class Module implements AutoloaderProviderInterface, ConfigProviderInterface
         $locator        = $event->getApplication()->getServiceManager();
         $auth           = $locator->get('Zend\Authentication\AuthenticationService');
 
-        if (! $auth->hasIdentity() && $routeMatch->getParam('action') !== 'login') {
+        if (! ($auth->hasIdentity() && $auth->getIdentity()->getRole() === 'admin')
+            && $routeMatch->getParam('action') !== 'login') {
             return $event
                     ->getTarget()
                     ->redirect()

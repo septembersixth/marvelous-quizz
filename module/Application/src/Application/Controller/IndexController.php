@@ -29,6 +29,16 @@ class IndexController extends AbstractActionController
         return compact('testsJson');
     }
 
+    public function subscribeAction()
+    {
+        $correct    = $this->params()->fromRoute('correct');
+        $wrong      = $this->params()->fromRoute('wrong');
+
+        $form = $this->getServiceLocator()->get('FormElementManager')->get('Application\Form\Subscribe');
+
+        return compact('correct', 'wrong', 'form');
+    }
+
     public function resultAction()
     {
         $correct    = $this->params()->fromRoute('correct');

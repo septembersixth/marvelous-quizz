@@ -18,6 +18,9 @@
             {{ctrl.validator.valid | validation}}
         </div>
 
+        <div class="pull-right">{{ctrl.collector.correct}} / {{ctrl.collector.count}}</div>
+        <div class="clearfix"></div>
+
         <div class="questions">
             <div ng-repeat="question in ctrl.getCurrentTest().questions">
             {{question.text}}
@@ -34,7 +37,7 @@
             </div>
         </div>
 
-        <button ng-click="ctrl.nextTest()" class="btn pull-right" ng-class="{'btn-info': ! ctrl.state, 'btn-primary': ctrl.state}">
+        <button id="button-next" ng-click="ctrl.nextTest()" class="btn pull-right" ng-class="{'btn-info': ! ctrl.state, 'btn-success': ctrl.state}">
             {{ctrl.state | next}} <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
         </button>
 
