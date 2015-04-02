@@ -1,3 +1,9 @@
+<?php
+$form->setAttribute('action', $this->url('home/subscribe', ['correct'=> $this->escapeHtml($correct), 'wrong' => $this->escapeHtml($wrong)]));
+$form->prepare();
+$form->setAttributes(['class' => 'form-horizontal']);
+?>
+
 <div class="container text-center">
 
     <p>
@@ -6,5 +12,54 @@
     et <?= $this->escapeHtml($wrong) ?> mauvaise(s) réponse(s)
     </p>
 
+</div>
+
+<br>
+
+<div class="container">
+    <?= $this->form()->openTag($form); ?>
+
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 col-sm-offset-2 control-label">Prénom</label>
+            <div class="col-sm-4">
+                <?= $this->formRow($form->get('firstname')->setAttributes(['class'=>'form-control', 'placeholder'=>'Prénom'])); ?>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 col-sm-offset-2 control-label">Nom</label>
+            <div class="col-sm-4">
+                <?= $this->formRow($form->get('lastname')->setAttributes(['class'=>'form-control', 'placeholder'=>'Nom'])); ?>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 col-sm-offset-2 control-label">Email</label>
+            <div class="col-sm-4">
+                <?= $this->formRow($form->get('email')->setAttributes(['class'=>'form-control', 'placeholder'=>'Email'])); ?>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 col-sm-offset-2 control-label">Portable</label>
+            <div class="col-sm-4">
+                <?= $this->formRow($form->get('phone')->setAttributes(['class'=>'form-control', 'placeholder'=>'Portable'])); ?>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 col-sm-offset-2 control-label">Mot de passe</label>
+            <div class="col-sm-4">
+                <?= $this->formRow($form->get('password')->setAttributes(['class'=>'form-control', 'placeholder'=>'Mot de passe'])); ?>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-4">
+                <button type="submit" class="btn btn-default">Inscription</button>
+            </div>
+        </div>
+
+    <?= $this->form()->closeTag(); ?>
 
 </div>

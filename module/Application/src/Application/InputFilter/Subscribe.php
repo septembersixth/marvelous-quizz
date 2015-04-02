@@ -4,13 +4,27 @@ namespace Application\InputFilter;
 
 use Zend\InputFilter\InputFilter;
 
-class CommentFilter extends InputFilter
+class Subscribe extends InputFilter
 {
     public function init()
     {
         $this
             ->add([
-                'name'       => 'name',
+                'name'       => 'firstname',
+                'required'   => true,
+                'filters'    => [['name' => 'StringTrim'], ['name' => 'StripTags']],
+                'validator'  => [[
+                    'name' => 'StringLength',
+                    'options' => [
+                        'encoding' => 'UTF-8',
+                        'min'      => '3',
+                        'max'      => '100',
+                    ],
+                ]],
+            ])
+
+            ->add([
+                'name'       => 'lastname',
                 'required'   => true,
                 'filters'    => [['name' => 'StringTrim'], ['name' => 'StripTags']],
                 'validator'  => [[
@@ -38,15 +52,29 @@ class CommentFilter extends InputFilter
             ])
 
             ->add([
-                'name'      => 'text',
-                'required'  => true,
+                'name'      => 'phone',
+                'required'  => false,
                 'filters'    => [['name' => 'StringTrim'], ['name' => 'StripTags']],
                 'validator'  => [[
                     'name' => 'StringLength',
                     'options' => [
                         'encoding' => 'UTF-8',
                         'min'      => '3',
-                        'max'      => '500',
+                        'max'      => '20',
+                    ],
+                ]],
+            ])
+
+            ->add([
+                'name'      => 'password',
+                'required'  => true,
+                'filters'    => [['name' => 'StringTrim'], ['name' => 'StripTags']],
+                'validator'  => [[
+                    'name' => 'StringLength',
+                    'options' => [
+                        'encoding' => 'UTF-8',
+                        'min'      => '4',
+                        'max'      => '20',
                     ],
                 ]],
             ])

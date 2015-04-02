@@ -9,13 +9,10 @@
 
 namespace Application\Controller;
 
-use Application\Entity\Comment;
-use Doctrine\Common\Collections\ArrayCollection;
+use Application\Entity\Subscriber;
+use Zend\Http\PhpEnvironment\Response;
 use Zend\Json\Json;
-use Zend\Paginator\Paginator;
 use Zend\Mvc\Controller\AbstractActionController;
-use DoctrineModule\Paginator\Adapter\Collection;
-use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
@@ -35,6 +32,25 @@ class IndexController extends AbstractActionController
         $wrong      = $this->params()->fromRoute('wrong');
 
         $form = $this->getServiceLocator()->get('FormElementManager')->get('Application\Form\Subscribe');
+
+        if (($prg = $this->prg()) instanceof Response) {
+            return $prg;
+        } elseif ($prg === false) {
+            return compact('correct', 'wrong', 'form');
+        }
+
+        $subscriber = new Subscriber;
+
+        $form->bind($subscriber);
+        $form->setData($prg);
+        if ($form->isValid()) {
+            $subscriber->setLogin($subscriber->getEmail());
+            $em = $this->getEntityManager();
+            $em->persist($subscriber);
+            $em->flush();
+            $this->flashMessenger()->addMessage('Subscriber added !');
+            return $this->redirect()->toRoute('home');
+        }
 
         return compact('correct', 'wrong', 'form');
     }

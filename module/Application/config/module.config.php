@@ -45,7 +45,7 @@ return
     [
         'invokables' =>
         [
-            'Application\InputFilter\CommentFilter' => 'Application\InputFilter\CommentFilter',
+            'Application\InputFilter\Subscriber' => 'Application\InputFilter\Subscriber',
         ]
     ],
 

@@ -15,8 +15,14 @@ class SubscribeFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $formElementManager)
     {
         $form = new Subscribe;
+        $form->setInputFilter($formElementManager->getServiceLocator()
+            ->get('InputFilterManager')
+            ->get('Application\InputFilter\Subscribe')
+        );
+
         $form
-            ->setHydrator(new DoctrineObject($formElementManager->getServiceLocator()->get('doctrine\ORM\EntityManager')))
+            ->setHydrator(new DoctrineObject($formElementManager->getServiceLocator()
+                ->get('doctrine\ORM\EntityManager')))
             ->setObject(new Subscribe)
         ;
 

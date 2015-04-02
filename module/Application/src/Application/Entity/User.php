@@ -1,17 +1,24 @@
 <?php
 
-namespace Administration\Entity;
+namespace Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class User
- * @package Administration\Entity
+ * @package Application\Entity
  * @ORM\Entity
  * @ORM\Table(name="users")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="type", type="string")
+ * @ORM\DiscriminatorMap({
+ *      "user"          = "Application\Entity\User",
+ *      "subscriber"    = "Application\Entity\Subscriber",
+ * })
  */
 class User
 {
+    const ROLE_ADMIN = 'admin';
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -36,7 +43,13 @@ class User
      * @ORM\Column(type="string", nullable=true)
      * @var string
      */
-    protected $name;
+    protected $firstname;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     * @var string
+     */
+    protected $lastname;
 
     /**
      * @ORM\Column(type="string", nullable=true)
@@ -83,18 +96,36 @@ class User
     /**
      * @return string
      */
-    public function getName()
+    public function getFirstname()
     {
-        return $this->name;
+        return $this->firstname;
     }
 
     /**
-     * @param $name
+     * @param string $firstname
      * @return $this
      */
-    public function setName($name)
+    public function setFirstname($firstname)
     {
-        $this->name = $name;
+        $this->firstname = $firstname;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * @param string $lastname
+     * @return $this
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
         return $this;
     }
 

@@ -231,10 +231,10 @@ return
             'orm_default' =>
             [
                 'object_manager'      => 'Doctrine\ORM\EntityManager',
-                'identity_class'      => 'Administration\Entity\User',
+                'identity_class'      => 'Application\Entity\User',
                 'identity_property'   => 'login',
                 'credential_property' => 'password',
-                'credential_callable' => function(\Administration\Entity\User $user, $passwordGiven) {
+                'credential_callable' => function(\Application\Entity\User $user, $passwordGiven) {
                     return $user->getPassword() === md5($passwordGiven);
                 },
             ],
