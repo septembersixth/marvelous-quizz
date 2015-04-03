@@ -156,3 +156,16 @@ li.option.active .button-option {
     margin-top:20px;
     width: 141px;
 }
+
+#subscribe ul li{
+    font-size:13px;
+    font-weight: bold;
+}
+
+#subscribe label {
+    font-size: 0.75em;
+}
+
+#subscribe .input-error {
+    border-color: #a94442;
+}

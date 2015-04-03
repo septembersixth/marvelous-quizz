@@ -2,12 +2,7 @@
 
 namespace Administration\Form;
 
-use Application\Entity\Test;
-use DoctrineModule\Persistence\ObjectManagerAwareInterface;
-use DoctrineModule\Persistence\ProvidesObjectManager;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
 use Zend\Form\Form;
-use Zend\ModuleManager\Feature\InputFilterProviderInterface;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorAwareTrait;
 

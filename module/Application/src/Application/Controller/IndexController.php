@@ -10,6 +10,7 @@
 namespace Application\Controller;
 
 use Application\Entity\Subscriber;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Zend\Http\PhpEnvironment\Response;
 use Zend\Json\Json;
 use Zend\Mvc\Controller\AbstractActionController;
@@ -46,8 +47,16 @@ class IndexController extends AbstractActionController
         if ($form->isValid()) {
             $subscriber->setLogin($subscriber->getEmail());
             $em = $this->getEntityManager();
+            $subscriber->setPassword(md5($subscriber->getPassword()));
             $em->persist($subscriber);
-            $em->flush();
+
+            try {
+                $em->flush();
+            } catch(UniqueConstraintViolationException $e) {
+                return compact('correct', 'wrong', 'form');
+            }
+
+
             $this->flashMessenger()->addMessage('Subscriber added !');
             return $this->redirect()->toRoute('home');
         }

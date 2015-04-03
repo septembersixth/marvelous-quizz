@@ -8,7 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * Class Subscriber
  * @package Application\Entity
  * @ORM\Entity
- * @ORM\Table(name="Subscribers")
+ * @ORM\Table(
+ *  uniqueConstraints={@ORM\UniqueConstraint(name="email_unique", columns={"email"})}
+ * )
  */
 class Subscriber extends User
 {

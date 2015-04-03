@@ -28,7 +28,7 @@ class Subscribe extends Form
 
             ->add([
                 'name'  => 'email',
-                'type'  => 'Email',
+                'type'  => 'text',
             ])
 
             ->add([

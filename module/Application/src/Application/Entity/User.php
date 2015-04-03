@@ -8,7 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * Class User
  * @package Application\Entity
  * @ORM\Entity
- * @ORM\Table(name="users")
+ * @ORM\Table(name="users",
+ *  uniqueConstraints={@ORM\UniqueConstraint(name="login_unique", columns={"login"})}
+ * )
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\DiscriminatorColumn(name="type", type="string")
  * @ORM\DiscriminatorMap({
