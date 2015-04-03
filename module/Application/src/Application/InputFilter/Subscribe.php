@@ -2,17 +2,13 @@
 
 namespace Application\InputFilter;
 
-use DoctrineModule\Persistence\ObjectManagerAwareInterface;
-use DoctrineModule\Persistence\ProvidesObjectManager;
 use DoctrineModule\Validator\NoObjectExists;
-use DoctrineModule\Validator\ObjectExists;
 use Zend\InputFilter\InputFilter;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorAwareTrait;
 
 class Subscribe extends InputFilter implements ServiceLocatorAwareInterface
 {
-    use ProvidesObjectManager;
     use ServiceLocatorAwareTrait;
 
     public function init()
@@ -28,7 +24,7 @@ class Subscribe extends InputFilter implements ServiceLocatorAwareInterface
                         'options' => [
                             'encoding' => 'UTF-8',
                             'min'      => '3',
-                            'max'      => '5',
+                            'max'      => '20',
                             'message'  => 'champ obligatoire',
                             'break_chain_on_failure' => true,
                         ]
@@ -51,7 +47,7 @@ class Subscribe extends InputFilter implements ServiceLocatorAwareInterface
                         'options' => [
                             'encoding' => 'UTF-8',
                             'min'      => '3',
-                            'max'      => '5',
+                            'max'      => '20',
                             'message'  => 'champ obligatoire',
                             'break_chain_on_failure' => true,
                         ]

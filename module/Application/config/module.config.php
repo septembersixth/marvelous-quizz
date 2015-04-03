@@ -20,7 +20,9 @@ return
 
         'factories' =>
         [
-            'front\navigation' => 'Application\Service\Navigation\FrontNavigationFactory',
+            'Zend\Authentication\AuthenticationService'     => function($serviceManager) {
+                return $serviceManager->get('doctrine.authenticationservice.orm_default');
+            }
         ],
 
         'aliases' =>
@@ -204,6 +206,20 @@ return
                 [
                     'Application\Entity' => 'application_entities',
                 ],
+            ],
+        ],
+
+        'authentication' =>
+        [
+            'orm_default' =>
+            [
+                'object_manager'      => 'Doctrine\ORM\EntityManager',
+                'identity_class'      => 'Application\Entity\User',
+                'identity_property'   => 'login',
+                'credential_property' => 'password',
+                'credential_callable' => function(\Application\Entity\User $user, $passwordGiven) {
+                    return $user->getPassword() === md5($passwordGiven);
+                },
             ],
         ],
     ],
