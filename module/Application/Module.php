@@ -21,13 +21,6 @@ class Module
         $moduleRouteListener->attach($eventManager);
 
         $eventManager->attach('render', [$this, 'registerJsonStrategy'], 100);
-
-        /*
-        $sm = $e->getApplication()->getServiceManager();
-        $sm->setAllowOverride(true)
-        ->setFactory('DoctrineModule\Authentication\Storage\Session', 'Application\Factory\TutuFactory');
-        ;
-        */
     }
 
     public function getConfig()

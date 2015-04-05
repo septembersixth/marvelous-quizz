@@ -31,6 +31,12 @@ class IndexController extends AbstractActionController
         return compact('testsJson');
     }
 
+    public function loginAction()
+    {
+        $this->redirect()->toRoute('home');
+        return;
+    }
+
     public function subscribeAction()
     {
         $correct    = $this->params()->fromRoute('correct');
