@@ -6,11 +6,12 @@ use Doctrine\ORM\EntityRepository;
 
 class Test extends EntityRepository
 {
-    public function findAllToArray()
+    public function findToArray($limit)
     {
         $qb = $this->createQueryBuilder('t');
         $qb
             ->where('t.deleted = false')
+            ->setMaxResults($limit)
         ;
 
         $tests = $qb->getQuery()->getResult();
@@ -22,8 +23,13 @@ class Test extends EntityRepository
         return $result;
     }
 
-    public function findQuestionById()
+    /*
+    public function findRandom($limit)
     {
-//        $qb = $this->createQueryBuilder()
+        $qb = $this->createQueryBuilder('t');
+        $qb
+            ->where('t.deleted = false');
+        ;
     }
+    */
 } 

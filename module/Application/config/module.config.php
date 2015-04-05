@@ -22,7 +22,9 @@ return
         [
             'Zend\Authentication\AuthenticationService'     => function($serviceManager) {
                 return $serviceManager->get('doctrine.authenticationservice.orm_default');
-            }
+            },
+
+            'doctrine.authenticationstorage.orm_default'    => 'Application\Factory\SessionFactory',
         ],
 
         'aliases' =>

@@ -6,7 +6,7 @@ body {
     font-weight: 400;
     color: #0f2e42;
     letter-spacing: 0.5px;
-    /*background-color: #eeeeee;*/
+    background-color: #eeeeee;
 }
 
 button:focus {outline:0;}

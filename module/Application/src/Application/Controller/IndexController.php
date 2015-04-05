@@ -22,7 +22,12 @@ class IndexController extends AbstractActionController
     {
         $repository = $this->getEntityManager()->getRepository('Application\Entity\Test');
 
-        $testsJson = Json::encode($repository->findAllToArray(), true);
+        $limit = 2;
+        if ($this->identity() && $this->identity()->getRole() === 'subscriber') {
+            $limit = 40;
+        }
+
+        $testsJson = Json::encode($repository->findToArray($limit), true);
         return compact('testsJson');
     }
 
