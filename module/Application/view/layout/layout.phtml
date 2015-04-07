@@ -66,15 +66,17 @@
                             <button type="submit" class="btn btn-success">Connexion</button>
                         <?= $this->form()->closeTag(); ?>
                     </div><!--/.navbar-collapse -->
+                <?php else : ?>
+                    <ul class="nav navbar-nav navbar-right connected">
+                        <li><?= $this->identity()->getFirstname() ?></li>
+                        <li><?= $this->identity()->getLastname() ?></li>
+                        <li><span class="glyphicon glyphicon-check" aria-hidden="true"></span></li>
+                    </ul>
                 <?php endif; ?>
 
             </div>
         </nav>
 
-
-        <div class="front-flashMessenger">
-            <?= $this->flashMessenger()->render('default', array('alert', 'alert-dismissible', 'alert-warning')); ?>
-        </div>
 
         <?= $this->content; ?>
 

@@ -169,3 +169,15 @@ li.option.active .button-option {
 #subscribe .input-error {
     border-color: #a94442;
 }
+
+.alert {
+    text-align: center;
+}
+
+.connected li{
+    position: relative;
+    display: block;
+    padding: 10px;
+    color:#eeeeee;
+    padding-left:3px;
+}

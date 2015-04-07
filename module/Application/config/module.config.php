@@ -128,10 +128,10 @@ return
                         'type'      => 'literal',
                         'options'   =>
                         [
-                            'route' => 'login',
+                            'route'     => 'login',
                             'defaults'  =>
                             [
-                                'action'    => 'login',
+                                'action'        => 'login',
                             ],
                         ],
                     ],

@@ -61,15 +61,6 @@ class Module
 
     public function registerFormLogin(MvcEvent $e)
     {
-        if (! $matches = $e->getRouteMatch()) {
-            return;
-        }
-
-        $controller = $matches->getParam('controller');
-        if (false === strpos($controller, 'Index')) {
-            return;
-        }
-
         $serviceManager = $e->getApplication()->getServiceManager();
         $viewModel      = $e->getApplication()->getMvcEvent()->getViewModel();
         $formLogin      = $serviceManager->get('FormElementManager')->get('Administration\Form\Login');
