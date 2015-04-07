@@ -21,7 +21,6 @@ class IndexController extends AbstractActionController
     public function indexAction()
     {
         $repository = $this->getEntityManager()->getRepository('Application\Entity\Test');
-
         $limit = 2;
         if ($this->identity() && $this->identity()->getRole() === 'subscriber') {
             $limit = 40;
@@ -33,8 +32,21 @@ class IndexController extends AbstractActionController
 
     public function loginAction()
     {
-        $this->redirect()->toRoute('home');
-        return;
+        if (($prg = $this->prg()) instanceof Response) {
+            return $prg;
+        } elseif ($prg !== false) {
+            $authService = $this->getServiceLocator()->get('Zend\Authentication\AuthenticationService');
+            $adapter = $authService->getAdapter();
+            $adapter->setIdentityValue($prg['login']);
+            $adapter->setCredentialValue($prg['password']);
+            $authResult = $authService->authenticate();
+
+            if (! $authResult->isValid()) {
+                $this->flashMessenger()->addMessage('Mauvais login / password');
+                $this->redirect()->toRoute('home');
+            }
+        }
+        return $this->forward()->dispatch('Application\Controller\Index', ['action' => 'index']);
     }
 
     public function subscribeAction()

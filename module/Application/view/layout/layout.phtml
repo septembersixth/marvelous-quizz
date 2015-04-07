@@ -51,24 +51,25 @@
                 </div>
 
                 <?php if (! ($this->identity() && $this->identity()->getRole() === 'subscriber')) :?>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <form class="navbar-form navbar-right">
-                        <div class="form-group">
-                            <input type="text" placeholder="Email" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" placeholder="Password" class="form-control">
-                        </div>
-                        <button type="submit" class="btn btn-success">Connexion</button>
-                    </form>
-                </div><!--/.navbar-collapse -->
+                    <?php $formLogin->prepare()->setAttributes([
+                        'class'     => 'navbar-form navbar-right',
+                        'action'    => $this->url('home/login', ['params'=>['action'=>'login']]),
+                    ]); ?>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <?= $this->form()->openTag($formLogin); ?>
+                            <div class="form-group">
+                                <?= $this->formRow($formLogin->get('login')->setAttributes(['class'=>'form-control', 'placeholder'=>'Email'])); ?>
+                            </div>
+                            <div class="form-group">
+                                <?= $this->formRow($formLogin->get('password')->setAttributes(['class'=>'form-control', 'placeholder'=>'Password'])); ?>
+                            </div>
+                            <button type="submit" class="btn btn-success">Connexion</button>
+                        <?= $this->form()->closeTag(); ?>
+                    </div><!--/.navbar-collapse -->
                 <?php endif; ?>
 
             </div>
         </nav>
-
-
-
 
 
         <div class="front-flashMessenger">

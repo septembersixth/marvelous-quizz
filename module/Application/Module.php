@@ -21,6 +21,7 @@ class Module
         $moduleRouteListener->attach($eventManager);
 
         $eventManager->attach('render', [$this, 'registerJsonStrategy'], 100);
+        $eventManager->attach('render', [$this, 'registerFormLogin'], 100);
     }
 
     public function getConfig()
@@ -56,5 +57,22 @@ class Module
 
         // Attach strategy, which is a listener aggregate, at high priority
         $view->getEventManager()->attach($jsonStrategy, 100);
+    }
+
+    public function registerFormLogin(MvcEvent $e)
+    {
+        if (! $matches = $e->getRouteMatch()) {
+            return;
+        }
+
+        $controller = $matches->getParam('controller');
+        if (false === strpos($controller, 'Index')) {
+            return;
+        }
+
+        $serviceManager = $e->getApplication()->getServiceManager();
+        $viewModel      = $e->getApplication()->getMvcEvent()->getViewModel();
+        $formLogin      = $serviceManager->get('FormElementManager')->get('Administration\Form\Login');
+        $viewModel->formLogin = $formLogin;
     }
 }

@@ -71,6 +71,7 @@ return
             'Application\Controller\Index'  => 'Application\Controller\IndexController',
             'Application\Controller\Json'   => 'Application\Controller\JsonController'
         ],
+
     ],
 
     'view_manager' =>
@@ -122,6 +123,19 @@ return
 
                 'child_routes' =>
                 [
+                    'login'     =>
+                    [
+                        'type'      => 'literal',
+                        'options'   =>
+                        [
+                            'route' => 'login',
+                            'defaults'  =>
+                            [
+                                'action'    => 'login',
+                            ],
+                        ],
+                    ],
+
                     'subscribe' =>
                     [
                         'type'      => 'segment',
