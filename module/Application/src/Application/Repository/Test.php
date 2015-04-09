@@ -11,10 +11,23 @@ class Test extends EntityRepository
         $qb = $this->createQueryBuilder('t');
         $qb
             ->where('t.deleted = false')
-            ->setMaxResults($limit)
+            ->select('t.id')
         ;
 
         $tests = $qb->getQuery()->getResult();
+        array_walk($tests, function(&$val){
+            $val = $val['id'];
+        });
+        $limit = count($tests) < $limit ? count($tests) : $limit;
+        $tests = array_rand(array_flip($tests), $limit);
+
+        $qb = $this->createQueryBuilder('t');
+        $qb
+            ->where($qb->expr()->in('t.id', ':tests'))
+            ->setParameter('tests', $tests)
+        ;
+        $tests = $qb->getQuery()->getResult();
+        shuffle($tests);
         $result = [];
         foreach($tests as $test) {
             $result[] = $test->toArray();
@@ -22,14 +35,4 @@ class Test extends EntityRepository
 
         return $result;
     }
-
-    /*
-    public function findRandom($limit)
-    {
-        $qb = $this->createQueryBuilder('t');
-        $qb
-            ->where('t.deleted = false');
-        ;
-    }
-    */
 } 

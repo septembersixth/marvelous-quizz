@@ -21,7 +21,7 @@ class IndexController extends AbstractActionController
     public function indexAction()
     {
         $repository = $this->getEntityManager()->getRepository('Application\Entity\Test');
-        $limit = 2;
+        $limit = 5;
         if ($this->identity() && $this->identity()->getRole() === 'subscriber') {
             $limit = 40;
         }
