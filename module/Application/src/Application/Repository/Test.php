@@ -13,11 +13,11 @@ class Test extends EntityRepository
             ->where('t.deleted = false')
             ->select('t.id')
         ;
-
         $tests = $qb->getQuery()->getResult();
         array_walk($tests, function(&$val){
             $val = $val['id'];
         });
+
         $limit = count($tests) < $limit ? count($tests) : $limit;
         $tests = array_rand(array_flip($tests), $limit);
 

@@ -68,9 +68,9 @@
                     </div><!--/.navbar-collapse -->
                 <?php else : ?>
                     <ul class="nav navbar-nav navbar-right connected">
-                        <li><?= $this->identity()->getFirstname() ?></li>
-                        <li><?= $this->identity()->getLastname() ?></li>
-                        <li><span class="glyphicon glyphicon-check" aria-hidden="true"></span></li>
+                        <li><?= $this->identity()->getFirstname().' '.$this->identity()->getLastname().' '?>
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"> </span>
+                        </li>
                     </ul>
                 <?php endif; ?>
 
