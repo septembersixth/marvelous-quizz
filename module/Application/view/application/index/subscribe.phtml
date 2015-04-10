@@ -4,16 +4,18 @@ $form->prepare();
 $form->setAttributes(['class' => 'form-horizontal']);
 ?>
 
-<div class="container text-center">
-
+<div class="container text-center container-subscribe">
     <p>
-    Vous avez <?= $this->escapeHtml($correct) ?> réponse(s) correcte(s)
+    <?= $this->escapeHtml($correct) ?> réponses correctes
     <br>
-    et <?= $this->escapeHtml($wrong) ?> mauvaise(s) réponse(s)
+    sur un total de <?= $this->escapeHtml($correct + $wrong) ?> questions
     </p>
 
+    <h1>inscrivez-vous, c'est 100% gratuit</h1>
+    pour avoir un accès illimité aux tests
 </div>
 
+<br>
 <br>
 
 <div class="container">
@@ -50,13 +52,13 @@ $form->setAttributes(['class' => 'form-horizontal']);
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 col-sm-offset-2 control-label">Mot de passe</label>
             <div class="col-sm-4">
-                <?= $this->formRow($form->get('password')->setAttributes(['class'=>'form-control', 'placeholder'=>'Mot de passe'])); ?>
+                <?= $this->formRow($form->get('password')->setAttributes(['class'=>'form-control', 'placeholder'=>'Choisissez votre mot de passe'])); ?>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-4">
-                <button type="submit" class="btn btn-default">Inscription</button>
+                <button type="submit" class="btn btn-primary">Inscription</button>
             </div>
         </div>
 
