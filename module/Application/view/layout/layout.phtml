@@ -37,7 +37,7 @@
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
-
+                    <a class="navbar-brand" href="<?= $this->url('home') ?>">Marvelous Quizz</a>
                     <?php if (! ($this->identity() && $this->identity()->getRole() === 'subscriber')) :?>
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                         <span class="sr-only">Toggle navigation</span>
@@ -45,9 +45,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
+                    <?php else : ?>
+                    <ul class="nav navbar-nav navbar-right connected">
+                        <li><?= $this->identity()->getFirstname().' '.$this->identity()->getLastname().' '?>
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"> </span>
+                        </li>
+                    </ul>
                     <?php endif; ?>
-
-                    <a class="navbar-brand" href="<?= $this->url('home') ?>">Marvelous Quizz</a>
                 </div>
 
                 <?php if (! ($this->identity() && $this->identity()->getRole() === 'subscriber')) :?>
@@ -65,13 +69,7 @@
                             </div>
                             <button type="submit" class="btn btn-success">Connexion</button>
                         <?= $this->form()->closeTag(); ?>
-                    </div><!--/.navbar-collapse -->
-                <?php else : ?>
-                    <ul class="nav navbar-nav navbar-right connected">
-                        <li><?= $this->identity()->getFirstname().' '.$this->identity()->getLastname().' '?>
-                            <span class="glyphicon glyphicon-user" aria-hidden="true"> </span>
-                        </li>
-                    </ul>
+                    </div>
                 <?php endif; ?>
 
             </div>

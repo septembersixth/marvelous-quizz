@@ -177,6 +177,12 @@ li.option.active .button-option {
     margin-bottom:5px;
 }
 
+ul.connected {
+    float:right;
+    padding:5px 10px 0 0;
+    margin: 0;
+}
+
 .connected li{
     position: relative;
     display: block;
@@ -198,11 +204,29 @@ li.option.active .button-option {
     font-weight: bold;
 }
 
+.navbar-brand {
+    /*float: left;*/
+}
+
+.navbar-form {
+    position: relative;
+    top:-50px;
+    right:0;
+}
+
+.navbar {
+     height: 50px;
+ }
+
 @media (min-width: 768px) {
 
     .navbar-nav > li {
         float: left;
         padding: 14px;
+    }
+
+    .navbar-header {
+        width:100%;
     }
 }
 
@@ -218,7 +242,8 @@ li.option.active .button-option {
     }
 
     .navbar-brand {
-        display: none;
+        padding: 5px 0 0 15px;
+        font-size:16px;
     }
 
     .navbar {
@@ -238,5 +263,9 @@ li.option.active .button-option {
 
     .questions ul {
         padding: 0;
+    }
+
+    .navbar-form {
+        top:0px;
     }
 }
