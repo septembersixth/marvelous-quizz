@@ -216,13 +216,37 @@ ul.connected {
 
 .navbar {
      height: 50px;
- }
+}
+
+.subscribe {
+    font-size:16px;
+    color: #ffffff;
+    padding-top:5px;
+    padding-left:10px;
+    text-decoration: underline;
+}
+
+.subscribe:hover {
+    cursor: pointer;
+}
+
+#toggle-connexion {
+    color:#ffffff;
+    padding:0;
+    margin-right:15px;
+    margin-top:2px;
+    text-decoration: underline;
+}
+
+#toggle-connexion:hover {
+    color: #2a6496;
+}
 
 @media (min-width: 768px) {
 
     .navbar-nav > li {
         float: left;
-        padding: 14px;
+        padding: 10px;
     }
 
     .navbar-header {
@@ -232,12 +256,12 @@ ul.connected {
 
 @media (max-width: 768px) {
     body {
-        font-size:14px;
+        font-size:16px;
         padding-top:40px;
     }
 
     .explanation-row {
-        font-size: 13px;
+        font-size: 14px;
         line-height: 15px;
     }
 

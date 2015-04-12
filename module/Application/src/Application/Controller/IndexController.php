@@ -42,7 +42,7 @@ class IndexController extends AbstractActionController
             $authResult = $authService->authenticate();
 
             if (! $authResult->isValid()) {
-                $this->flashMessenger()->addMessage('Mauvais login / password');
+                $this->flashMessenger()->addErrorMessage('Mauvais login / password');
                 $this->redirect()->toRoute('home');
             }
         }
@@ -80,12 +80,12 @@ class IndexController extends AbstractActionController
             $adapter->setCredentialValue($clearPassword);
             $authResult = $authService->authenticate();
             if ($authResult->isValid()) {
+                $this->flashMessenger()->addSuccessMessage(sprintf('Bonjour %s %s. Bon entrainement !',
+                                                                    $subscriber->getFirstname(),
+                                                                    $subscriber->getLastname()));
                 return $this->redirect()->toRoute('home');
             }
             /* end ---------------------------- */
-
-            $this->flashMessenger()->addMessage(sprintf('Bonjour %s', $subscriber->getFirstname()));
-            return $this->redirect()->toRoute('home');
         }
 
         return compact('correct', 'wrong', 'form');

@@ -141,7 +141,7 @@ return
                         'type'      => 'segment',
                         'options'   =>
                         [
-                            'route'         => 'subscribe/:correct/:wrong',
+                            'route'         => 'subscribe[/:correct/:wrong]',
                             'constraints'   =>
                             [
                                 'correct'   => '[0-9]+',

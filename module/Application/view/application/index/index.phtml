@@ -1,7 +1,9 @@
 
 
 <div class="front-flashMessenger">
-    <?= $this->flashMessenger()->render('default', ['alert', 'alert-dismissible', 'alert-danger']); ?>
+    <?= $this->flashMessenger()->render('default', ['alert', 'alert-dismissible', 'alert-success']); ?>
+    <?= $this->flashMessenger()->render('success', ['alert', 'alert-dismissible', 'alert-success']); ?>
+    <?= $this->flashMessenger()->render('error', ['alert', 'alert-dismissible', 'alert-danger']); ?>
 </div>
 
 

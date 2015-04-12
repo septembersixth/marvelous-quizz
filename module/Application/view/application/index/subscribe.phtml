@@ -5,17 +5,17 @@ $form->setAttributes(['class' => 'form-horizontal']);
 ?>
 
 <div class="container text-center container-subscribe">
-    <p>
+    <?php if (isset($correct) && isset($wrong)):?>
     <?= $this->escapeHtml($correct) ?> réponses correctes
     <br>
     sur un total de <?= $this->escapeHtml($correct + $wrong) ?> questions
-    </p>
+    <?php endif; ?>
 
+    <br>
     <h1>inscrivez-vous, c'est 100% gratuit</h1>
     pour avoir un accès illimité aux tests
 </div>
 
-<br>
 <br>
 
 <div class="container">
