@@ -218,6 +218,7 @@ return
         'invokables' => [
             'questionCollection'    => 'Administration\View\Helper\QuestionCollection',
             'questionRow'           => 'Administration\View\Helper\QuestionRow',
+            'tagType'               => 'Administration\View\Helper\TagType',
         ],
     ],
 

@@ -11,6 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Tag
 {
+    const TYPE_ONE = 1;
+    const TYPE_TWO = 2;
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,6 +27,12 @@ class Tag
      * @var string
      */
     protected $name;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $type;
 
     /**
      * @ORM\Column(type="boolean", options={"default"=false})
@@ -80,6 +89,24 @@ class Tag
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
         return $this;
     }
 }
