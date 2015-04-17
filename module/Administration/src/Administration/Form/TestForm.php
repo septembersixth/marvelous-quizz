@@ -6,6 +6,9 @@ use DoctrineModule\Persistence\ObjectManagerAwareInterface;
 use DoctrineModule\Persistence\ProvidesObjectManager;
 use Zend\Form\Form;
 
+/**
+ * @deprecated
+ */
 class TestForm extends Form implements ObjectManagerAwareInterface
 {
     use ProvidesObjectManager;

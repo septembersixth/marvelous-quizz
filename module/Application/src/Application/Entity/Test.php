@@ -14,6 +14,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Test
 {
+    const LEVEL_EASY            = 1;
+    const LEVEL_INTERMEDIARY    = 2;
+    const LEVEL_HARD            = 3;
+
     /**
      * @var integer
      * @ORM\Column(type="integer")
@@ -51,6 +55,12 @@ class Test
      * @ORM\ManyToMany(targetEntity="Application\Entity\Tag")
      */
     protected $tags;
+
+    /**
+     * @var Array
+     * @ORM\Column(type="simple_array", nullable=true)
+     */
+    protected $level;
 
     /**
      * @var \Datetime
@@ -307,4 +317,21 @@ class Test
         ];
     }
 
-} 
+    /**
+     * @return string
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    /**
+     * @param string $level
+     * @return $this
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+        return $this;
+    }
+}

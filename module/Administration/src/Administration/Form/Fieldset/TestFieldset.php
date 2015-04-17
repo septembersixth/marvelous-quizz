@@ -2,9 +2,9 @@
 
 namespace Administration\Form\Fieldset;
 
+use Application\Entity\Tag;
 use Application\Entity\Test;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject;
-use DoctrineModule\Stdlib\Hydrator\Strategy\DisallowRemoveByValue;
 use Zend\Form\Fieldset;
 use Zend\InputFilter\InputFilterProviderInterface;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
@@ -73,10 +73,29 @@ class TestFieldset extends Fieldset implements InputFilterProviderInterface, Ser
                             ],
 
                         'label_attributes'  =>
-                            [
-                                'class' => 'checkbox-inline'
-                            ]
+                        [
+                            'class' => 'checkbox-inline'
+                        ]
                     ],
+            ])
+
+            ->add([
+                'type'      => 'MultiCheckbox',
+                'name'      => 'level',
+                'options'   =>
+                [
+                    'value_options' =>
+                    [
+                        Test::LEVEL_EASY            => 'facile',
+                        Test::LEVEL_INTERMEDIARY    => 'intermédiaire',
+                        Test::LEVEL_HARD            => 'dur',
+                    ],
+
+                    'label_attributes'  =>
+                    [
+                        'class' => 'checkbox-inline'
+                    ]
+                ],
             ])
         ;
 
@@ -116,6 +135,10 @@ class TestFieldset extends Fieldset implements InputFilterProviderInterface, Ser
             ],
 
             'tags' => [
+                'required' => false,
+            ],
+
+            'level' => [
                 'required' => false,
             ],
 
