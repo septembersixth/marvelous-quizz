@@ -32,20 +32,6 @@ class TagForm extends Form implements ObjectManagerAwareInterface
             ])
 
             ->add([
-                'name'      => 'type',
-                'type'      => 'select',
-                'options'   =>
-                [
-                    'value_options' => [Tag::TYPE_ONE => 'difficulté', Tag::TYPE_TWO => 'type'],
-                    'empty_option'  => 'Please choose the type',
-                ],
-                'attributes' =>
-                [
-                    'class'         => 'form-control',
-                ]
-            ])
-
-            ->add([
                 'name'  => 'submit',
                 'type'  => 'Submit',
                 'attributes' =>
