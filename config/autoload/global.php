@@ -18,6 +18,12 @@ return [
         'remember_me_seconds'   => 15552000,
         'gc_maxlifetime'        => 15552000,
         'cookie_lifetime'       => 15552000,
-    ]
+    ],
+
+    'website'   =>
+    [
+        'window_title'  => 'Quizz',
+        'title'         => 'Marvelous Quizz',
+    ],
 
 ];

@@ -65,5 +65,7 @@ class Module
         $viewModel      = $e->getApplication()->getMvcEvent()->getViewModel();
         $formLogin      = $serviceManager->get('FormElementManager')->get('Administration\Form\Login');
         $viewModel->formLogin = $formLogin;
+
+        $viewModel->websiteConfig = $serviceManager->get('config')['website'];
     }
 }
