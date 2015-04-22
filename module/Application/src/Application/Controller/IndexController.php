@@ -21,9 +21,9 @@ class IndexController extends AbstractActionController
     public function indexAction()
     {
         $repository = $this->getEntityManager()->getRepository('Application\Entity\Test');
-        $limit = 2;
+        $limit = $this->getServiceLocator()->get('config')['website']['testLimitUnsubscribed'];
         if ($this->identity() && $this->identity()->getRole() === 'subscriber') {
-            $limit = 40;
+            $limit = $this->getServiceLocator()->get('config')['website']['testLimitMax'];
         }
 
         $testsJson = Json::encode($repository->findToArray($limit), true);

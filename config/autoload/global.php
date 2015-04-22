@@ -22,8 +22,10 @@ return [
 
     'website'   =>
     [
-        'window_title'  => 'Quizz',
-        'title'         => 'Marvelous Quizz',
+        'window_title'              => 'Quizz',
+        'title'                     => 'Marvelous Quizz',
+        'testLimitUnsubscribed'     => 5,
+        'testLimitMax'              => 40,
     ],
 
 ];
