@@ -107,7 +107,7 @@
 
                 next : function(){
                     if (this.tests.length <= this.count) {
-                        if (this.count >= 4) {
+                        if (this.count > 5) {
                             window.location.href = window.location.origin + '/result/' + this.correct + '/' + this.wrong;
                         } else {
                             window.location.href = window.location.origin + '/subscribe/' + this.correct + '/' + this.wrong;
