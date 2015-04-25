@@ -18,7 +18,7 @@ class TestsController extends AbstractActionController
     {
         $page = $this->params()->fromRoute('page') ? $this->params()->fromRoute('page') : 1;
         
-        $tests = $this->getEntityManager()->getRepository('Application\Entity\Test')->findByDeleted(false);
+        $tests = $this->getEntityManager()->getRepository('Application\Entity\Test')->findBy(['deleted' => false], ['id' => 'DESC']);
         $paginator = new Paginator(new Collection(new ArrayCollection($tests)));
         $paginator
             ->setCurrentPageNumber($page)
@@ -26,39 +26,6 @@ class TestsController extends AbstractActionController
         return [
             'tests' => $paginator,
         ];
-    }
-
-    public function addbisAction()
-    {
-        /** @var \Administration\Form\TestForm $form */
-        $form = $this->getTestForm();
-
-        if (($prg = $this->fileprg($form)) instanceof Response) {
-            return $prg;
-        } elseif ($prg === false) {
-            return compact('form');
-        }
-
-        $test = (new Test)
-            ->setCreated(date_create())
-            ->setHash(md5(uniqid()))
-        ;
-        $form->bind($test);
-        $form->setData($prg);
-        if ($form->isValid()) {
-            $em = $this->getEntityManager();
-            $em->persist($test);
-            $em->flush();
-            $this->flashMessenger()->addMessage('test added');
-            return $this->redirect()->toRoute('administration/tests');
-        }
-        else {
-            // Form not valid, but file uploads might be valid and uploaded
-            if (empty($prg['image']['error']) && !empty($prg['image']['tmp_name'])) {
-                $form->get('image')->setValue($prg['image']['tmp_name']);
-            }
-        }
-        return compact('form');
     }
 
     public function addAction()
