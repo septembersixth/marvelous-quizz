@@ -154,8 +154,6 @@ return
     [
         'invokables' =>
         [
-            'Administration\InputFilter\TestInputFilter'            => 'Administration\InputFilter\TestInputFilter',
-            'Administration\InputFilter\QuestionInputFilter'        => 'Administration\InputFilter\QuestionInputFilter',
             'Administration\InputFilter\TagInputFilter'             => 'Administration\InputFilter\TagInputFilter',
         ],
 
@@ -175,8 +173,6 @@ return
         'factories' =>
         [
             'Administration\Form\Login'                     => 'Administration\Form\LoginFactory',
-            'Administration\Form\TestForm'                  => 'Administration\Form\TestFormFactory',
-            'Administration\Form\QuestionForm'              => 'Administration\Form\QuestionFormFactory',
             'Administration\Form\TagForm'                   => 'Administration\Form\TagFormFactory',
         ],
 

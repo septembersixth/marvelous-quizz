@@ -76,9 +76,10 @@ class Test
 
     public function __construct()
     {
-        $this->questions = new ArrayCollection;
-        $this->tags = new ArrayCollection;
-        $this->created = date_create();
+        $this->questions    = new ArrayCollection;
+        $this->tags         = new ArrayCollection;
+        $this->created      = date_create();
+        $this->hash         = md5(uniqid());
     }
 
     /**

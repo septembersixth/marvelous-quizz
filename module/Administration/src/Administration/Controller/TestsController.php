@@ -70,10 +70,7 @@ class TestsController extends AbstractActionController
             return compact('form');
         }
 
-        $test = (new Test)
-            ->setHash(md5(uniqid()))
-        ;
-
+        $test = new Test;
         $form->bind($test);
         $form->setData($prg);
 

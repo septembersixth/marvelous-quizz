@@ -26,8 +26,6 @@ class TestFieldset extends Fieldset implements InputFilterProviderInterface, Ser
             ->setObject(new Test)
         ;
 
-
-
         $this
             ->add([
                 'name'  => 'id',
@@ -135,11 +133,11 @@ class TestFieldset extends Fieldset implements InputFilterProviderInterface, Ser
             ],
 
             'tags' => [
-                'required' => false,
+                'required' => true,
             ],
 
             'level' => [
-                'required' => false,
+                'required' => true,
             ],
 
             'explanation' => [
@@ -158,7 +156,8 @@ class TestFieldset extends Fieldset implements InputFilterProviderInterface, Ser
                         'options' =>
                         [
                             'target'    => 'data/upload/test',
-                            'randomize' => true,
+//                            'randomize' => true,
+                                'use_upload_name'   => true,
                         ]
                     ]
                 ],
