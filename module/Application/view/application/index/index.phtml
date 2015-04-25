@@ -11,7 +11,7 @@
     <div ng-controller="quizzController as ctrl" class="container container-main">
 
         <div class="image-container">
-            <img ng-src={{'img/upload/'+ctrl.getCurrentTest().image}} class="row test-image" />
+            <img ng-src={{'img/upload/'+ctrl.getCurrentTest().image}} class="row test-image"  alt="{{ctrl.getCurrentTest().alt}}"/>
 
             <div ng-show="ctrl.state === 1" class="explanation-row">
                 <div class="explanation">

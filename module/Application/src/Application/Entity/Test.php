@@ -40,6 +40,12 @@ class Test
 
     /**
      * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    protected $alt;
+
+    /**
+     * @var string
      * @ORM\Column(type="text")
      */
     protected $explanation;
@@ -312,6 +318,7 @@ class Test
         return [
             'hash'          => $this->hash,
             'image'         => $this->image,
+            'alt'           => $this->alt,
             'explanation'   => $this->explanation,
             'questions'     => $this->getQuestionsToArray(),
             'solutions'     => $this->getSolutionsToArray(),
@@ -333,6 +340,24 @@ class Test
     public function setLevel($level)
     {
         $this->level = $level;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAlt()
+    {
+        return $this->alt;
+    }
+
+    /**
+     * @param string $alt
+     * @return $this
+     */
+    public function setAlt($alt)
+    {
+        $this->alt = $alt;
         return $this;
     }
 }

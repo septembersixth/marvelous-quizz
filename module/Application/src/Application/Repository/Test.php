@@ -6,6 +6,11 @@ use Doctrine\ORM\EntityRepository;
 
 class Test extends EntityRepository
 {
+    /**
+     * @param $limit
+     * @return array
+     * find random tests
+     */
     public function findToArray($limit)
     {
         $qb = $this->createQueryBuilder('t');

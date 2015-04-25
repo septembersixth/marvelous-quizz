@@ -42,6 +42,11 @@ class TestFieldset extends Fieldset implements InputFilterProviderInterface, Ser
                 'type'  => 'File',
             ])
 
+            ->add([
+                'name'  => 'alt',
+                'type'  => 'text',
+            ])
+
 
             ->add([
                 'name'  => 'explanation',
@@ -142,6 +147,11 @@ class TestFieldset extends Fieldset implements InputFilterProviderInterface, Ser
 
             'explanation' => [
                 'required'      => true,
+                'filters'       => [['name' => 'StringTrim']],
+            ],
+
+            'alt' => [
+                'required'      => false,
                 'filters'       => [['name' => 'StringTrim']],
             ],
 
