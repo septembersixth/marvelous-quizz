@@ -11,7 +11,7 @@ class Test extends EntityRepository
      * @return array
      * find random tests
      */
-    public function findToArray($limit)
+    public function findRandomToArray($limit)
     {
         $qb = $this->createQueryBuilder('t');
         $qb
@@ -40,4 +40,4 @@ class Test extends EntityRepository
 
         return $result;
     }
-} 
+}

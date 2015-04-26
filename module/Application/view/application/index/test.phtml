@@ -61,7 +61,7 @@
         angular.module('testsInitService', [])
             .factory('getTestsJsonService', function(){
                 return function() {
-                    return <?= $testsJson ?>;
+                    return [<?= $testsJson ?>];
                 }
             })
         ;

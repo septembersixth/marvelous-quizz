@@ -13,6 +13,7 @@ use Application\Entity\Subscriber;
 use Zend\Http\PhpEnvironment\Response;
 use Zend\Json\Json;
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
@@ -26,7 +27,7 @@ class IndexController extends AbstractActionController
             $limit = $this->getServiceLocator()->get('config')['website']['testLimitMax'];
         }
 
-        $testsJson = Json::encode($repository->findToArray($limit), true);
+        $testsJson = Json::encode($repository->findRandomToArray($limit), true);
         return compact('testsJson');
     }
 
@@ -89,6 +90,19 @@ class IndexController extends AbstractActionController
         }
 
         return compact('correct', 'wrong', 'form');
+    }
+
+    public function testAction()
+    {
+        $repository = $this->getEntityManager()->getRepository('Application\Entity\Test');
+        $hash       = $this->params()->fromRoute('hash');
+
+        if (! $test = $repository->findOneByHash($hash)) {
+            return $this->notFoundAction();
+        }
+
+        $testsJson  = Json::encode($test->toArray(), true);
+        return compact('testsJson');
     }
 
     public function resultAction()

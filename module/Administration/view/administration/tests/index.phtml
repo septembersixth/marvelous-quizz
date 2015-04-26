@@ -26,6 +26,12 @@
                 <td><?= substr(implode(' / ', $test->getQuestionsText()), 0, 50); ?></td>
                 <td><?= $test->getCreated() !== null ? $test->getCreated()->format('Y-m-d H:i') : '-'; ?></td>
                 <td>
+
+                    <a href="<?= $this->url('home/test', ['hash' => $test->getHash()]); ?>" class="btn btn-sm" role="button" target="_blank">
+                        <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                        View
+                    </a>
+
                     <a href="<?= $this->url('administration/tests', ['action' => 'edit', 'id' => $test->getId()]); ?>" class="btn btn-sm" role="button">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                         Edit

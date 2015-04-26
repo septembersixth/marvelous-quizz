@@ -123,6 +123,20 @@ return
 
                 'child_routes' =>
                 [
+                    'test'     =>
+                    [
+                        'type'      => 'segment',
+                        'options'   =>
+                        [
+                            'route'         => 'id/:hash',
+                            'constraint'    => ['hash' => '[0-9a-z]+'],
+                            'defaults'      =>
+                            [
+                                'action'        => 'test',
+                            ],
+                        ],
+                    ],
+
                     'login'     =>
                     [
                         'type'      => 'literal',
