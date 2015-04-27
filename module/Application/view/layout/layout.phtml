@@ -31,45 +31,14 @@
         <link href='http://fonts.googleapis.com/css?family=Josefin+Sans:400,700' rel='stylesheet' type='text/css'>
 
     </head>
-    <body>
 
+    <body>
 
         <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="<?= $this->url('home') ?>"><?= $this->websiteConfig['title']; ?></a>
-                    <?php if (! ($this->identity() && $this->identity()->getRole() === 'subscriber')) :?>
-                    <button id="toggle-connexion" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        Connexion
-                    </button>
-                    <?php else : ?>
-                    <ul class="nav navbar-nav navbar-right connected">
-                        <li><?= $this->identity()->getFirstname().' '.$this->identity()->getLastname().' '?>
-                            <span class="glyphicon glyphicon-user" aria-hidden="true"> </span>
-                        </li>
-                    </ul>
-                    <?php endif; ?>
                 </div>
-
-                <?php if (! ($this->identity() && $this->identity()->getRole() === 'subscriber')) :?>
-                    <?php $formLogin->prepare()->setAttributes([
-                        'class'     => 'navbar-form navbar-right',
-                        'action'    => $this->url('home/login', ['params'=>['action'=>'login']]),
-                    ]); ?>
-                    <div id="navbar" class="navbar-collapse collapse">
-                        <?= $this->form()->openTag($formLogin); ?>
-                            <div class="form-group">
-                                <?= $this->formRow($formLogin->get('login')->setAttributes(['class'=>'form-control', 'placeholder'=>'Email'])); ?>
-                            </div>
-                            <div class="form-group">
-                                <?= $this->formRow($formLogin->get('password')->setAttributes(['class'=>'form-control', 'placeholder'=>'Password'])); ?>
-                            </div>
-                            <button type="submit" class="btn btn-success">Connexion</button>
-                            <a class="pull-right subscribe" href="<?= $this->url('home/subscribe'); ?>">pas inscrit ?</a>
-                        <?= $this->form()->closeTag(); ?>
-                    </div>
-                <?php endif; ?>
-
             </div>
         </nav>
 

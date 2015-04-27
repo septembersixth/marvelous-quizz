@@ -44,7 +44,9 @@
                 this.state++;
                 this.collector.addCount(this.validator.valid);
             } else {
-                this.collector.next();
+                if (! this.collector.next()) {
+                    window.location.href = window.location.origin + '/result/' + this.collector.correct + '/' + this.collector.wrong;
+                }
                 this.validator.setSolutions(this.getCurrentTest().solutions);
                 this.updateMapping();
                 this.state = 0;

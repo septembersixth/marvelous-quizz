@@ -21,7 +21,7 @@ class Module
         $moduleRouteListener->attach($eventManager);
 
         $eventManager->attach('render', [$this, 'registerJsonStrategy'], 100);
-        $eventManager->attach('render', [$this, 'registerFormLogin'], 100);
+        $eventManager->attach('render', [$this, 'injectLayoutConfig'], 100);
     }
 
     public function getConfig()
@@ -59,12 +59,10 @@ class Module
         $view->getEventManager()->attach($jsonStrategy, 100);
     }
 
-    public function registerFormLogin(MvcEvent $e)
+    public function injectLayoutConfig(MvcEvent $e)
     {
         $serviceManager = $e->getApplication()->getServiceManager();
         $viewModel      = $e->getApplication()->getMvcEvent()->getViewModel();
-        $formLogin      = $serviceManager->get('FormElementManager')->get('Administration\Form\Login');
-        $viewModel->formLogin = $formLogin;
 
         $viewModel->websiteConfig = $serviceManager->get('config')['website'];
     }
