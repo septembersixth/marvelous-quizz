@@ -158,7 +158,7 @@ class TestFieldset extends Fieldset implements InputFilterProviderInterface, Ser
             'image' =>
             [
                 'type' => 'Zend\InputFilter\FileInput',
-                'required'      => true,
+                'required'      => false,
                 'filters'       =>
                 [
                     [
