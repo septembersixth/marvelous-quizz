@@ -149,7 +149,7 @@ return
                             ],
                         ],
                     ],
-                    
+
                     'result' =>
                     [
                         'type'      => 'segment',
