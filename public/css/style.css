@@ -6,8 +6,51 @@ body {
     font-weight: 400;
     color: #0f2e42;
     letter-spacing: 0.5px;
-    background-color: #eeeeee;
+    background-color: #fff;
 }
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height */
+    /*margin-bottom: 40px;*/
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 40px;
+    /*background-color: #f5f5f5;*/
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+body > .container {
+    padding: 60px 15px 0;
+}
+.container .text-muted {
+    margin: 20px 0;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+code {
+    font-size: 80%;
+}
+
+/* end Sticky footer styles
+-------------------------------------------------- */
 
 button:focus {outline:0;}
 
@@ -138,9 +181,19 @@ li.option.active .button-option {
     background-color: #0f2e42;
 }
 
+.container-title h1{
+    text-align: center;
+    margin: 20px auto;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 40px;
+    line-height: 55px;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
 .questions {
     box-sizing: padding-box;
-    margin-top:20px;
+    margin-top:0px;
 }
 
 #msg-answer {
@@ -204,8 +257,15 @@ ul.connected {
     font-weight: bold;
 }
 
-.navbar-brand {
-    /*float: left;*/
+.navbar .navbar-brand {
+    color: #ffffff;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.navbar .navbar-brand:hover {
+    color: #999999;
 }
 
 .navbar-form {
@@ -257,7 +317,6 @@ ul.connected {
  color: #d9534f;
 }
 
-
 @media (min-width: 768px) {
 
     .navbar-nav > li {
@@ -273,7 +332,7 @@ ul.connected {
 @media (max-width: 768px) {
     body {
         font-size:16px;
-        padding-top:40px;
+        padding-top:30px;
     }
 
     .explanation-row {
@@ -312,5 +371,9 @@ ul.connected {
     #msg-answer {
         padding:0px;
         font-size: 13px;
+    }
+
+    .navbar .navbar-brand {
+        font-size: 16px;
     }
 }

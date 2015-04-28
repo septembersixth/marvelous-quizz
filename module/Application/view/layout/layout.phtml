@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <?php echo $this->headTitle($this->translate($this->websiteConfig['window_title']))->setSeparator(' - ')->setAutoEscape(false) ?>
+        <?= $this->headTitle($this->translate($this->websiteConfig['window_title']))->setSeparator(' - ')->setAutoEscape(false) ?>
 
         <?php echo $this->headMeta()
             ->appendName('viewport', 'width=device-width, initial-scale=1.0')
@@ -42,8 +42,17 @@
             </div>
         </nav>
 
+
+
         <?= $this->content; ?>
 
         <?php echo $this->inlineScript() ?>
+
+        <footer class="footer">
+            <div class="container">
+                <p class="text-muted">©2015 Tous droits réservés.</p>
+            </div>
+        </footer>
+
     </body>
 </html>
