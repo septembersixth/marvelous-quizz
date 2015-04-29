@@ -317,6 +317,14 @@ ul.connected {
  color: #d9534f;
 }
 
+.row-captcha pre{
+    text-align: center;
+}
+
+footer {
+    font-size:16px;
+}
+
 @media (min-width: 768px) {
 
     .navbar-nav > li {
