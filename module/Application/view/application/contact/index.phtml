@@ -1,0 +1,38 @@
+<?php
+$form = $this->form;
+?>
+
+<div class="container">
+    <?= $this->form()->openTag($form); ?>
+
+        <div class="form-group row">
+            <div class="col-lg-8">
+                <label>Name</label>
+                <div>
+                    <?= $this->formRow($form->get('name')->setAttributes(['class' => 'form-control'])); ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-lg-8">
+                <label>email</label>
+                <div>
+                    <?= $this->formRow($form->get('email')->setAttributes(['class' => 'form-control'])); ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-lg-8">
+                <label>Message</label>
+                <div>
+                    <?= $this->formRow($form->get('message')->setAttributes(['class' => 'form-control'])); ?>
+                </div>
+            </div>
+        </div>
+
+    <input type="submit" name="submit" id="submitbutton" class="btn btn-primary" value="Submit" onclick="disableEmptyInput()">
+    <?= $this->form()->closeTag(); ?>
+
+</div>
