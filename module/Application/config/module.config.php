@@ -41,7 +41,8 @@ return
 
         'factories' =>
         [
-            'Application\Form\Subscribe'  => 'Application\Form\SubscribeFactory',
+            'Application\Form\Subscribe'    => 'Application\Form\SubscribeFactory',
+            'Application\Form\Contact'      => 'Application\Form\ContactFormFactory',
         ]
     ],
 
@@ -68,8 +69,9 @@ return
     [
         'invokables' =>
         [
-            'Application\Controller\Index'  => 'Application\Controller\IndexController',
-            'Application\Controller\Json'   => 'Application\Controller\JsonController'
+            'Application\Controller\Index'      => 'Application\Controller\IndexController',
+            'Application\Controller\Contact'    => 'Application\Controller\ContactController',
+            'Application\Controller\Json'       => 'Application\Controller\JsonController'
         ],
 
     ],
@@ -123,12 +125,26 @@ return
 
                 'child_routes' =>
                 [
+                    'contact'   =>
+                    [
+                        'type'      => 'literal',
+                        'options'   =>
+                        [
+                            'route' => 'contact',
+                            'defaults'  =>
+                            [
+                                'controller'   => 'Application\Controller\Contact',
+                                'action'       => 'index',
+                            ],
+                        ],
+                    ],
+
                     'test'     =>
                     [
                         'type'      => 'segment',
                         'options'   =>
                         [
-                            'route'         => 'id/:hash',
+                            'route'         => 'hash/:hash',
                             'constraint'    => ['hash' => '[0-9a-z]+'],
                             'defaults'      =>
                             [

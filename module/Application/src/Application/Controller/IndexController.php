@@ -9,11 +9,9 @@
 
 namespace Application\Controller;
 
-use Application\Entity\Subscriber;
 use Zend\Http\PhpEnvironment\Response;
 use Zend\Json\Json;
 use Zend\Mvc\Controller\AbstractActionController;
-use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
