@@ -11,6 +11,7 @@ namespace Application;
 
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
+use Zend\Validator\AbstractValidator;
 
 class Module
 {
@@ -22,6 +23,26 @@ class Module
 
         $eventManager->attach('render', [$this, 'registerJsonStrategy'], 100);
         $eventManager->attach('render', [$this, 'injectLayoutConfig'], 100);
+
+
+        $serviceLocator = $e->getApplication()->getServiceManager();
+        $translator     = $serviceLocator->get('MvcTranslator');
+
+        $translator->addTranslationFile(
+            'phpArray',
+            __DIR__ . '/resources/fr/Zend_Captcha.php',
+            'default',
+            'fr_FR'
+        );
+
+        $translator->addTranslationFile(
+            'phpArray',
+            __DIR__ . '/resources/fr/Zend_Validate.php',
+            'default',
+            'fr_FR'
+        );
+
+        AbstractValidator::setDefaultTranslator($translator);
     }
 
     public function getConfig()
