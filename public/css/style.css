@@ -1,5 +1,5 @@
 body {
-    padding-top: 50px;
+    padding-top: 120px;
     padding-bottom: 40px;
     font-family: 'Josefin Sans', sans-serif;
     font-size:20px;
@@ -34,10 +34,10 @@ body {
 /* Not required for template or sticky footer method. */
 
 body > .container {
-    padding: 60px 15px 0;
+    /*padding: 60px 15px 0;*/
 }
 .container .text-muted {
-    margin: 20px 0;
+    /*margin: 20px 0;*/
 }
 
 .footer > .container {
@@ -48,6 +48,43 @@ body > .container {
 code {
     font-size: 80%;
 }
+
+.menu {
+    margin-bottom:20px;
+}
+
+.menu-item {
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #8a8a8a;
+    width: 150px;
+    float: left;
+    margin-right:20px;
+    cursor: pointer;
+}
+
+.item-title {
+    border-right: 1px solid #93117e;
+    margin-bottom: 5px;
+}
+
+.menu-item:last-child .item-title{
+    border-right: none;
+}
+
+.menu-arrow {
+    width: 110px;
+    height: 25px;
+    background-color: #fd8900;
+    background-image: url(../img/arrow.png);
+    background-position: 96% center;
+    background-repeat: no-repeat;
+}
+
+.menu-item:nth-child(2) .menu-arrow {  background-color: #34495e; }
+.menu-item:nth-child(3) .menu-arrow {  background-color: #93117e; }
+.menu-item:nth-child(4) .menu-arrow {  background-color: #B0BB00; }
+.menu-item:nth-child(5) .menu-arrow {  background-color: #FF0092; }
 
 /* end Sticky footer styles
 -------------------------------------------------- */
@@ -173,6 +210,13 @@ li.option.active .button-option {
     box-shadow: inset 0 1px 0 rgba(255,255,255,0.25),0 1px 2px rgba(0,0,0,0.05);
 }
 
+.option.wrong{
+    background-color: #e7c3c3 ;
+    padding: 5px;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.25),0 1px 2px rgba(0,0,0,0.05);
+}
+
 .msg {
     text-align: center;
 }
@@ -206,10 +250,6 @@ li.option.active .button-option {
 
 .visible-hidden {
     visibility: hidden;
-}
-
-#button-next {
-    width: 141px;
 }
 
 #subscribe ul li{
@@ -257,11 +297,54 @@ ul.connected {
     font-weight: bold;
 }
 
-.navbar .navbar-brand {
+.navbar {
     color: #ffffff;
     font-family: 'Josefin Sans', sans-serif;
-    font-size: 20px;
+    font-size: 16px;
     letter-spacing: 1px;
+}
+
+.navbar-header {
+    border-left: 1px solid #b062a3;
+    padding-left:10px;
+    line-height: 18px;
+    position: relative;
+}
+
+.navbar-header ul {
+    position: absolute;
+    top:10px;
+    right:0;
+}
+
+.navbar-header ul li {
+    float: right;
+    margin-right:5px;
+    cursor: pointer;
+}
+
+.navbar-header ul li {
+    width: 36px;
+    height: 36px;
+    display: inline-block;
+}
+
+.facebook {background: url("../img/facebook.png") no-repeat;}
+.twitter {background: url("../img/twitter.png") no-repeat;}
+.google {background: url("../img/google.png") no-repeat;}
+
+
+.navbar-title {
+    font-weight: bold;
+}
+
+.navbar a:hover {
+    color: #cccccc;
+}
+
+.navbar a {
+    color: #ffffff;
+    text-decoration: none;
 }
 
 .navbar .navbar-brand:hover {
@@ -274,9 +357,17 @@ ul.connected {
     right:0;
 }
 
-.navbar {
-    height: 50px;
+.navbar, .navbar-inverse{
+    height: 90px;
+    padding-top:15px;
+    color: #ffffff;
+    background-color: #93117e;
+    background-image: none;
     margin:0;
+}
+
+.navbar-inverse {
+    border:none;
 }
 
 .subscribe {
@@ -323,6 +414,55 @@ ul.connected {
 
 footer {
     font-size:16px;
+    border-top: 4px solid #d5d5d5;
+    border-bottom: 4px solid #d5d5d5;
+    height:80px;
+    margin-bottom: 10px;
+    padding-top:5px;
+}
+
+.round-button {
+    width: 102px;
+    height: 0;
+    padding-bottom: 95px;
+    border-radius: 50%;
+    border: 5px solid #f5f5f5;
+    overflow: hidden;
+    background: #e1007a;
+    box-shadow: 0 0 3px gray;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    margin: 0 auto;
+    color: #ffffff;
+    position: relative;
+    cursor: pointer;
+}
+
+.round-button-validate {
+
+}
+
+.round-button:hover {
+    border: 5px solid #cdddeb;
+}
+
+.round-button-next {
+    background: #57a900;
+    background-image: -webkit-linear-gradient(top, #70d900, #57a900);
+}
+
+.round-button-next:hover {
+    background: #57a900;
+    background-image: -webkit-linear-gradient(top, #70d900, #57a900);
+}
+
+
+.round-button-content {
+    position: relative;
+    top:30px;
+    font-size: 20px;
+    text-align: center;
 }
 
 @media (min-width: 768px) {
@@ -346,11 +486,6 @@ footer {
     .explanation-row {
         font-size: 14px;
         line-height: 15px;
-    }
-
-    .navbar-brand {
-        padding: 5px 0 0 15px;
-        font-size:14px;
     }
 
     .navbar {
@@ -379,9 +514,5 @@ footer {
     #msg-answer {
         padding:0px;
         font-size: 13px;
-    }
-
-    .navbar .navbar-brand {
-        font-size: 16px;
     }
 }

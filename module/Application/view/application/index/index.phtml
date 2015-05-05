@@ -40,7 +40,7 @@
             {{question.text}}
             <ul>
                 <li class="option" ng-repeat="option in question.options"
-                    ng-class="{active: ctrl.isActiveOption(option.id), correct: ctrl.state && ctrl.isCorrectOption(option.id)}"
+                    ng-class="{active: ctrl.isActiveOption(option.id), correct: ctrl.state && ctrl.isCorrectOption(option.id), wrong: ctrl.state && ctrl.isWrongOption(option.id)}"
                     >
                     <div ng-click="ctrl.addAnswer(option.id)">
                         <button class="button-option">{{ctrl.optionsMapping[option.id]}}</button>
@@ -51,10 +51,7 @@
             </div>
         </div>
 
-        <button id="button-next" ng-click="ctrl.nextTest()" class="btn pull-right" ng-class="{'btn-info': ! ctrl.state, 'btn-success': ctrl.state}">
-            {{ctrl.state | next}} <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
-        </button>
-
+        <div class="round-button round-button-validate pull-right" ng-click="ctrl.nextTest()" ng-class="{'round-button-next': ctrl.state}"><div class="round-button-content">{{ctrl.state | next}}</div></div>
     </div>
 
 </div>

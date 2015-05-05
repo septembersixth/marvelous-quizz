@@ -22,7 +22,13 @@
         };
 
         this.isCorrectOption = function(optionId) {
-            return (this.validator.solutions.indexOf(optionId) != -1);
+            return ((this.validator.solutions.indexOf(optionId) != -1) && this.isActiveOption(optionId) );
+        };
+
+        this.isWrongOption = function(optionId) {
+            return (
+                ((this.validator.solutions.indexOf(optionId) != -1) && (!this.isActiveOption(optionId)))
+            );
         };
 
         this.addAnswer = function(optionId) {

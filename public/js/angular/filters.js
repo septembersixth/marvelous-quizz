@@ -5,7 +5,7 @@
 
         .filter('next', function () {
             return function (input) {
-                return (input === 0) ? 'Valider ' : 'Question suivante ';
+                return (input === 0) ? 'valider ' : 'suivant ';
             }
         })
 
