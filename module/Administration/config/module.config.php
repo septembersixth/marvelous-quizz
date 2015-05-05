@@ -141,7 +141,6 @@ return
 
         'factories' =>
         [
-            'navigation'                                    => 'Zend\Navigation\Service\DefaultNavigationFactory',
         ],
 
         'shared' =>
@@ -184,7 +183,7 @@ return
 
     'navigation' =>
     [
-        'default' =>
+        'admin' =>
         [
             [
                 'label'     => 'Home',

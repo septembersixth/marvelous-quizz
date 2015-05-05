@@ -52,13 +52,11 @@
 
 
         <div class="container menu">
-            <ul>
-                <li class="menu-item"><div class="item-title">aléatoire</div> <div class="menu-arrow"></div></li>
-                <li class="menu-item"><div class="item-title">priorité</div> <div class="menu-arrow"></div></li>
-                <li class="menu-item"><div class="item-title">croisement</div> <div class="menu-arrow"></div></li>
-                <li class="menu-item"><div class="item-title">stationnement</div> <div class="menu-arrow"></div></li>
-                <li class="menu-item"><div class="item-title">risque</div> <div class="menu-arrow"></div></li>
-            </ul>
+            <?= $this
+                ->navigation('Zend\Navigation\Front')
+                ->menu()
+                ->setPartial('partial/front-navigation.phtml')
+            ?>
         </div>
 
         <?= $this->content; ?>

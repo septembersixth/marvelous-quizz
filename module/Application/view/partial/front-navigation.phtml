@@ -1,0 +1,9 @@
+<?php
+/* @var $container Zend\Navigation\Navigation */
+$container = $this->container;
+?>
+<ul class="<?php echo $this->navigation($container)->menu()->getUlClass(); ?>">
+    <?php foreach ($container as $page): ?>
+        <li class="menu-item"><div class="item-title"><a href="<?= $page->getHref() ?>"><?= $page->getLabel() ?></a></div> <div class="menu-arrow"></div></li>
+    <?php endforeach ?>
+</ul>
