@@ -61,6 +61,7 @@ code {
     float: left;
     margin-right:20px;
     cursor: pointer;
+    margin-bottom:10px;
 }
 
 .item-title {
@@ -466,22 +467,14 @@ footer {
     text-align: center;
 }
 
-@media (min-width: 768px) {
-
-    .navbar-nav > li {
-        float: left;
-        padding: 10px;
-    }
-
-    .navbar-header {
-        width:100%;
-    }
+.navbar-header {
+    width:100%;
 }
 
 @media (max-width: 768px) {
     body {
         font-size:16px;
-        padding-top:30px;
+        padding-top:80px;
     }
 
     .explanation-row {
@@ -489,19 +482,17 @@ footer {
         line-height: 15px;
     }
 
+    .social {
+        display: none;
+    }
+
     .navbar {
-        min-height: 30px;
-        height:30px;
-        background-color: #222;
+        padding-top: 0;
+        height: 60px;
     }
 
-    #navbar {
-        background-color: #222;
-    }
-
-    .navbar-toggle {
-        padding: 5px;
-        margin:0;
+    .navbar-header {
+        font-size: 13px;
     }
 
     .questions ul {
@@ -515,5 +506,30 @@ footer {
     #msg-answer {
         padding:0px;
         font-size: 13px;
+    }
+
+    .menu .navigation .item-title {
+        border: none;
+    }
+}
+
+@media (max-width: 385px) {
+    .navbar-header {
+        font-size: 10px;
+    }
+
+    .menu .navigation .menu-item {
+        font-size:10px;
+        text-transform: lowercase;
+        width: 50px;
+    }
+
+    .menu .navigation .menu-arrow {
+        width: 50px;
+        height: 20px;
+    }
+
+    .menu .navigation .item-title {
+        border: none;
     }
 }
