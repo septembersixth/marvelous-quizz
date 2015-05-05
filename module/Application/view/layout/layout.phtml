@@ -38,8 +38,8 @@
             <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-title" href="<?= $this->url('home') ?>"><?= $this->websiteConfig['title']; ?></a> <br>
-                    simple et efficace,<br>
-                    à vous de jouer.
+                    <?= $this->websiteConfig['title2'] ?><br>
+                    <?= $this->websiteConfig['title3'] ?>
 
                     <ul class="social">
                         <li class="google"> </li>
@@ -66,9 +66,9 @@
         <footer class="footer">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-10"><p class="text-muted">©2015 Tous droits réservés.</p></div>
-                    <div class="col-sm-1"><p class="text-muted">faq</p></div>
-                    <div class="col-sm-1"><p class="text-muted"><a href="<?= $this->url('home/contact')?>">contact</a></p></div>
+                    <div class="col-xs-8">©2015 Tous droits réservés.</div>
+                    <div class="col-xs-1">faq</div>
+                    <div class="col-xs-1"><a href="<?= $this->url('home/contact')?>">contact</a></div>
                 </div>
             </div>
         </footer>
