@@ -46,7 +46,7 @@ body > .container {
 }
 
 code {
-    font-size: 80%;
+    font-size: 85%;
 }
 
 .menu {
@@ -67,6 +67,11 @@ code {
 .item-title {
     border-right: 1px solid #93117e;
     margin-bottom: 5px;
+}
+
+.menu ul {
+    margin: 0;
+    padding: 0;
 }
 
 .menu-item:last-child .item-title{
@@ -159,6 +164,7 @@ ul {
 li.option {
     margin:5px 0;
     padding: 5px;
+    width:80%;
 }
 
 li.option div{
@@ -240,6 +246,7 @@ li.option.active .button-option {
 .questions {
     box-sizing: padding-box;
     margin-top:0px;
+    height: 280px;
 }
 
 #msg-answer {
@@ -423,6 +430,10 @@ footer {
     padding-top:5px;
 }
 
+footer .pull-right {
+    margin-left : 50px;
+}
+
 .round-button {
     width: 102px;
     height: 0;
@@ -442,7 +453,8 @@ footer {
 }
 
 .round-button-validate {
-
+    position: relative;
+    top: -90px;
 }
 
 .round-button:hover {
@@ -515,21 +527,29 @@ footer {
     .menu .navigation .item-title {
         border: none;
     }
+
+    li.option {
+        width:75%;
+    }
+
+    .questions {
+        height: 250px;
+    }
 }
 
 @media (max-width: 385px) {
     .navbar-header {
-        font-size: 10px;
+        font-size: 13px;
     }
 
     .menu .navigation .menu-item {
-        font-size:10px;
+        font-size:13px;
         text-transform: lowercase;
-        width: 50px;
+        width: 63px;
     }
 
     .menu .navigation .menu-arrow {
-        width: 50px;
+        width: 63px;
         height: 20px;
     }
 
@@ -538,6 +558,24 @@ footer {
     }
 
     footer {
-        font-size:10px;
+        font-size:13px;
     }
+
+    footer .pull-right {
+        margin-left : 20px;
+    }
+
+    .round-button-validate {
+        position: relative;
+        top: -30px;
+    }
+
+    li.option {
+        width:180px;
+    }
+
+    .questions {
+        height: 200px;
+    }
+
 }
