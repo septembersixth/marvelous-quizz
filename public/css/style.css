@@ -523,6 +523,10 @@ footer .pull-right {
     background: #B0BB00;
 }
 
+.container-panel-faq {
+    background: #34495e;
+}
+
 .panel-title {
     position: relative;
     max-width: 43%;

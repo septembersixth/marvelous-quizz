@@ -198,6 +198,20 @@ return
                             ],
                         ],
                     ],
+
+                    'faq'   =>
+                    [
+                        'type'      => 'literal',
+                        'options'   =>
+                        [
+                            'route'     => 'faq',
+                            'defaults'  =>
+                            [
+                                'controller'    => 'Application\Controller\Contact',
+                                'action'        => 'faq',
+                            ],
+                        ],
+                    ],
                 ],
             ],
 

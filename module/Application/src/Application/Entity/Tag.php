@@ -27,6 +27,12 @@ class Tag
     protected $name;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     * @var string
+     */
+    protected $url;
+
+    /**
      * @ORM\Column(type="boolean", options={"default"=false})
      * @var bool
      */
@@ -81,6 +87,24 @@ class Tag
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     * @return $this
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
         return $this;
     }
 }

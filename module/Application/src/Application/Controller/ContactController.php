@@ -34,6 +34,11 @@ class ContactController extends AbstractActionController
         return compact('form');
     }
 
+    public function faqAction()
+    {
+        return [];
+    }
+
     public function getEntityManager()
     {
         if (! $this->em) {

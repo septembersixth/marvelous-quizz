@@ -50,14 +50,11 @@
             </div>
         </nav>
 
-
-
         <?= $this
             ->navigation('Zend\Navigation\Front')
             ->menu()
             ->setPartial('partial/front-navigation.phtml')
         ?>
-
 
         <?= $this->content; ?>
 
@@ -68,7 +65,7 @@
                 <div class="row">
                     <div class="col-xs-12">©2015 Tous droits réservés.
                         <div class="pull-right"><a href="<?= $this->url('home/contact')?>">contact</a></div>
-                        <div class="pull-right">faq</div>
+                        <div class="pull-right"><a href="<?= $this->url('home/faq') ?>" >faq</a></div>
                     </div>
                 </div>
             </div>

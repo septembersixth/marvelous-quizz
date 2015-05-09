@@ -11,13 +11,23 @@ class Test extends EntityRepository
      * @return array
      * find random tests
      */
-    public function findRandomToArray($limit)
+    public function findRandomToArray($limit, $theme = null)
     {
         $qb = $this->createQueryBuilder('t');
         $qb
             ->where('t.deleted = false')
+
             ->select('t.id')
         ;
+
+        if ($theme) {
+            $qb
+                ->leftJoin('t.tags', 'ta')
+                ->andWhere('ta.url = :theme')
+                ->setParameter('theme', $theme)
+            ;
+        }
+
         $tests = $qb->getQuery()->getResult();
         array_walk($tests, function(&$val){
             $val = $val['id'];

@@ -22,7 +22,7 @@ class IndexController extends AbstractActionController
         $repository = $this->getEntityManager()->getRepository('Application\Entity\Test');
         $limit = $this->getServiceLocator()->get('config')['website']['testLimitMax'];
 
-        $testsJson = Json::encode($repository->findRandomToArray($limit), true);
+        $testsJson = Json::encode($repository->findRandomToArray($limit, $this->params('theme')), true);
         return compact('testsJson');
     }
 
