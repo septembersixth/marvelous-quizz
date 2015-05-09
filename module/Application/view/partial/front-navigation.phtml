@@ -1,9 +1,29 @@
 <?php
 /* @var $container Zend\Navigation\Navigation */
-$container = $this->container;
+$container   = $this->container;
+$currentPage = $container->findOneBy('active', 1);
 ?>
-<ul class="<?php echo $this->navigation($container)->menu()->getUlClass(); ?>">
-    <?php foreach ($container as $page): ?>
-        <li class="menu-item"><div class="item-title"><a href="<?= $page->getHref() ?>"><?= $page->getLabel() ?></a></div> <div class="menu-arrow"></div></li>
-    <?php endforeach ?>
-</ul>
+
+<div class="container menu">
+
+    <ul class="<?php echo $this->navigation($container)->menu()->getUlClass(); ?>">
+        <?php foreach ($container as $page): ?>
+            <li class="menu-item">
+                <a href="<?= $page->getHref() ?>"><?= $page->getLabel() ?>
+                    <div class="item-title"></div>
+                    <div class="menu-arrow"></div>
+                </a>
+            </li>
+        <?php endforeach ?>
+    </ul>
+
+</div>
+
+<?php if ($currentPage) : ?>
+<div class="container container-panel container-panel-contact" style="background-color: <?= $currentPage->getCustomProperties()['color']; ?>">
+    <div class="panel-title">
+        <h1><?= $currentPage->getLabel(); ?></h1>
+        <p> <?= $currentPage->getTitle() ?></p>
+    </div>
+</div>
+<?php endif; ?>

@@ -2,7 +2,7 @@ body {
     padding-top: 120px;
     padding-bottom: 40px;
     font-family: 'Josefin Sans', sans-serif;
-    font-size:20px;
+    font-size:16px;
     font-weight: 400;
     color: #0f2e42;
     letter-spacing: 0.5px;
@@ -26,6 +26,10 @@ body {
     /* Set the fixed height of the footer here */
     height: 40px;
     /*background-color: #f5f5f5;*/
+}
+
+.v-margin {
+    margin:20px 0;
 }
 
 
@@ -55,7 +59,7 @@ code {
 
 .menu-item {
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 13px;
     color: #8a8a8a;
     width: 130px;
     float: left;
@@ -65,13 +69,14 @@ code {
 }
 
 .item-title {
-    border-right: 1px solid #93117e;
+    /*border-right: 1px solid #93117e;*/
     margin-bottom: 5px;
 }
 
 .menu ul {
     margin: 0;
     padding: 0;
+
 }
 
 .menu-item:last-child .item-title{
@@ -133,7 +138,9 @@ div.container a.brand {
 
 .container-main {
     background-color:#ffffff;
+    padding: 0;
     padding-bottom: 20px;
+    height: 800px;
 }
 
 .test-image {
@@ -181,8 +188,13 @@ li.option.active .button-option {
     color: #ffffff;
 }
 
-.image-container {
+.image-container{
     position: relative;
+
+}
+
+.image-container img {
+    border: 1px solid #cccccc;
 }
 
 .explanation-row {
@@ -247,6 +259,7 @@ li.option.active .button-option {
     box-sizing: padding-box;
     margin-top:0px;
     height: 280px;
+    padding:15px;
 }
 
 #msg-answer {
@@ -270,8 +283,16 @@ li.option.active .button-option {
     font-size: 0.75em;
 }
 
-#subscribe .input-error {
-    border-color: #a94442;
+#subscribe .input-error, .input-error {
+    border-color: #e1007a;
+}
+
+.input-error + ul {
+    color: #e1007a;
+}
+
+input[type='submit'] {
+    outline: none;
 }
 
 .alert {
@@ -419,6 +440,7 @@ ul.connected {
 
 .row-captcha pre{
     text-align: center;
+    font-size:8px;
 }
 
 footer {
@@ -450,6 +472,11 @@ footer .pull-right {
     color: #ffffff;
     position: relative;
     cursor: pointer;
+}
+
+#contact-button {
+    width: 90px;
+    line-height: 85px;
 }
 
 .round-button-validate {
@@ -487,7 +514,46 @@ footer .pull-right {
     margin-bottom: 20px;
 }
 
-@media (max-width: 768px) {
+.container-panel {
+    height: auto;
+    padding: 10px;
+}
+
+.container-panel-contact {
+    background: #B0BB00;
+}
+
+.panel-title {
+    position: relative;
+    max-width: 43%;
+    min-width: 250px;
+    -webkit-box-shadow: 10px 10px 18px rgba(30, 30, 30, 0.15);
+    -moz-box-shadow: 10px 10px 18px rgba(30, 30, 30, 0.15);
+    box-shadow: 10px 10px 18px rgba(30, 30, 30, 0.15);
+    background-color: #FFF;
+    padding: 10px 25px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+}
+
+.container-panel h1 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-style: normal;
+    font-size: 18px;
+    font-weight: 100;
+    color: #333333;
+    text-transform: uppercase;
+    padding: 0;
+    margin-bottom:5px;
+}
+
+.container-panel p {
+    margin:0;
+}
+
+@media (max-width: 1000px) {
     body {
         font-size:16px;
         padding-top:80px;
@@ -528,6 +594,17 @@ footer .pull-right {
         border: none;
     }
 
+    .menu .navigation .menu-item {
+        font-size:16px;
+        text-transform: lowercase;
+        width: 80px;
+    }
+
+    .menu .navigation .menu-arrow {
+        width: 80px;
+        height: 20px;
+    }
+
     li.option {
         width:75%;
     }
@@ -535,9 +612,31 @@ footer .pull-right {
     .questions {
         height: 250px;
     }
+
+    .container-main {
+        height: 260px;
+    }
+
+    .panel-title {
+        max-width: 390px;
+    }
 }
 
 @media (max-width: 385px) {
+
+    body {
+        font-size: 14px;
+    }
+
+    .panel-title {
+        font-size: 13px;
+    }
+
+    .panel-title h1{
+        font-size: 15px;
+        margin: 0;
+    }
+
     .navbar-header {
         font-size: 13px;
     }
@@ -555,6 +654,10 @@ footer .pull-right {
 
     .menu .navigation .item-title {
         border: none;
+    }
+
+    .container-main {
+        height: 460px;
     }
 
     footer {
@@ -578,4 +681,8 @@ footer .pull-right {
         height: 200px;
     }
 
+    .row-captcha pre{
+        text-align: center;
+        font-size:8px;
+    }
 }

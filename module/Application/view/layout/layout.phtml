@@ -51,13 +51,13 @@
         </nav>
 
 
-        <div class="container menu">
-            <?= $this
-                ->navigation('Zend\Navigation\Front')
-                ->menu()
-                ->setPartial('partial/front-navigation.phtml')
-            ?>
-        </div>
+
+        <?= $this
+            ->navigation('Zend\Navigation\Front')
+            ->menu()
+            ->setPartial('partial/front-navigation.phtml')
+        ?>
+
 
         <?= $this->content; ?>
 

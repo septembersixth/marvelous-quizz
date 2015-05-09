@@ -21,6 +21,15 @@ class ContactForm extends Form implements InputFilterProviderInterface
             ])
 
             ->add([
+                'type'      => 'csrf',
+                'name'      => 'csrf',
+                'options'   =>
+                [
+                    'csrf_options'  => [ 'timeout' => 1200]
+                ]
+            ])
+
+            ->add([
                 'type'  => 'textarea',
                 'name'  => 'message',
             ])
@@ -71,13 +80,13 @@ class ContactForm extends Form implements InputFilterProviderInterface
                             'encoding' => 'UTF-8',
                             'min'      => '1',
                             'max'      => '30',
-                            'message'  => 'champ obligatoire',
+                            'message'  => 'Champ obligatoire',
                             'break_chain_on_failure' => true,
                         ]
                     ],
                     [
                         'name'      => 'NotEmpty',
-                        'options'   => ['message'   => 'champ obligatoire'],
+                        'options'   => ['message'   => 'Champ obligatoire'],
                         'break_chain_on_failure' => true,
                     ],
                 ],
@@ -94,7 +103,7 @@ class ContactForm extends Form implements InputFilterProviderInterface
                     ],
                     [
                         'name'      => 'NotEmpty',
-                        'options'   => ['message'   => 'champ obligatoire'],
+                        'options'   => ['message'   => 'Champ obligatoire'],
                         'break_chain_on_failure' => true,
                     ],
                 ],
@@ -116,7 +125,7 @@ class ContactForm extends Form implements InputFilterProviderInterface
                     ],
                     [
                         'name'      => 'NotEmpty',
-                        'options'   => ['message'   => 'champ obligatoire'],
+                        'options'   => ['message'   => 'Champ obligatoire'],
                         'break_chain_on_failure' => true,
                     ],
                 ],

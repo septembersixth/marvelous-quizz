@@ -146,10 +146,24 @@ return
                         'options'   =>
                         [
                             'route'         => 'hash/:hash',
-                            'constraint'    => ['hash' => '[0-9a-z]+'],
+                            'constraints'    => ['hash' => '[0-9a-z]+'],
                             'defaults'      =>
                             [
                                 'action'        => 'test',
+                            ],
+                        ],
+                    ],
+
+                    'theme'     =>
+                    [
+                        'type'      => 'segment',
+                        'options'   =>
+                        [
+                            'route'         => ':theme',
+                            'constraints'    => ['theme' => '(signalisation|priorite|croisement|stationnement|risque)'],
+                            'defaults'      =>
+                            [
+                                'action'        => 'index',
                             ],
                         ],
                     ],
