@@ -23,7 +23,9 @@ $currentPage = $container->findOneBy('active', 1);
 <div class="container container-panel container-panel-contact" style="background-color: <?= $currentPage->getCustomProperties()['color']; ?>">
     <div class="panel-title">
         <h1><?= $currentPage->getLabel(); ?></h1>
-        <p> <?= $currentPage->getTitle() ?></p>
     </div>
+</div>
+<div class="container">
+    <p class="v-margin"><?= $currentPage->getTitle() ?></p>
 </div>
 <?php endif; ?>

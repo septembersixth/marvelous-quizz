@@ -1,5 +1,4 @@
 body {
-    padding-top: 120px;
     padding-bottom: 40px;
     font-family: 'Josefin Sans', sans-serif;
     font-size:16px;
@@ -54,7 +53,7 @@ code {
 }
 
 .menu {
-    margin-bottom:20px;
+    margin:30px auto;
 }
 
 .menu-item {
@@ -66,10 +65,16 @@ code {
     margin-right:20px;
     cursor: pointer;
     margin-bottom:10px;
+    border-right: 1px solid #93117e;
 }
 
+.menu-item:last-child {
+    border-right: none;
+}
+
+
 .item-title {
-    /*border-right: 1px solid #93117e;*/
+
     margin-bottom: 5px;
 }
 
@@ -77,10 +82,6 @@ code {
     margin: 0;
     padding: 0;
 
-}
-
-.menu-item:last-child .item-title{
-    border-right: none;
 }
 
 .menu-arrow {
@@ -164,6 +165,8 @@ ul {
     vertical-align: middle;
     cursor: pointer;
     background-image: none;
+    background-color: #cdddeb;
+    /*background-color: #dcdcdc;*/
     border: 1px solid transparent;
     border-radius: 4px;
 }
@@ -260,6 +263,7 @@ li.option.active .button-option {
     margin-top:0px;
     height: 280px;
     padding:15px;
+    font-size:18px;
 }
 
 #msg-answer {
@@ -366,10 +370,6 @@ ul.connected {
 
 .navbar-title {
     font-weight: bold;
-}
-
-.navbar a:hover {
-    color: #cccccc;
 }
 
 .navbar a {
@@ -557,10 +557,29 @@ footer .pull-right {
     margin:0;
 }
 
+.faq ul {
+    padding: 0;
+}
+
+.faq ul li{
+    margin-bottom: 20px
+}
+
+.faq h3 {
+    font-size:20px;
+    font-family: 'Josefin Sans', sans-serif;
+    color: #34495e;
+    margin-bottom:5px;
+
+}
+
 @media (max-width: 1000px) {
     body {
+        font-size:18px;
+    }
+
+    .faq p {
         font-size:16px;
-        padding-top:80px;
     }
 
     .explanation-row {
@@ -594,6 +613,10 @@ footer .pull-right {
         font-size: 13px;
     }
 
+    .menu {
+        margin: 20px auto;
+    }
+
     .menu .navigation .item-title {
         border: none;
     }
@@ -601,7 +624,11 @@ footer .pull-right {
     .menu .navigation .menu-item {
         font-size:16px;
         text-transform: lowercase;
-        width: 80px;
+        width: 90px;
+    }
+
+    .menu-item {
+        border: none;
     }
 
     .menu .navigation .menu-arrow {
@@ -643,6 +670,10 @@ footer .pull-right {
 
     .navbar-header {
         font-size: 13px;
+    }
+
+    .menu {
+        margin: 10px auto;
     }
 
     .menu .navigation .menu-item {
