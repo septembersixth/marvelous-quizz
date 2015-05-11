@@ -1,13 +1,6 @@
 
 <div ng-app="quizz">
 
-    <div class="front-flashMessenger">
-        <?= $this->flashMessenger()->render('default', ['alert', 'alert-dismissible', 'alert-success']); ?>
-        <?= $this->flashMessenger()->render('success', ['alert', 'alert-dismissible', 'alert-success']); ?>
-        <?= $this->flashMessenger()->render('error', ['alert', 'alert-dismissible', 'alert-danger']); ?>
-    </div>
-
-
     <div ng-controller="quizzController as ctrl" class="container container-main">
 
         <div class="image-container">
@@ -28,29 +21,30 @@
             {{ctrl.validator.valid | validation}}
         </div>
 
-        <div class="pull-right">{{ctrl.collector.correct}} / {{ctrl.collector.count}}</div>
+        <div class="pull-right count">
+            {{ctrl.collector.correct}} <span class="green glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+            {{ctrl.collector.wrong}} <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+        </div>
+
         <div class="clearfix"></div>
 
         <div class="questions">
             <div ng-repeat="question in ctrl.getCurrentTest().questions">
-            {{question.text}}
-            <ul>
-                <li class="option" ng-repeat="option in question.options"
-                    ng-class="{active: ctrl.isActiveOption(option.id), correct: ctrl.state && ctrl.isCorrectOption(option.id)}"
-                    >
-                    <div ng-click="ctrl.addAnswer(option.id)">
-                        <button class="button-option">{{ctrl.optionsMapping[option.id]}}</button>
-                        {{option.text}}
-                    </div>
-                </li>
-            </ul>
+                {{question.text}}
+                <ul>
+                    <li class="option" ng-repeat="option in question.options"
+                        ng-class="{active: ctrl.isActiveOption(option.id), correct: ctrl.state && ctrl.isCorrectOption(option.id), wrong: ctrl.state && ctrl.isWrongOption(option.id)}"
+                        >
+                        <div ng-click="ctrl.addAnswer(option.id)">
+                            <button class="button-option">{{ctrl.optionsMapping[option.id]}}</button>
+                            {{option.text}}
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
 
-        <button id="button-next" ng-click="ctrl.nextTest()" class="btn pull-right" ng-class="{'btn-info': ! ctrl.state, 'btn-success': ctrl.state}">
-            {{ctrl.state | next}} <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
-        </button>
-
+        <div class="round-button round-button-validate pull-right" ng-click="ctrl.nextTest()" ng-class="{'round-button-next': ctrl.state}"><div class="round-button-content">{{ctrl.state | next}}</div></div>
     </div>
 
 </div>
