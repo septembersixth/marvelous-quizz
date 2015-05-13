@@ -358,8 +358,8 @@ ul.connected {
 }
 
 .navbar-header ul li {
-    width: 36px;
-    height: 36px;
+    /*width: 36px;*/
+    /*height: 36px;*/
     display: inline-block;
 }
 
