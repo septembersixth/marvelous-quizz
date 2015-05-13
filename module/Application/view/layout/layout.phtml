@@ -1,4 +1,4 @@
-<?php echo $this->doctype();?>
+<?php echo $this->doctype(); echo $this->serverUrl()?>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -46,7 +46,7 @@
                     <ul class="social">
 
                         <li>
-                            <div class="g-plusone" data-annotation="none"></div>
+                            <div class="g-plusone" data-annotation="none" data-href="<?= $this->serverUrl(); ?>"></div>
 
                             <script type="text/javascript">
                                 window.___gcfg = {lang: 'fr'};
