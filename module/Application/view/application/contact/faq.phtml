@@ -50,5 +50,28 @@
 
         </ul>
 
+        <ul class="social-sharing list-inline" data-permalink="<?= $this->serverUrl(); ?>">
+            <li>
+                <a target="_blank" href="http://plus.google.com/share?url=<?= $this->serverUrl(); ?>" class="share-google">
+                    <span class="icon icon-google" aria-hidden="true"></span>
+                    <span class="share-title">+1</span>
+                </a>
+            </li>
+
+            <li>
+                <a target="_blank" href="http://twitter.com/share?url=<?= $this->serverUrl(); ?>" class="share-twitter">
+                    <span class="icon icon-twitter" aria-hidden="true"></span>
+                    <span class="share-title">Tweet</span>
+                </a>
+            </li>
+
+            <li>
+                <a target="_blank" href="http://www.facebook.com/sharer.php?u=<?= $this->serverUrl(); ?>" class="share-facebook">
+                    <span class="icon icon-facebook" aria-hidden="true"></span>
+                    <span class="share-title">Share</span>
+                </a>
+            </li>
+        </ul>
+
     </div>
 </div>

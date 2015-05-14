@@ -352,9 +352,9 @@ ul.connected {
 }
 
 .navbar-header ul li {
-    float: right;
-    margin-right:5px;
     cursor: pointer;
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
 .navbar-header ul li {
@@ -367,6 +367,11 @@ ul.connected {
 .twitter {background: url("../img/twitter.png") no-repeat;}
 .google {background: url("../img/google.png") no-repeat;}
 
+
+.faq .social-sharing {
+    margin: 0 auto;
+    text-align: center;
+}
 
 .navbar-title {
     font-weight: bold;
@@ -588,10 +593,6 @@ footer .pull-right {
         line-height: 15px;
     }
 
-    .social {
-        display: none;
-    }
-
     .navbar {
         padding-top: 0;
         height: 60px;
@@ -647,6 +648,12 @@ footer .pull-right {
 
     .container-main {
         height: 260px;
+    }
+}
+
+@media (max-width: 590px) {
+    .social {
+        display: none;
     }
 }
 
